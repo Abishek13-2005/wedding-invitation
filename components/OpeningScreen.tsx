@@ -1,319 +1,336 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function OpeningScreen() {
   const screenRef = useRef<HTMLDivElement>(null);
   const envelopeRef = useRef<HTMLDivElement>(null);
-  const flapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const sealRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const flapRef = useRef<HTMLDivElement>(null);
+  const sealRef = useRef<HTMLButtonElement>(null);
   const instructionRef = useRef<HTMLDivElement>(null);
 
-  const openingRef = useRef(false);
+  const [isOpening, setIsOpening] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
 
-  /* =====================================================
-     LOCK SCROLL WHILE OPENING SCREEN IS VISIBLE
-     ===================================================== */
-
+  /*
+   * Lock page scrolling while the opening screen is visible.
+   */
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    if (!isFinished) {
+      document.body.style.overflow = "hidden";
+    }
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
-
-  /* =====================================================
-     OPEN INVITATION
-     ===================================================== */
+  }, [isFinished]);
 
   const openInvitation = () => {
-    if (openingRef.current) {
-      return;
-    }
+    if (isOpening || isFinished) return;
 
     const screen = screenRef.current;
     const envelope = envelopeRef.current;
-    const flap = flapRef.current;
     const card = cardRef.current;
+    const body = bodyRef.current;
+    const flap = flapRef.current;
     const seal = sealRef.current;
     const instruction = instructionRef.current;
 
     if (
       !screen ||
       !envelope ||
-      !flap ||
       !card ||
-      !seal
+      !body ||
+      !flap ||
+      !seal ||
+      !instruction
     ) {
-      console.error(
-        "Opening animation elements not found."
-      );
-
       return;
     }
 
-    openingRef.current = true;
+    setIsOpening(true);
 
-    document.body.style.overflow = "hidden";
+    /*
+     * Disable interaction immediately.
+     */
+    screen.classList.add("is-opening");
 
-    /* ===================================================
-       STOP ANY PREVIOUS GSAP ANIMATION
-       =================================================== */
-
+    /*
+     * Make sure the initial GSAP state is clean.
+     */
     gsap.killTweensOf([
       screen,
       envelope,
-      flap,
       card,
+      body,
+      flap,
       seal,
       instruction,
     ]);
 
-    /* ===================================================
-       INITIAL STATE
-       =================================================== */
-
-    gsap.set(screen, {
+    /*
+     * Card starts hidden behind the envelope.
+     */
+    gsap.set(card, {
       opacity: 1,
       visibility: "visible",
-      display: "flex",
+      y: 0,
+      scale: 1,
     });
 
+    /*
+     * Keep envelope in original position.
+     */
     gsap.set(envelope, {
-      opacity: 1,
-      scale: 1,
       x: 0,
       y: 0,
-      rotation: 0,
-    });
-
-    gsap.set(flap, {
-      rotationX: 0,
-      transformOrigin: "50% 0%",
-    });
-
-    gsap.set(card, {
-      opacity: 0,
-      visibility: "hidden",
-      y: "8%",
-      scale: 0.985,
-      rotation: 0,
-      zIndex: 2,
-    });
-
-    gsap.set(seal, {
-      opacity: 1,
       scale: 1,
-      rotation: 0,
+      opacity: 1,
     });
 
-    /* ===================================================
-       ANIMATION TIMELINE
-       =================================================== */
+    /*
+     * Keep flap closed initially.
+     */
+    gsap.set(flap, {
+      rotateX: 0,
+      opacity: 1,
+    });
+
+    /*
+     * Keep seal visible.
+     */
+    gsap.set(seal, {
+      scale: 1,
+      opacity: 1,
+    });
+
+    /*
+     * Instruction visible.
+     */
+    gsap.set(instruction, {
+      opacity: 1,
+      y: 0,
+    });
 
     const timeline = gsap.timeline({
       defaults: {
-        ease: "power3.inOut",
-      },
-
-      onComplete: () => {
-        document.body.style.overflow = "";
-
-        gsap.set(screen, {
-          display: "none",
-        });
-
-        openingRef.current = false;
+        overwrite: "auto",
       },
     });
 
-    /* ===================================================
-       1. HIDE OPENING INSTRUCTION
-       =================================================== */
+    /*
+     * ==========================================
+     * 1. Hide "OPEN INVITATION"
+     * ==========================================
+     */
 
-    if (instruction) {
-      timeline.to(
-        instruction,
-        {
-          opacity: 0,
-          y: 18,
-          duration: 0.35,
-          ease: "power2.out",
-        },
-        0
-      );
-    }
+    timeline.to(instruction, {
+      opacity: 0,
+      y: 15,
+      duration: 0.35,
+      ease: "power2.out",
+    });
 
-    /* ===================================================
-       2. WAX SEAL RELEASES
-       =================================================== */
+    /*
+     * ==========================================
+     * 2. Wax seal disappears
+     * ==========================================
+     */
 
     timeline.to(
       seal,
       {
-        scale: 0.2,
+        scale: 0.65,
         opacity: 0,
-        rotation: -12,
         duration: 0.45,
-        ease: "power2.in",
+        ease: "power2.inOut",
       },
-      0
+      "-=0.12",
     );
 
-    /* ===================================================
-       3. REVEAL INVITATION CARD
-       =================================================== */
-
-    timeline.set(
-      card,
-      {
-        visibility: "visible",
-        opacity: 1,
-        zIndex: 10,
-      },
-      0.45
-    );
-
-    /* ===================================================
-       4. OPEN ENVELOPE FLAP
-       =================================================== */
+    /*
+     * ==========================================
+     * 3. Open envelope flap
+     * ==========================================
+     */
 
     timeline.to(
       flap,
       {
-        rotationX: -175,
+        rotateX: -180,
         duration: 1.15,
         ease: "power3.inOut",
       },
-      0.2
+      "-=0.08",
     );
 
-    /* ===================================================
-       5. INVITATION COMES OUT
-       =================================================== */
+    /*
+     * ==========================================
+     * 4. Card rises out of envelope
+     * ==========================================
+     */
 
     timeline.to(
       card,
       {
-        y: "-38%",
-        duration: 1,
+        y: "-32%",
+        scale: 1.015,
+        duration: 1.15,
         ease: "power3.out",
       },
-      0.62
+      "-=0.42",
     );
 
-    /* ===================================================
-       6. ENVELOPE FADES AWAY
-       =================================================== */
+    /*
+     * ==========================================
+     * 5. Envelope body fades away
+     * ==========================================
+     */
 
     timeline.to(
-      envelope,
+      body,
       {
         opacity: 0,
         duration: 0.55,
-        ease: "power2.inOut",
+        ease: "power2.out",
       },
-      1.55
+      "-=0.45",
     );
 
-    /* ===================================================
-       7. INVITATION ZOOMS TOWARD SCREEN
-       =================================================== */
+    /*
+     * Hide flap after card comes forward.
+     */
 
     timeline.to(
-      card,
+      flap,
       {
-        scale: 4.8,
         opacity: 0,
-        duration: 1.25,
-        ease: "power3.inOut",
+        duration: 0.35,
+        ease: "power2.out",
       },
-      1.75
+      "<",
     );
 
-    /* ===================================================
-       8. FADE OPENING SCREEN
-       =================================================== */
+    /*
+     * ==========================================
+     * 6. Small pause
+     * ==========================================
+     */
+
+    timeline.to({}, {
+      duration: 0.45,
+    });
+
+    /*
+     * ==========================================
+     * 7. Card zooms toward the screen
+     * ==========================================
+     */
+
+    timeline.to(card, {
+      scale: 5.2,
+      duration: 1.25,
+      ease: "power3.inOut",
+    });
+
+    /*
+     * ==========================================
+     * 8. Fade opening screen
+     * ==========================================
+     */
 
     timeline.to(
       screen,
       {
         opacity: 0,
-        duration: 0.45,
+        duration: 0.7,
         ease: "power2.inOut",
+
+        onComplete: () => {
+          /*
+           * Restore normal page scrolling.
+           */
+          document.body.style.overflow = "";
+
+          /*
+           * CRITICAL FIX:
+           *
+           * Completely remove OpeningScreen
+           * from the React DOM.
+           *
+           * This prevents an invisible full-screen
+           * layer from intercepting clicks.
+           */
+          setIsFinished(true);
+        },
       },
-      2.7
+      "-=0.25",
     );
   };
+
+  /*
+   * ==========================================
+   * IMPORTANT:
+   *
+   * Once the opening animation is complete,
+   * render NOTHING.
+   *
+   * Do not use:
+   * display:none
+   * visibility:hidden
+   * opacity:0
+   *
+   * The component must be removed from the DOM.
+   * ==========================================
+   */
+
+  if (isFinished) {
+    return null;
+  }
 
   return (
     <div
       ref={screenRef}
       className="invitation-opening"
+      aria-label="Wedding invitation opening"
     >
-      {/* ==================================================
-          FULL SCREEN TOUCH TARGET
-          ================================================== */}
+      {/* =====================================
+          DECORATIONS
+      ====================================== */}
 
-      <button
-        type="button"
-        className="opening-hit-area"
-        aria-label="Open wedding invitation"
-        onClick={openInvitation}
-      />
-
-      {/* ==================================================
-          DECORATIVE STARS
-          ================================================== */}
-
-      <div
-        className="opening-decoration opening-decoration-top"
-        aria-hidden="true"
-      >
+      <div className="opening-decoration opening-decoration-top">
         <span>✦</span>
       </div>
 
-      <div
-        className="opening-decoration opening-decoration-bottom"
-        aria-hidden="true"
-      >
+      <div className="opening-decoration opening-decoration-bottom">
         <span>✦</span>
       </div>
 
-      {/* ==================================================
+      {/* =====================================
           ENVELOPE
-          ================================================== */}
+      ====================================== */}
 
       <div
         ref={envelopeRef}
         className="wedding-envelope"
       >
-        {/* =================================================
+        {/* ===================================
             INVITATION CARD
-            ================================================= */}
+        ==================================== */}
 
         <div
           ref={cardRef}
           className="envelope-card"
         >
           <div className="card-border">
-
-            {/* Top ornament */}
-
-            <div
-              className="card-flower top-flower"
-              aria-hidden="true"
-            >
+            <div className="card-flower top-flower">
               ❦
             </div>
 
-            {/* Card content */}
-
             <div className="envelope-card-content">
-
               <p className="card-small">
                 WELCOME TO THE
               </p>
@@ -341,28 +358,21 @@ export default function OpeningScreen() {
               <p className="card-date">
                 04 · DECEMBER · 2026
               </p>
-
             </div>
 
-            {/* Bottom ornament */}
-
-            <div
-              className="card-flower bottom-flower"
-              aria-hidden="true"
-            >
+            <div className="card-flower bottom-flower">
               ❦
             </div>
-
           </div>
         </div>
 
-        {/* =================================================
+        {/* ===================================
             ENVELOPE BODY
-            ================================================= */}
+        ==================================== */}
 
         <div
+          ref={bodyRef}
           className="envelope-body"
-          aria-hidden="true"
         >
           <div className="envelope-left-fold" />
 
@@ -371,17 +381,15 @@ export default function OpeningScreen() {
           <div className="envelope-bottom-fold" />
         </div>
 
-        {/* =================================================
-            TOP FLAP
-            ================================================= */}
+        {/* ===================================
+            ENVELOPE FLAP
+        ==================================== */}
 
         <div
           ref={flapRef}
           className="envelope-flap"
-          aria-hidden="true"
         >
           <div className="flap-decoration">
-
             <span className="floral-branch branch-left">
               ❧
             </span>
@@ -389,49 +397,58 @@ export default function OpeningScreen() {
             <span className="floral-branch branch-right">
               ❧
             </span>
-
           </div>
         </div>
 
-        {/* =================================================
+        {/* ===================================
             WAX SEAL
-            ================================================= */}
+        ==================================== */}
 
-        <div
+        <button
           ref={sealRef}
+          type="button"
           className="wax-seal"
-          aria-hidden="true"
+          aria-label="Open wedding invitation"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            openInvitation();
+          }}
         >
-          <span>
-            AK
-          </span>
+          <span>AK</span>
 
           <small>
             &amp;
           </small>
 
-          <span>
-            BC
-          </span>
-        </div>
+          <span>BC</span>
+        </button>
       </div>
 
-      {/* ==================================================
-          OPENING INSTRUCTION
-          ================================================== */}
+      {/* =====================================
+          OPEN INVITATION BUTTON
+      ====================================== */}
 
       <div
         ref={instructionRef}
         className="opening-instruction"
-        aria-hidden="true"
       >
         <p>
           CLICK TO OPEN
         </p>
 
-        <span>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            openInvitation();
+          }}
+        >
           OPEN INVITATION
-        </span>
+        </button>
       </div>
     </div>
   );

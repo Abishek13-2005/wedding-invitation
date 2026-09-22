@@ -6838,3 +6838,19 @@ button {
     user-select: none !important;
   }
 }
+
+/* =========================================================
+   FINAL OPENING SCREEN INTERACTION FIX
+========================================================= */
+
+/*
+ * While the invitation is opening, it must not interfere
+ * with the website underneath.
+ */
+.invitation-opening.is-opening {
+  pointer-events: none !important;
+}
+
+.invitation-opening.is-opening * {
+  pointer-events: none !important;
+}
