@@ -1,26 +1,6840 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap");
+
+/* =========================================================
+   ROOT
+========================================================= */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivory: #fbfaf6;
+  --white: #ffffff;
+
+  --blue: #a8d0e2;
+  --blue-light: #dcecf3;
+  --blue-pale: #eef6f9;
+
+  --gold: #c4a76a;
+  --gold-light: #dfcda1;
+
+  --dark: #303333;
+  --muted: #777c7d;
+  --line: #ddd9ce;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--ivory);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  background: var(--ivory);
+  color: var(--dark);
+
+  overflow-x: hidden;
+
+  font-family: "Montserrat", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  width: 100%;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+blockquote {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+}
+
+section {
+  position: relative;
+  width: 100%;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 4px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   LUXURY WEDDING INVITATION OPENING
+   PORTRAIT CLOSED ENVELOPE
+========================================================= */
+
+.invitation-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  width: 100%;
+  height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  cursor: default;
+  perspective: 1800px;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #fffefa 0%,
+      #faf5e9 48%,
+      #f0e7d6 100%
+    );
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   SUBTLE PAPER TEXTURE
+========================================================= */
+
+.invitation-opening::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.14;
+
+  background-image:
+    radial-gradient(
+      rgba(145, 116, 66, 0.18) 0.55px,
+      transparent 0.55px
+    );
+
+  background-size: 7px 7px;
+}
+
+/* =========================================================
+   SOFT CENTRAL LIGHT
+========================================================= */
+
+.invitation-opening::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  left: 50%;
+  top: 44%;
+
+  width: 760px;
+  height: 760px;
+
+  transform:
+    translate3d(-50%, -50%, 0);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.48) 38%,
+      rgba(255,255,255,0) 72%
+    );
+}
+
+/* =========================================================
+   DECORATIVE DETAILS
+========================================================= */
+
+.opening-decoration {
+  position: absolute;
+
+  z-index: 2;
+
+  color: #b99652;
+
+  pointer-events: none;
+
+  opacity: 0.68;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+}
+
+.opening-decoration-top {
+  top: 25%;
+  left: 17%;
+}
+
+.opening-decoration-bottom {
+  right: 17%;
+  bottom: 18%;
+}
+
+.opening-decoration span {
+  display: block;
+
+  font-size: 16px;
+
+  animation:
+    luxuryFloat 5s ease-in-out infinite;
+}
+
+.opening-decoration-bottom span {
+  animation-delay: 2s;
+}
+
+@keyframes luxuryFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translate3d(0,-7px,0)
+      rotate(6deg);
+  }
+}
+
+/* =========================================================
+   PORTRAIT ENVELOPE
+========================================================= */
+
+.wedding-envelope {
+  position: relative;
+
+  z-index: 10;
+
+  /*
+   * Tall portrait proportion.
+   * The envelope stays completely inside
+   * this rectangle — nothing sticks above it.
+   */
+  width: min(420px, 72vw);
+  height: min(560px, 74vh);
+
+  min-height: 480px;
+
+  transform-style: preserve-3d;
+
+  will-change:
+    transform,
+    opacity;
+
+  filter:
+    drop-shadow(
+      0 28px 42px
+      rgba(70, 51, 24, 0.16)
+    );
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   INVITATION CARD
+   HIDDEN BEHIND CLOSED ENVELOPE
+========================================================= */
+
+.envelope-card {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 7%;
+  top: 7%;
+
+  width: 86%;
+  height: 86%;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefb 0%,
+      #fbf6eb 55%,
+      #f2e8d5 100%
+    );
+
+  border:
+    1px solid
+    rgba(190, 157, 91, 0.58);
+
+  box-shadow:
+    0 18px 42px
+    rgba(63, 48, 27, 0.13);
+
+  /*
+   * CLOSED STATE:
+   * The card exists behind the envelope body.
+   * It is invisible until the opening animation starts.
+   */
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transform:
+    translate3d(0, 8%, 0)
+    scale(0.985);
+
+  transform-origin:
+    center center;
+
+  transform-style: preserve-3d;
+
+  will-change:
+    transform,
+    opacity;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   CARD FRAME
+========================================================= */
+
+.card-border {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  border:
+    1px solid
+    rgba(181,143,73,0.62);
+
+  box-shadow:
+    inset 0 0 0 5px
+    rgba(255,255,255,0.45),
+
+    inset 0 0 0 7px
+    rgba(196,167,106,0.08);
+
+  overflow: hidden;
+}
+
+.card-border::before {
+  content: "";
+
+  position: absolute;
+  inset: 9px;
+
+  border:
+    1px solid
+    rgba(181,143,73,0.20);
+
+  pointer-events: none;
+}
+
+.card-border::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: 14px;
+  left: 17px;
+
+  color:
+    rgba(181,143,73,0.48);
+
+  font-size: 10px;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.envelope-card-content {
+  position: relative;
+  z-index: 5;
+
+  width: 90%;
+
+  text-align: center;
+}
+
+.card-small {
+  margin: 3px 0;
+
+  color: #777269;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+}
+
+.card-of {
+  margin-top: 18px;
+
+  color: #b18b47;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  letter-spacing: 4px;
+}
+
+.envelope-card h1 {
+  margin:
+    18px 8px 0;
+
+  color: #2e2d2b;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(38px, 4.8vw, 57px);
+
+  line-height: 0.86;
+
+  font-weight: 400;
+
+  letter-spacing: -1.5px;
+}
+
+.envelope-card h1 span {
+  display: block;
+
+  margin:
+    13px 0;
+
+  color: #b99652;
+
+  font-size: 45%;
+
+  line-height: 1;
+
+  font-style: italic;
+}
+
+.card-divider {
+  position: relative;
+
+  width: 52px;
+  height: 1px;
+
+  margin:
+    24px auto 17px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #b99652,
+      transparent
+    );
+}
+
+.card-divider::before,
+.card-divider::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+
+  width: 4px;
+  height: 4px;
+
+  transform:
+    translateY(-50%)
+    rotate(45deg);
+
+  background:
+    #b99652;
+}
+
+.card-divider::before {
+  left: 0;
+}
+
+.card-divider::after {
+  right: 0;
+}
+
+.card-date {
+  margin: 0;
+
+  color: #777269;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 3px;
+}
+
+/* =========================================================
+   CARD FLOWERS
+========================================================= */
+
+.card-flower {
+  position: absolute;
+
+  color:
+    rgba(184,148,82,0.48);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 36px;
+
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+.top-flower {
+  top: 15px;
+  left: 18px;
+}
+
+.bottom-flower {
+  right: 18px;
+  bottom: 13px;
+
+  transform:
+    rotate(180deg);
+}
+
+/* =========================================================
+   ENVELOPE BODY
+========================================================= */
+
+.envelope-body {
+  position: absolute;
+
+  z-index: 8;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf8 0%,
+      #f7eddb 50%,
+      #ead9bb 100%
+    );
+
+  border:
+    1px solid
+    rgba(181,143,73,0.52);
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,0.95),
+
+    inset 0 -30px 45px
+    rgba(110,78,29,0.08);
+
+  transform-style: preserve-3d;
+
+  pointer-events: none;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   ENVELOPE SIDE FOLDS
+========================================================= */
+
+.envelope-left-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.68),
+      rgba(216,195,161,0.34)
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 52%,
+      0 100%
+    );
+}
+
+.envelope-right-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      225deg,
+      rgba(255,255,255,0.68),
+      rgba(216,195,161,0.34)
+    );
+
+  clip-path:
+    polygon(
+      100% 0,
+      50% 52%,
+      100% 100%
+    );
+}
+
+.envelope-bottom-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.20),
+      rgba(203,180,143,0.50)
+    );
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 52%,
+      100% 100%
+    );
+}
+
+/* =========================================================
+   CLOSED ENVELOPE EDGE
+========================================================= */
+
+.envelope-body::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 20;
+
+  inset: 8px;
+
+  border:
+    1px solid
+    rgba(184,145,76,0.17);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   TOP FLAP
+   COMPLETELY INSIDE THE PORTRAIT ENVELOPE
+========================================================= */
+
+.envelope-flap {
+  position: absolute;
+
+  z-index: 12;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 48%;
+
+  transform-origin:
+    50% 0%;
+
+  transform:
+    rotateX(0deg)
+    translate3d(0,0,0);
+
+  transform-style: preserve-3d;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffefa 0%,
+      #faf2e2 60%,
+      #ead9ba 100%
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  box-shadow:
+    0 10px 20px
+    rgba(67,48,21,0.10);
+
+  will-change:
+    transform;
+
+  pointer-events: none;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.envelope-flap::before {
+  content: "";
+
+  position: absolute;
+
+  left: 7%;
+  top: 6%;
+
+  width: 86%;
+  height: 80%;
+
+  border-top:
+    1px solid
+    rgba(184,145,76,0.20);
+
+  pointer-events: none;
+}
+
+.envelope-flap::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 2px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.78),
+      rgba(232,215,187,0.08)
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 98%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   FLAP ORNAMENTS
+========================================================= */
+
+.flap-decoration {
+  position: absolute;
+
+  z-index: 20;
+
+  top: 14%;
+  left: 50%;
+
+  width: 66%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  transform:
+    translate3d(-50%,0,3px);
+
+  pointer-events: none;
+}
+
+.floral-branch {
+  color:
+    rgba(178,139,72,0.70);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 38px;
+
+  line-height: 1;
+}
+
+.branch-left {
+  transform:
+    rotate(-12deg);
+}
+
+.branch-right {
+  transform:
+    scaleX(-1)
+    rotate(-12deg);
+}
+
+/* =========================================================
+   WAX SEAL
+   EXACTLY AT THE FLAP TIP
+========================================================= */
+
+.wax-seal {
+  position: absolute;
+
+  z-index: 30;
+
+  left: 50%;
+  top: 48%;
+
+  width: 70px;
+  height: 70px;
+
+  transform:
+    translate3d(-50%,-50%,0)
+    scale(1);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255,244,204,0.65);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  color:
+    #fff8df;
+
+  background:
+    radial-gradient(
+      circle at 32% 24%,
+      #e2ca91 0%,
+      #c5a15c 40%,
+      #a87d37 72%,
+      #956c2d 100%
+    );
+
+  box-shadow:
+    0 12px 24px
+    rgba(72,49,17,0.28),
+
+    inset 3px 3px 7px
+    rgba(255,255,255,0.38),
+
+    inset -4px -5px 9px
+    rgba(72,44,10,0.25);
+
+  will-change:
+    transform,
+    opacity;
+
+  outline: none;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  transition:
+    transform 0.3s
+    cubic-bezier(0.22,1,0.36,1);
+}
+
+.wax-seal:hover {
+  transform:
+    translate3d(-50%,-50%,0)
+    scale(1.055);
+}
+
+.wax-seal span {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 14px;
+
+  line-height: 0.82;
+
+  text-shadow:
+    0 1px 2px
+    rgba(77,48,13,0.25);
+}
+
+.wax-seal small {
+  margin: 3px 0;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 8px;
+}
+
+/* =========================================================
+   OPEN INVITATION
+========================================================= */
+
+.opening-instruction {
+  position: absolute;
+
+  z-index: 100;
+
+  left: 50%;
+  bottom: 5%;
+
+  transform:
+    translate3d(-50%,0,0);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  color:
+    #7e725e;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.opening-instruction p {
+  margin: 0;
+
+  color:
+    #ad9362;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 5px;
+}
+
+.opening-instruction button {
+  margin-top: 9px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color:
+    #615949;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 19px;
+
+  font-style: italic;
+
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.opening-instruction button:hover {
+  color:
+    #b18b47;
+
+  transform:
+    translateY(-2px);
+}
+
+/* =========================================================
+   OPENING STATE
+========================================================= */
+
+.invitation-opening.is-opening {
+  pointer-events: none;
+}
+
+/*
+ * Reveal the card only after the user clicks.
+ * It is still physically behind the envelope body
+ * and flap at this stage.
+ */
+.invitation-opening.is-opening
+.envelope-card {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================
+   FULL-SCREEN INVITATION COVER
+========================================================= */
+
+.invitation-opening.is-covering {
+  pointer-events: none;
+}
+
+.invitation-opening.is-covering
+.wedding-envelope {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100vw;
+  height: 100vh;
+
+  min-height: 0;
+
+  transform:
+    translate3d(-50%,-50%,0);
+
+  filter: none;
+
+  z-index: 100;
+}
+
+.invitation-opening.is-covering
+.envelope-card {
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 40px;
+
+  border: none;
+
+  box-shadow: none;
+
+  transform:
+    translate3d(0,0,0)
+    scale(1);
+}
+
+.invitation-opening.is-covering
+.envelope-body,
+
+.invitation-opening.is-covering
+.envelope-flap,
+
+.invitation-opening.is-covering
+.wax-seal,
+
+.invitation-opening.is-covering
+.flap-decoration {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   FINISHED
+========================================================= */
+
+.invitation-opening.is-finished {
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.85s
+    cubic-bezier(0.22,1,0.36,1),
+    visibility 0s linear 0.85s;
+}
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+.wedding-envelope,
+.envelope-card,
+.envelope-body,
+.envelope-flap,
+.wax-seal,
+.opening-instruction {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .opening-decoration span {
+    animation: none;
+  }
+
+  .invitation-opening.is-finished {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   MOBILE OPENING
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .wedding-envelope {
+    width: min(340px, 78vw);
+
+    height: min(480px, 72vh);
+
+    min-height: 420px;
+  }
+
+  .envelope-card {
+    padding: 16px;
+  }
+
+  .envelope-card h1 {
+    font-size: 36px;
+  }
+
+  .card-small {
+    font-size: 5.5px;
+    letter-spacing: 2.5px;
+  }
+
+  .card-of {
+    font-size: 6px;
+    letter-spacing: 3px;
+  }
+
+  .card-date {
+    font-size: 5.5px;
+    letter-spacing: 2px;
+  }
+
+  .wax-seal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .wax-seal span {
+    font-size: 12px;
+  }
+
+  .flap-decoration {
+    width: 64%;
+  }
+
+  .floral-branch {
+    font-size: 29px;
+  }
+
+  .opening-decoration-top {
+    top: 20%;
+    left: 8%;
+  }
+
+  .opening-decoration-bottom {
+    right: 8%;
+    bottom: 14%;
+  }
+
+  .opening-instruction {
+    bottom: 4%;
+  }
+
+  .opening-instruction p {
+    font-size: 5.5px;
+    letter-spacing: 3px;
+  }
+
+  .opening-instruction button {
+    font-size: 17px;
+  }
+
+  .invitation-opening.is-covering
+  .envelope-card {
+    padding: 25px;
+  }
+}
+
+/* =========================================================
+   SHORT SCREENS
+========================================================= */
+
+@media (max-height: 700px) {
+
+  .wedding-envelope {
+    width: min(350px, 65vw);
+
+    height: min(465px, 68vh);
+
+    min-height: 0;
+  }
+
+  .opening-instruction {
+    bottom: 2.5%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .wedding-envelope {
+    width: 86vw;
+
+    height: 72vh;
+  }
+
+  .envelope-card {
+    padding: 13px;
+  }
+
+  .envelope-card h1 {
+    font-size: 32px;
+  }
+
+  .wax-seal {
+    width: 56px;
+    height: 56px;
+  }
+
+  .opening-instruction button {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   SAFARI / IOS
+========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .invitation-opening {
+    height:
+      -webkit-fill-available;
+  }
+
+  .wedding-envelope,
+  .envelope-card,
+  .envelope-body,
+  .envelope-flap,
+  .wax-seal {
+    -webkit-transform-style:
+      preserve-3d;
+
+    transform-style:
+      preserve-3d;
+
+    -webkit-backface-visibility:
+      hidden;
+
+    backface-visibility:
+      hidden;
+  }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  min-height: 100svh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #e7f4f9;
+}
+
+.hero-art {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+}
+
+.church-illustration {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+}
+
+.hero-content {
+  position: relative;
+
+  z-index: 5;
+
+  width:
+    min(900px, 90%);
+
+  padding-bottom: 10vh;
+
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 5px;
+}
+
+.hero-ceremony {
+  margin-top: 12px;
+
+  font-size: 10px;
+
+  letter-spacing: 5px;
+}
+
+.hero-of {
+  margin-top: 22px;
+
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin-top: 8px;
+
+  font-size:
+    clamp(65px, 10vw, 130px);
+
+  line-height: 0.76;
+}
+
+.hero h1 span {
+  display: block;
+
+  margin: 14px 0;
+
+  color: var(--gold);
+
+  font-size: 50%;
+}
+
+.hero-tagline {
+  margin-top: 35px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 24px;
+
+  font-style: italic;
+}
+
+.hero-bottom {
+  position: absolute;
+
+  left: 50%;
+  bottom: -160px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  color: var(--dark);
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+.scroll-line {
+  width: 1px;
+
+  height: 60px;
+
+  background:
+    var(--gold);
+}
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--ivory),
+      #eef7fa
+    );
+}
+
+.date-section h2 {
+  margin-top: 22px;
+
+  font-size:
+    clamp(55px, 7vw, 90px);
+
+  line-height: 0.9;
+}
+
+.date-card {
+  position: relative;
+
+  width:
+    min(500px, 90vw);
+
+  height: 500px;
+
+  margin:
+    70px auto 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle,
+      #ffffff,
+      #e2f0f5
+    );
+
+  border:
+    1px solid
+    var(--gold-light);
+
+  box-shadow:
+    0 20px 60px
+    rgba(80, 110, 120, 0.08);
+}
+
+.revealed-date {
+  text-align: center;
+}
+
+.date-small {
+  font-size: 9px;
+
+  letter-spacing: 4px;
+}
+
+.date-day {
+  margin-top: 15px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 145px;
+
+  line-height: 0.65;
+}
+
+.date-month {
+  margin-top: 25px;
+
+  font-size: 13px;
+
+  letter-spacing: 8px;
+}
+
+.date-year {
+  margin-top: 10px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 35px;
+}
+
+.date-divider {
+  display: block;
+
+  width: 55px;
+
+  height: 1px;
+
+  margin:
+    30px auto;
+
+  background:
+    var(--gold);
+}
+
+.date-wedding {
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+.scratch-canvas {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  transition:
+    opacity 0.8s ease;
+
+  touch-action: none;
+}
+
+.scratch-caption {
+  margin-top: 22px;
+
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 18px;
+
+  font-style: italic;
+}
+
+/* =========================================================
+   INVITATION
+========================================================= */
+
+.invitation-section {
+  padding:
+    170px 20px;
+
+  text-align: center;
+
+  background:
+    var(--white);
+}
+
+.invitation-intro {
+  font-size: 9px;
+
+  letter-spacing: 4px;
+}
+
+.invitation-section h2 {
+  max-width: 850px;
+
+  margin:
+    24px auto 0;
+
+  font-size:
+    clamp(50px, 6vw, 80px);
+
+  line-height: 0.9;
+}
+
+.invitation-couple {
+  width:
+    min(950px, 100%);
+
+  margin:
+    100px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 100px 1fr;
+
+  align-items: center;
+}
+
+.person-name {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 44px;
+}
+
+.person-label {
+  margin-top: 28px;
+
+  color: var(--gold);
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+.parents {
+  margin-top: 12px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 20px;
+
+  line-height: 1.5;
+}
+
+.with {
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 30px;
+
+  font-style: italic;
+}
+
+.invitation-message {
+  width:
+    min(720px, 100%);
+
+  margin:
+    110px auto 0;
+
+  padding-top: 55px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.message-heading {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 32px;
+}
+
+.invitation-message > p:last-child {
+  margin-top: 25px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote-section {
+  min-height: 65vh;
+
+  padding:
+    160px 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e1f1f7,
+      #f8fbfa
+    );
+}
+
+.quote-decoration {
+  color: var(--gold);
+
+  font-size: 24px;
+}
+
+.quote-label {
+  margin-top: 22px;
+
+  font-size: 8px;
+
+  letter-spacing: 4px;
+}
+
+.quote-section blockquote {
+  max-width: 850px;
+
+  margin:
+    50px auto 0;
+
+  font-size:
+    clamp(40px, 5vw, 70px);
+
+  line-height: 1.05;
+}
+
+.quote-reference {
+  margin-top: 35px;
+
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.quote-decoration.bottom {
+  margin-top: 60px;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.celebration-section {
+  padding:
+    170px 20px;
+
+  background:
+    var(--ivory);
+}
+
+.celebration-heading {
+  text-align: center;
+}
+
+.celebration-heading h2 {
+  margin-top: 22px;
+
+  font-size:
+    clamp(55px, 7vw, 90px);
+
+  line-height: 0.85;
+}
+
+.gold-ornament {
+  margin-top: 35px;
+
+  color: var(--gold);
+
+  font-size: 20px;
+}
+
+.celebration-timeline {
+  position: relative;
+
+  width:
+    min(1050px, 100%);
+
+  margin:
+    100px auto 0;
+}
+
+.celebration-timeline::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 1px;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      var(--gold) 5%,
+      var(--gold) 95%,
+      transparent
+    );
+}
+
+.celebration-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 55px 1fr;
+
+  min-height: 500px;
+}
+
+.timeline-date {
+  grid-column: 1 / -1;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  z-index: 4;
+}
+
+.timeline-date strong {
+  padding:
+    10px 25px;
+
+  background:
+    var(--ivory);
+
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 4px;
+
+  font-weight: 500;
+}
+
+.timeline-column {
+  grid-column: 2;
+
+  position: relative;
+}
+
+.timeline-node {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 17px;
+  height: 17px;
+
+  transform:
+    translateX(-50%);
+
+  border:
+    1px solid
+    var(--gold);
+
+  border-radius: 50%;
+
+  background:
+    var(--ivory);
+
+  z-index: 10;
+}
+
+.timeline-node span {
+  position: absolute;
+
+  inset: 4px;
+
+  border-radius: 50%;
+
+  background:
+    var(--gold);
+}
+
+.timeline-event {
+  grid-column: 3;
+
+  padding:
+    55px 20px 80px 60px;
+}
+
+.celebration-item:nth-child(even)
+.timeline-event {
+  grid-column: 1;
+
+  grid-row: 1;
+
+  padding:
+    55px
+    60px
+    80px
+    20px;
+
+  text-align: right;
+}
+
+.celebration-item:nth-child(even)
+.timeline-column {
+  grid-column: 2;
+}
+
+.timeline-art-wrapper {
+  width: 100%;
+
+  max-width: 390px;
+
+  margin-bottom: 25px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf7fa,
+      #ffffff
+    );
+
+  border:
+    1px solid
+    #e2d7be;
+
+  box-shadow:
+    0 20px 50px
+    rgba(70, 100, 110, 0.07);
+}
+
+.celebration-item:nth-child(even)
+.timeline-art-wrapper {
+  margin-left: auto;
+}
+
+.timeline-illustration {
+  width: 100%;
+
+  height: auto;
+}
+
+.timeline-event-content {
+  max-width: 410px;
+}
+
+.celebration-item:nth-child(even)
+.timeline-event-content {
+  margin-left: auto;
+}
+
+.timeline-time {
+  color: var(--gold);
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+.timeline-event h3 {
+  margin-top: 10px;
+
+  font-size: 50px;
+
+  line-height: 0.9;
+}
+
+.timeline-subtitle {
+  margin-top: 12px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-style: italic;
+}
+
+.gold-small-line {
+  width: 35px;
+
+  height: 1px;
+
+  margin:
+    20px 0;
+
+  background:
+    var(--gold);
+}
+
+.celebration-item:nth-child(even)
+.gold-small-line {
+  margin-left: auto;
+}
+
+.timeline-location {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  color: #656b6b;
+
+  font-size: 20px;
+
+  line-height: 1.4;
+}
+
+.timeline-ending {
+  position: relative;
+
+  width: 18px;
+  height: 18px;
+
+  margin:
+    0 auto;
+
+  color: var(--gold);
+
+  text-align: center;
+
+  background:
+    var(--ivory);
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #d9eaf1,
+      #eef6f8
+    );
+}
+
+.countdown-section h2 {
+  margin-top: 25px;
+}
+
+.countdown {
+  width:
+    min(900px, 100%);
+
+  margin:
+    80px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+}
+
+.countdown div {
+  border-right:
+    1px solid
+    rgba(196, 167, 106, 0.45);
+}
+
+.countdown div:last-child {
+  border-right: 0;
+}
+
+.countdown strong {
+  display: block;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(50px, 8vw, 90px);
+
+  font-weight: 300;
+}
+
+.countdown span {
+  color: var(--gold);
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    var(--white);
+}
+
+.gallery-section h2 {
+  margin-top: 22px;
+}
+
+.gallery {
+  width:
+    min(1100px, 100%);
+
+  margin:
+    80px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  grid-auto-rows: 300px;
+
+  gap: 10px;
+}
+
+.gallery-image {
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 0;
+
+  background:
+    var(--blue-light);
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.9s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-image:hover img {
+  transform:
+    scale(1.07);
+}
+
+.gallery-1 {
+  grid-column: span 2;
+
+  grid-row: span 2;
+}
+
+.gallery-2 {
+  grid-column: span 2;
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 999999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    rgba(20, 25, 27, 0.94);
+}
+
+.lightbox img {
+  max-width: 90vw;
+
+  max-height: 90vh;
+
+  object-fit: contain;
+}
+
+.close-lightbox {
+  position: absolute;
+
+  top: 25px;
+  right: 25px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 40px;
+}
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    #f0f5f4;
+}
+
+.venue-section h2 {
+  margin-top: 20px;
+}
+
+.venue-card {
+  width:
+    min(1000px, 100%);
+
+  margin:
+    80px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  background:
+    white;
+
+  box-shadow:
+    0 25px 70px
+    rgba(50, 80, 90, 0.08);
+}
+
+.venue-image {
+  min-height: 500px;
+
+  overflow: hidden;
+
+  background:
+    #e4f0f4;
+}
+
+.venue-image .church-illustration {
+  width: 100%;
+
+  height: 100%;
+}
+
+.venue-details {
+  padding:
+    60px 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.venue-date {
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.venue-details h3 {
+  margin:
+    25px 0;
+
+  font-size: 55px;
+
+  line-height: 0.9;
+}
+
+.venue-details > p:not(.venue-date) {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  line-height: 1.5;
+}
+
+.outline-button {
+  display: inline-block;
+
+  margin-top: 35px;
+
+  padding:
+    15px 25px;
+
+  border:
+    1px solid
+    var(--gold);
+
+  color:
+    var(--dark);
+
+  background:
+    transparent;
+
+  text-decoration: none;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.outline-button:hover {
+  background:
+    var(--gold);
+
+  color:
+    white;
+}
+
+/* =========================================================
+   DRESS CODE
+========================================================= */
+
+.dress-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eef7fa,
+      #ffffff
+    );
+}
+
+.dress-section h2 {
+  margin-top: 20px;
+}
+
+.dress-content {
+  width:
+    min(600px, 100%);
+
+  margin:
+    70px auto 0;
+}
+
+.dress-symbol {
+  color: var(--gold);
+
+  font-size: 40px;
+}
+
+.dress-content h3 {
+  margin-top: 20px;
+
+  font-size: 48px;
+}
+
+.dress-content p {
+  margin:
+    20px auto 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  line-height: 1.5;
+}
+
+.dress-colors {
+  margin-top: 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 30px;
+}
+
+.color-circle {
+  display: block;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    var(--gold-light);
+}
+
+.cream {
+  background:
+    #f5f0e6;
+}
+
+.light-blue {
+  background:
+    #c5dfeb;
+}
+
+.ivory {
+  background:
+    #fffffa;
+}
+
+.gold {
+  background:
+    #d1b77d;
+}
+
+.dress-colors small {
+  display: block;
+
+  margin-top: 9px;
+
+  font-size: 7px;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   GIFT
+========================================================= */
+
+.gift-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    var(--white);
+}
+
+.gift-section h2 {
+  margin-top: 22px;
+}
+
+.gift-description {
+  width:
+    min(600px, 100%);
+
+  margin:
+    35px auto 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  line-height: 1.5;
+}
+
+.gift-box {
+  width:
+    min(550px, 100%);
+
+  margin:
+    70px auto 0;
+
+  padding:
+    60px 30px;
+
+  border:
+    1px solid
+    var(--line);
+}
+
+.gift-icon {
+  color: var(--gold);
+
+  font-size: 40px;
+}
+
+.gift-box h3 {
+  margin:
+    20px 0;
+
+  font-size: 48px;
+}
+
+.gift-box p {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 20px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp-section {
+  padding:
+    160px 20px;
+
+  text-align: center;
+
+  background:
+    #edf4f6;
+}
+
+.rsvp-section h2 {
+  margin-top: 20px;
+}
+
+.rsvp-form {
+  width:
+    min(600px, 100%);
+
+  margin:
+    70px auto 0;
+
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--gold);
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding:
+    14px 0;
+
+  outline: none;
+
+  border: 0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  background:
+    transparent;
+
+  color:
+    var(--dark);
+
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.attendance {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+}
+
+.attendance button {
+  padding: 15px;
+
+  border:
+    1px solid
+    var(--gold);
+
+  background:
+    transparent;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+.attendance button.selected {
+  background:
+    var(--gold);
+
+  color:
+    white;
+}
+
+.submit-button {
+  width: 100%;
+
+  padding: 18px;
+
+  border: 0;
+
+  background:
+    var(--dark);
+
+  color:
+    white;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+}
+
+.success-message {
+  width:
+    min(500px, 100%);
+
+  margin:
+    70px auto;
+}
+
+.success-message > div {
+  color: var(--gold);
+
+  font-size: 50px;
+}
+
+.success-message h3 {
+  margin-top: 20px;
+
+  font-size: 50px;
+}
+
+.success-message p {
+  margin-top: 20px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 22px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  padding:
+    130px 20px 70px;
+
+  text-align: center;
+
+  background:
+    #dcecf2;
+}
+
+.footer-ornament {
+  color: var(--gold);
+
+  font-size: 22px;
+}
+
+.footer-message {
+  margin-top: 40px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  font-style: italic;
+}
+
+.footer h2 {
+  margin:
+    30px 0;
+
+  font-size:
+    clamp(70px, 10vw, 130px);
+
+  line-height: 0.7;
+}
+
+.footer h2 span {
+  display: block;
+
+  margin: 12px 0;
+
+  color: var(--gold);
+
+  font-size: 50%;
+}
+
+.footer-date {
+  margin-top: 45px;
+
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 4px;
+}
+
+.footer-line {
+  width: 45px;
+
+  height: 1px;
+
+  margin:
+    35px auto;
+
+  background:
+    var(--gold);
+}
+
+.footer-small {
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+.wedding-envelope,
+.envelope-card,
+.envelope-body,
+.envelope-flap,
+.wax-seal,
+.opening-instruction {
+  -webkit-backface-visibility: hidden;
+
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .opening-decoration span {
+    animation: none;
+  }
+
+  .gallery-image img {
+    transition: none;
+  }
+
+  .invitation-opening.is-finished {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  /* ---------- OPENING ---------- */
+
+  .wedding-envelope {
+    width: 84vw;
+
+    max-width: 440px;
+
+    aspect-ratio: 0.73;
+  }
+
+  .envelope-card {
+    padding: 18px;
+  }
+
+  .envelope-card h1 {
+    font-size: 39px;
+  }
+
+  .card-small {
+    font-size: 6px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .card-date {
+    font-size: 6px;
+
+    letter-spacing: 2px;
+  }
+
+  .wax-seal {
+    width: 76px;
+    height: 76px;
+  }
+
+  .wax-seal span {
+    font-size: 14px;
+  }
+
+  .opening-decoration-top {
+    top: 12%;
+
+    left: 8%;
+  }
+
+  .opening-decoration-bottom {
+    right: 8%;
+
+    bottom: 13%;
+  }
+
+  .opening-instruction {
+    bottom: 5%;
+  }
+
+  .opening-instruction p {
+    font-size: 6px;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 10px;
+  }
+
+  .opening-instruction button {
+    padding:
+      11px 23px;
+
+    font-size: 6px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero h1 {
+    font-size: 72px;
+  }
+
+  /* ---------- DATE ---------- */
+
+  .date-card {
+    width: 92vw;
+
+    height: 390px;
+  }
+
+  .date-day {
+    font-size: 110px;
+  }
+
+  /* ---------- COUPLE ---------- */
+
+  .invitation-couple {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .with {
+    order: 2;
+  }
+
+  .person:first-child {
+    order: 1;
+  }
+
+  .person:last-child {
+    order: 3;
+  }
+
+  .person-name {
+    font-size: 36px;
+  }
+
+  /* ---------- TIMELINE ---------- */
+
+  .celebration-timeline::before {
+    left: 20px;
+
+    transform: none;
+  }
+
+  .celebration-item {
+    display: block;
+
+    min-height: auto;
+
+    padding-bottom: 70px;
+  }
+
+  .timeline-date {
+    justify-content: flex-start;
+
+    padding-left: 45px;
+
+    height: 55px;
+  }
+
+  .timeline-date strong {
+    padding-left: 0;
+
+    background: transparent;
+
+    font-size: 8px;
+  }
+
+  .timeline-column {
+    position: absolute;
+
+    top: 55px;
+
+    left: 20px;
+
+    width: 1px;
+
+    height:
+      calc(100% - 55px);
+  }
+
+  .timeline-node {
+    top: 0;
+
+    left: 0;
+
+    width: 14px;
+    height: 14px;
+
+    transform:
+      translateX(-50%);
+  }
+
+  .timeline-event,
+  .celebration-item:nth-child(even)
+  .timeline-event {
+    display: block;
+
+    padding:
+      30px
+      0
+      0
+      50px;
+
+    text-align: left;
+  }
+
+  .timeline-art-wrapper {
+    max-width: 100%;
+
+    margin-left: 0 !important;
+  }
+
+  .timeline-event-content {
+    max-width: 100%;
+
+    margin-left: 0 !important;
+  }
+
+  .timeline-event h3 {
+    font-size: 42px;
+  }
+
+  .celebration-item:nth-child(even)
+  .gold-small-line {
+    margin-left: 0;
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+
+  .countdown {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap:
+      40px 0;
+  }
+
+  .countdown div:nth-child(2) {
+    border-right: 0;
+  }
+
+  /* ---------- GALLERY ---------- */
+
+  .gallery {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    grid-auto-rows: 180px;
+  }
+
+  .gallery-1 {
+    grid-column: span 2;
+
+    grid-row: span 2;
+  }
+
+  .gallery-2 {
+    grid-column: span 1;
+  }
+
+  /* ---------- VENUE ---------- */
+
+  .venue-card {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-image {
+    min-height: 350px;
+  }
+
+  .venue-details {
+    min-height: 420px;
+  }
+
+  .venue-details h3 {
+    font-size: 45px;
+  }
+
+  /* ---------- DRESS ---------- */
+
+  .dress-colors {
+    gap: 16px;
+  }
+
+  /* ---------- RSVP ---------- */
+
+  .attendance {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .footer h2 {
+    font-size: 75px;
+  }
+
+  /* ---------- FULLSCREEN COVER ---------- */
+
+  .invitation-opening.is-covering .envelope-card {
+    padding: 25px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-height: 700px) {
+
+  .wedding-envelope {
+    width:
+      min(390px, 62vw);
+  }
+
+  .opening-instruction {
+    bottom: 3%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .wedding-envelope {
+    width: 88vw;
+  }
+
+  .envelope-card {
+    padding: 14px;
+  }
+
+  .envelope-card h1 {
+    font-size: 34px;
+  }
+
+  .wax-seal {
+    width: 68px;
+    height: 68px;
+  }
+
+  .opening-instruction button {
+    padding:
+      10px 20px;
+  }
+}
+
+/* =========================================================
+   SAFARI / IOS FIXES
+========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .invitation-opening {
+    height: -webkit-fill-available;
+  }
+
+  .wedding-envelope,
+  .envelope-card,
+  .envelope-flap,
+  .wax-seal {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+
+/* =========================================================
+   LUXURY HERO — SMALL ORIGINAL-SIZE VIDEO
+   Video stays proportional; wedding details sit INSIDE it.
+   ========================================================= */
+
+.luxury-hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      #ffffff 0%,
+      #f7f8f6 45%,
+      #e7eff1 100%
+    );
+}
+
+
+/* =========================================================
+   CENTER SHELL
+   ========================================================= */
+
+.luxury-hero-shell {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 24px;
+}
+
+
+/* =========================================================
+   SMALL VIDEO FRAME
+   ========================================================= */
+
+.luxury-hero-video-frame {
+  position: relative;
+
+  /*
+   The video remains a normal-flow element so the frame
+   automatically gets the video's original aspect-ratio height.
+  */
+  width: min(430px, 78vw);
+
+  max-width: 430px;
+
+  overflow: hidden;
+
+  background: #e8eeee;
+
+  border:
+    1px solid
+    rgba(196, 167, 106, 0.62);
+
+  box-shadow:
+    0 30px 80px
+    rgba(40, 55, 58, 0.17),
+    0 8px 25px
+    rgba(196, 167, 106, 0.08);
+
+  isolation: isolate;
+}
+
+
+/* Subtle luxury border */
+
+.luxury-hero-video-frame::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 8px;
+
+  z-index: 8;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.48);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+.luxury-hero-video {
+  display: block;
+
+  position: relative;
+
+  width: 100%;
+  height: auto;
+
+  /*
+   IMPORTANT:
+   Do not use object-fit: cover here.
+   This preserves the video's original proportions.
+  */
+  object-fit: contain;
+
+  object-position: center center;
+
+  max-height: 84svh;
+
+  z-index: 0;
+
+  background: #e8eeee;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   VIDEO OVERLAY
+   ========================================================= */
+
+.luxury-hero-video-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 18, 18, 0.06) 0%,
+      rgba(15, 18, 18, 0.015) 38%,
+      rgba(15, 18, 18, 0.20) 100%
+    );
+}
+
+
+/* Fine vignette */
+
+.luxury-hero-video-overlay::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0) 52%,
+      rgba(0,0,0,0.18) 100%
+    );
+}
+
+
+/* =========================================================
+   WEDDING CONTENT INSIDE VIDEO
+   ========================================================= */
+
+.luxury-hero-content {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    45px
+    28px
+    78px;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  pointer-events: none;
+
+  text-shadow:
+    0 2px 12px rgba(0,0,0,0.40);
+}
+
+
+/* =========================================================
+   ORNAMENT
+   ========================================================= */
+
+.luxury-hero-ornament {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+.luxury-hero-ornament span {
+  display: block;
+
+  width: 38px;
+  height: 1px;
+
+  background:
+    rgba(255,255,255,0.72);
+}
+
+.luxury-hero-ornament b {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  font-weight: 400;
+
+  color: #f4e5bd;
+}
+
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
+.luxury-hero-kicker {
+  margin: 0;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+}
+
+.luxury-hero-ceremony {
+  margin-top: 8px;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+}
+
+.luxury-hero-of {
+  margin-top: 23px;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 3px;
+
+  color: #f1e1b9;
+}
+
+
+/* =========================================================
+   NAMES
+   ========================================================= */
+
+.luxury-hero-names {
+  margin:
+    14px
+    0
+    0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(38px, 5vw, 58px);
+
+  line-height: 0.86;
+
+  font-weight: 400;
+
+  letter-spacing: -1px;
+
+  color: #ffffff;
+}
+
+.luxury-hero-names span {
+  display: block;
+}
+
+.luxury-hero-names em {
+  display: block;
+
+  margin:
+    11px
+    0;
+
+  color:
+    #dfcda1;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 45%;
+
+  line-height: 1;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.luxury-hero-divider {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 28px;
+}
+
+.luxury-hero-divider span {
+  width: 38px;
+  height: 1px;
+
+  background:
+    rgba(255,255,255,0.62);
+}
+
+.luxury-hero-divider i {
+  color:
+    #dfcda1;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 17px;
+
+  font-style: normal;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.luxury-hero-date {
+  margin-top: 16px;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 3px;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SCROLL DOWN
+   ========================================================= */
+
+.luxury-hero-scroll {
+  position: absolute;
+
+  left: 50%;
+  bottom: 22px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.45);
+
+  pointer-events: auto;
+}
+
+.luxury-hero-scroll-label {
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 6px;
+
+  font-weight: 500;
+
+  letter-spacing: 3px;
+}
+
+.luxury-hero-scroll-line {
+  width: 1px;
+  height: 34px;
+
+  background:
+    rgba(255,255,255,0.70);
+}
+
+.luxury-hero-scroll-arrow {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   SIDE DECORATIONS
+   ========================================================= */
+
+.luxury-hero-side-decoration {
+  position: absolute;
+
+  z-index: 2;
+
+  color:
+    #c4a76a;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  opacity: 0.7;
+
+  pointer-events: none;
+}
+
+.luxury-hero-side-left {
+  top: 30%;
+  left: 8%;
+}
+
+.luxury-hero-side-right {
+  right: 8%;
+  bottom: 28%;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .luxury-hero {
+    min-height: 100svh;
+
+    padding:
+      0;
+  }
+
+  .luxury-hero-shell {
+    min-height: 100svh;
+
+    padding:
+      24px 16px;
+  }
+
+  .luxury-hero-video-frame {
+    width: min(360px, 86vw);
+
+    max-width: 360px;
+  }
+
+  .luxury-hero-video {
+    width: 100%;
+    height: auto;
+
+    max-height: 82svh;
+  }
+
+  .luxury-hero-content {
+    padding:
+      35px
+      20px
+      65px;
+  }
+
+  .luxury-hero-ornament {
+    gap: 9px;
+
+    margin-bottom: 17px;
+  }
+
+  .luxury-hero-ornament span {
+    width: 28px;
+  }
+
+  .luxury-hero-ornament b {
+    font-size: 15px;
+  }
+
+  .luxury-hero-kicker {
+    font-size: 6px;
+    letter-spacing: 3px;
+  }
+
+  .luxury-hero-ceremony {
+    margin-top: 6px;
+
+    font-size: 6px;
+    letter-spacing: 3px;
+  }
+
+  .luxury-hero-of {
+    margin-top: 17px;
+
+    font-size: 6px;
+    letter-spacing: 2px;
+  }
+
+  .luxury-hero-names {
+    margin-top: 11px;
+
+    font-size:
+      clamp(30px, 8.7vw, 43px);
+
+    line-height: 0.88;
+
+    letter-spacing: -0.6px;
+  }
+
+  .luxury-hero-names em {
+    margin:
+      8px 0;
+  }
+
+  .luxury-hero-divider {
+    margin-top: 20px;
+
+    gap: 8px;
+  }
+
+  .luxury-hero-divider span {
+    width: 28px;
+  }
+
+  .luxury-hero-divider i {
+    font-size: 14px;
+  }
+
+  .luxury-hero-date {
+    margin-top: 12px;
+
+    font-size: 5.5px;
+
+    letter-spacing: 2px;
+  }
+
+  .luxury-hero-scroll {
+    bottom: 14px;
+  }
+
+  .luxury-hero-side-decoration {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .luxury-hero-shell {
+    padding:
+      20px 12px;
+  }
+
+  .luxury-hero-video-frame {
+    width: 90vw;
+  }
+
+  .luxury-hero-content {
+    padding:
+      28px
+      15px
+      58px;
+  }
+
+  .luxury-hero-names {
+    font-size:
+      30px;
+  }
+
+  .luxury-hero-kicker {
+    font-size: 5.5px;
+  }
+
+  .luxury-hero-ceremony {
+    font-size: 5.5px;
+  }
+
+  .luxury-hero-date {
+    font-size: 5px;
+  }
+}
+
+
+/* =========================================================
+   SHORT DESKTOP / LAPTOP SCREENS
+   ========================================================= */
+
+@media (max-height: 800px) and (min-width: 701px) {
+
+  .luxury-hero-shell {
+    padding:
+      24px;
+  }
+
+  .luxury-hero-video-frame {
+    width:
+      min(390px, 70vw);
+  }
+
+  .luxury-hero-video {
+    max-height: 78svh;
+  }
+
+  .luxury-hero-content {
+    padding:
+      36px
+      24px
+      68px;
+  }
+
+  .luxury-hero-names {
+    font-size:
+      clamp(34px, 4.3vw, 50px);
+  }
+
+  .luxury-hero-divider {
+    margin-top: 22px;
+  }
+}
+
+
+/* =========================================================
+   SAFARI / IOS
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .luxury-hero {
+    min-height: 100svh;
+  }
+
+  .luxury-hero-video-frame {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .luxury-hero-video {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* =========================================================
+   FINAL MOBILE TOUCH FIX
+   ========================================================= */
+
+.invitation-opening {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+
+  z-index: 999999 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+/*
+  IMPORTANT:
+  The opening screen receives the touch.
+  Internal visual elements must not block it.
+*/
+
+.envelope-card,
+.envelope-body,
+.envelope-flap,
+.flap-decoration,
+.envelope-left-fold,
+.envelope-right-fold,
+.envelope-bottom-fold {
+  pointer-events: none !important;
+}
+
+
+/*
+  Envelope itself does not block the screen pointer.
+*/
+
+.wedding-envelope {
+  pointer-events: none !important;
+}
+
+
+/*
+  Seal gets its own touch handler.
+*/
+
+.wax-seal {
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+
+  z-index: 100 !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+
+  -webkit-appearance: none !important;
+
+  appearance: none !important;
+}
+
+
+/*
+  Opening button remains clickable.
+*/
+
+.opening-instruction {
+  pointer-events: none !important;
+}
+
+.opening-instruction button {
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+
+  min-width: 180px;
+
+  min-height: 44px;
+
+  border: 0;
+
+  -webkit-appearance: none !important;
+
+  appearance: none !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+/*
+  While animation is running, block additional touches.
+*/
+
+.invitation-opening.is-opening {
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .invitation-opening {
+    width: 100vw !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+  }
+
+  .wedding-envelope {
+    pointer-events: none !important;
+  }
+
+  .wax-seal {
+    width: 62px !important;
+    height: 62px !important;
+
+    pointer-events: auto !important;
+
+    touch-action: manipulation !important;
+  }
+
+  .opening-instruction {
+    bottom: 4% !important;
+  }
+}
+
+
+/* =========================================================
+   IOS SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .invitation-opening {
+    height: 100svh !important;
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+  }
+
+  .wax-seal,
+  .opening-instruction button {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+
+    touch-action: manipulation !important;
+  }
+}
+
+/* =========================================================
+   DIAGNOSTIC TOUCH TEST
+   ========================================================= */
+
+.invitation-opening {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+
+  z-index: 9999999 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+}
+
+.invitation-opening .wedding-envelope {
+  pointer-events: none !important;
+}
+
+.invitation-opening .envelope-card,
+.invitation-opening .envelope-body,
+.invitation-opening .envelope-flap,
+.invitation-opening .flap-decoration {
+  pointer-events: none !important;
+}
+
+.invitation-opening .wax-seal {
+  pointer-events: auto !important;
+}
+
+.invitation-opening .opening-instruction {
+  pointer-events: none !important;
+}
+
+.invitation-opening .opening-instruction button {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 99999999 !important;
+}
+
+/* =========================================================
+   FINAL FULL-SCREEN TOUCH TARGET
+   ========================================================= */
+
+.invitation-opening {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+
+  z-index: 999999 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+/* REAL CLICKABLE ELEMENT */
+
+.opening-hit-area {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+
+  background: transparent !important;
+
+  z-index: 500 !important;
+
+  pointer-events: auto !important;
+
+  touch-action: manipulation !important;
+
+  cursor: pointer !important;
+
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+/* VISUAL ELEMENTS DON'T BLOCK TOUCH */
+
+.wedding-envelope {
+  position: relative !important;
+  z-index: 100 !important;
+
+  pointer-events: none !important;
+}
+
+.envelope-card,
+.envelope-body,
+.envelope-flap,
+.flap-decoration,
+.envelope-left-fold,
+.envelope-right-fold,
+.envelope-bottom-fold,
+.wax-seal {
+  pointer-events: none !important;
+}
+
+
+/* TEXT / DECORATIONS */
+
+.opening-decoration,
+.opening-decoration *,
+.opening-instruction,
+.opening-instruction * {
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .invitation-opening {
+    width: 100vw !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+  }
+
+  .opening-hit-area {
+    width: 100% !important;
+    height: 100% !important;
+
+    min-height: 100svh !important;
+  }
+}
+
+
+/* =========================================================
+   IOS SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .invitation-opening {
+    height: 100svh !important;
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .opening-hit-area {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL HERO VIDEO SIZE
+   Large portrait video, preserving original proportions
+   and keeping the wedding details inside the video.
+   ========================================================= */
+
+.luxury-hero {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  min-height: 100dvh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+}
+
+.luxury-hero-shell {
+  position: relative !important;
+
+  width: 100% !important;
+  min-height: 100svh !important;
+  min-height: 100dvh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 20px 10px !important;
+}
+
+
+/* ---------------------------------------------------------
+   Large video frame
+   --------------------------------------------------------- */
+
+.luxury-hero-video-frame {
+  position: relative !important;
+
+  width: min(94vw, 620px) !important;
+  max-width: 620px !important;
+
+  max-height: 94svh !important;
+  max-height: 94dvh !important;
+
+  margin: 0 auto !important;
+
+  overflow: hidden !important;
+
+  background: #e8eeee !important;
+
+  border: 1px solid rgba(196, 167, 106, 0.65) !important;
+
+  box-shadow:
+    0 30px 80px rgba(40, 55, 58, 0.17),
+    0 8px 25px rgba(196, 167, 106, 0.08) !important;
+
+  isolation: isolate !important;
+}
+
+
+/* ---------------------------------------------------------
+   Decorative inner frame
+   --------------------------------------------------------- */
+
+.luxury-hero-video-frame::before {
+  content: "" !important;
+
+  position: absolute !important;
+
+  inset: 8px !important;
+
+  z-index: 8 !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.50) !important;
+
+  pointer-events: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Video keeps original aspect ratio
+   --------------------------------------------------------- */
+
+.luxury-hero-video {
+  display: block !important;
+
+  position: relative !important;
+
+  width: 100% !important;
+  height: auto !important;
+
+  max-width: 100% !important;
+
+  /*
+   Do not crop the video.
+   Its intrinsic/original proportions are retained.
+  */
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  max-height: 94svh !important;
+  max-height: 94dvh !important;
+
+  z-index: 0 !important;
+
+  background: #e8eeee !important;
+
+  pointer-events: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Overlay
+   --------------------------------------------------------- */
+
+.luxury-hero-video-overlay {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 2 !important;
+
+  pointer-events: none !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 18, 18, 0.05) 0%,
+      rgba(15, 18, 18, 0.015) 40%,
+      rgba(15, 18, 18, 0.20) 100%
+    ) !important;
+}
+
+.luxury-hero-video-overlay::after {
+  content: "" !important;
+
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.16) 100%
+    ) !important;
+
+  pointer-events: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Wedding details remain inside the video
+   --------------------------------------------------------- */
+
+.luxury-hero-content {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 5 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 44px 28px 80px !important;
+
+  text-align: center !important;
+
+  color: #ffffff !important;
+
+  pointer-events: none !important;
+
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.40) !important;
+}
+
+
+/* ---------------------------------------------------------
+   Names
+   --------------------------------------------------------- */
+
+.luxury-hero-names {
+  margin: 14px 0 0 !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(38px, 5vw, 58px) !important;
+
+  line-height: 0.86 !important;
+
+  font-weight: 400 !important;
+
+  letter-spacing: -1px !important;
+
+  color: #ffffff !important;
+}
+
+.luxury-hero-names span {
+  display: block !important;
+}
+
+.luxury-hero-names em {
+  display: block !important;
+
+  margin: 11px 0 !important;
+
+  color: #dfcda1 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size: 45% !important;
+
+  line-height: 1 !important;
+
+  font-style: italic !important;
+}
+
+
+/* ---------------------------------------------------------
+   Scroll control remains above everything
+   --------------------------------------------------------- */
+
+.luxury-hero-scroll {
+  position: absolute !important;
+
+  left: 50% !important;
+  bottom: 22px !important;
+
+  transform: translateX(-50%) !important;
+
+  z-index: 10 !important;
+
+  pointer-events: auto !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .luxury-hero {
+    min-height: 100svh !important;
+    min-height: 100dvh !important;
+  }
+
+  .luxury-hero-shell {
+    min-height: 100svh !important;
+    min-height: 100dvh !important;
+
+    padding: 8px 4px !important;
+  }
+
+  .luxury-hero-video-frame {
+    width: 96vw !important;
+    max-width: none !important;
+
+    /*
+     Leave just enough room for the Safari UI while
+     making the portrait video as large as practical.
+    */
+    max-height: 92svh !important;
+    max-height: 92dvh !important;
+  }
+
+  .luxury-hero-video {
+    width: 100% !important;
+    height: auto !important;
+
+    max-height: 92svh !important;
+    max-height: 92dvh !important;
+
+    object-fit: contain !important;
+  }
+
+  .luxury-hero-content {
+    padding:
+      30px
+      16px
+      64px !important;
+  }
+
+  .luxury-hero-ornament {
+    gap: 9px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .luxury-hero-ornament span {
+    width: 28px !important;
+  }
+
+  .luxury-hero-ornament b {
+    font-size: 15px !important;
+  }
+
+  .luxury-hero-kicker {
+    font-size: 6px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .luxury-hero-ceremony {
+    margin-top: 6px !important;
+
+    font-size: 6px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .luxury-hero-of {
+    margin-top: 17px !important;
+
+    font-size: 6px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .luxury-hero-names {
+    margin-top: 10px !important;
+
+    font-size:
+      clamp(31px, 8.5vw, 44px) !important;
+
+    line-height: 0.88 !important;
+  }
+
+  .luxury-hero-names em {
+    margin: 8px 0 !important;
+  }
+
+  .luxury-hero-divider {
+    margin-top: 20px !important;
+    gap: 8px !important;
+  }
+
+  .luxury-hero-divider span {
+    width: 28px !important;
+  }
+
+  .luxury-hero-divider i {
+    font-size: 14px !important;
+  }
+
+  .luxury-hero-date {
+    margin-top: 12px !important;
+
+    font-size: 5.5px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .luxury-hero-scroll {
+    bottom: 12px !important;
+  }
+
+  .luxury-hero-side-decoration {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .luxury-hero-shell {
+    padding: 6px 2px !important;
+  }
+
+  .luxury-hero-video-frame {
+    width: 97vw !important;
+
+    max-height: 90svh !important;
+    max-height: 90dvh !important;
+  }
+
+  .luxury-hero-video {
+    max-height: 90svh !important;
+    max-height: 90dvh !important;
+  }
+
+  .luxury-hero-content {
+    padding:
+      24px
+      10px
+      56px !important;
+  }
+
+  .luxury-hero-names {
+    font-size: 29px !important;
+  }
+}
+
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 700px) and (max-height: 720px) {
+
+  .luxury-hero-video-frame {
+    max-height: 88svh !important;
+    max-height: 88dvh !important;
+  }
+
+  .luxury-hero-video {
+    max-height: 88svh !important;
+    max-height: 88dvh !important;
+  }
+
+  .luxury-hero-content {
+    padding-bottom: 58px !important;
+  }
+}
+
+
+/* =========================================================
+   IOS SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .luxury-hero {
+    min-height: 100svh !important;
+  }
+
+  .luxury-hero-shell {
+    min-height: 100svh !important;
+  }
+
+  .luxury-hero-video-frame {
+    max-height: 92svh !important;
+
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .luxury-hero-video {
+    max-height: 92svh !important;
+
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL COUNTDOWN — SINGLE LINE / LUXURY STYLE
+   Overrides earlier responsive countdown rules.
+   ========================================================= */
+
+.countdown-section {
+  position: relative;
+  padding: 150px 20px 160px !important;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,0.98) 0%,
+      rgba(228,241,247,0.96) 48%,
+      rgba(211,231,239,1) 100%
+    ) !important;
+}
+
+/* Decorative glow behind the countdown */
+.countdown-section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: min(900px, 100vw);
+  height: 520px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.72) 0%,
+      rgba(255,255,255,0.22) 48%,
+      rgba(255,255,255,0) 74%
+    );
+}
+
+.countdown-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.countdown-section h2 {
+  margin-top: 22px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 6vw, 78px) !important;
+  line-height: 0.9;
+  font-weight: 400;
+}
+
+/* Main countdown container */
+.countdown {
+  width: min(980px, 100%) !important;
+  margin: 75px auto 0 !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+  align-items: stretch;
+
+  gap: 0 !important;
+
+  padding: 24px 18px;
+
+  border: 1px solid rgba(196,167,106,0.38);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.82),
+      rgba(255,255,255,0.52)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(73,101,112,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.92);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Each time block */
+.countdown > div {
+  position: relative;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  padding: 10px 22px;
+
+  border-right: 1px solid rgba(196,167,106,0.38) !important;
+}
+
+.countdown > div:last-child {
+  border-right: 0 !important;
+}
+
+/* Small gold top accent */
+.countdown > div::before {
+  content: "✦";
+
+  position: absolute;
+  top: -7px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: rgba(196,167,106,0.68);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+}
+
+/* Numbers */
+.countdown strong {
+  display: block;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(52px, 6vw, 82px) !important;
+
+  line-height: 0.9;
+
+  font-weight: 300;
+
+  letter-spacing: -1px;
+
+  font-variant-numeric: tabular-nums;
+
+  text-shadow:
+    0 3px 16px rgba(48,51,51,0.08);
+}
+
+/* Labels */
+.countdown span {
+  display: block;
+
+  margin-top: 12px;
+
+  color: #b99652;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px !important;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  white-space: nowrap;
+}
+
+/* Subtle hover polish */
+.countdown > div {
+  transition:
+    transform 0.35s cubic-bezier(0.22,1,0.36,1),
+    background 0.35s ease;
+}
+
+.countdown > div:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(255,255,255,0.30);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .countdown {
+    width: min(94vw, 820px) !important;
+    padding: 20px 10px;
+  }
+
+  .countdown > div {
+    padding: 10px 12px;
+  }
+
+  .countdown strong {
+    font-size:
+      clamp(44px, 7vw, 66px) !important;
+  }
+}
+
+/* =========================================================
+   MOBILE — STILL ONE LINE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .countdown-section {
+    padding:
+      120px
+      14px
+      130px !important;
+  }
+
+  .countdown-section h2 {
+    font-size:
+      clamp(42px, 11vw, 58px) !important;
+  }
+
+  .countdown {
+    width: 100% !important;
+
+    margin-top: 55px !important;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+
+    padding:
+      18px
+      6px;
+
+    border-radius: 18px;
+  }
+
+  .countdown > div {
+    padding:
+      10px
+      4px;
+  }
+
+  .countdown > div::before {
+    font-size: 9px;
+    top: -5px;
+  }
+
+  .countdown strong {
+    font-size:
+      clamp(30px, 9.5vw, 45px) !important;
+
+    line-height: 0.9;
+  }
+
+  .countdown span {
+    margin-top: 9px;
+
+    font-size: 5px !important;
+
+    letter-spacing: 1.8px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES — ONE ROW WITHOUT WRAPPING
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .countdown {
+    width: 100% !important;
+
+    padding:
+      15px
+      3px;
+
+    border-radius: 16px;
+  }
+
+  .countdown > div {
+    padding:
+      9px
+      2px;
+  }
+
+  .countdown > div::before {
+    display: none;
+  }
+
+  .countdown strong {
+    font-size:
+      clamp(25px, 8.5vw, 34px) !important;
+  }
+
+  .countdown span {
+    margin-top: 7px;
+
+    font-size: 4.5px !important;
+
+    letter-spacing: 1.2px;
+  }
+}
+
+/* =========================================================
+   SAFARI / IOS
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .countdown {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+}
+
+
+/* =========================================================
+   FINAL COMPACT DATE REVEAL
+   Three independent mini cards:
+   DATE • MONTH • YEAR
+   Designed to fit neatly on mobile.
+   ========================================================= */
+
+.date-section {
+  position: relative !important;
+  width: 100% !important;
+  padding: 88px 14px 96px !important;
+  overflow: hidden !important;
+  text-align: center !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 8%,
+      #ffffff 0%,
+      #f7fbfc 42%,
+      #e6f1f5 100%
+    ) !important;
+}
+
+/* Subtle luxury glow */
+.date-section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(780px, 130vw);
+  height: 430px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.90) 0%,
+      rgba(255,255,255,0.35) 46%,
+      rgba(255,255,255,0) 75%
+    );
+}
+
+.date-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.date-section .section-label {
+  color: #7d8588 !important;
+  font-size: 8px !important;
+  letter-spacing: 4px !important;
+}
+
+.date-section h2 {
+  margin-top: 14px !important;
+  color: #2f3334 !important;
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(46px, 8vw, 76px) !important;
+  line-height: 0.88 !important;
+  font-weight: 400 !important;
+  letter-spacing: -1.2px !important;
+}
+
+/* =========================================================
+   THREE CARD ROW
+   ========================================================= */
+
+.date-reveal-grid {
+  width: min(860px, 100%) !important;
+  margin: 46px auto 0 !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+/* =========================================================
+   MINI CARD
+   ========================================================= */
+
+.date-reveal-box {
+  position: relative !important;
+
+  min-width: 0 !important;
+  height: 205px !important;
+  min-height: 205px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 20px 10px !important;
+
+  overflow: hidden !important;
+  border: 1px solid rgba(196,167,106,0.58) !important;
+  border-radius: 14px !important;
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(246,250,251,0.95) 56%,
+      rgba(226,240,245,0.94) 100%
+    ) !important;
+
+  box-shadow:
+    0 14px 38px rgba(62,86,96,0.09),
+    inset 0 1px 0 rgba(255,255,255,0.98) !important;
+
+  isolation: isolate !important;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22,1,0.36,1),
+    box-shadow 0.35s ease !important;
+}
+
+.date-reveal-box::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(196,167,106,0.24);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.date-reveal-box::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  color: rgba(196,167,106,0.74);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.date-reveal-box:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 46px rgba(62,86,96,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.98);
+}
+
+/* =========================================================
+   REVEALED CONTENT
+   ========================================================= */
+
+.date-reveal-content {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.date-reveal-label {
+  display: block;
+  margin-bottom: 14px;
+
+  color: #ad9362;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 6px;
+  font-weight: 500;
+  letter-spacing: 2.8px;
+  white-space: nowrap;
+}
+
+.date-reveal-number {
+  display: block;
+
+  color: #303333;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(66px, 8vw, 94px);
+  line-height: 0.72;
+  font-weight: 300;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-reveal-month {
+  display: block;
+
+  max-width: 100%;
+
+  color: #303333;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.date-reveal-year {
+  display: block;
+
+  color: #303333;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(50px, 6vw, 76px);
+  line-height: 0.75;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-reveal-word {
+  display: block;
+  margin-top: 11px;
+
+  color: #738187;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 5px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.date-reveal-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.date-reveal-ornament span {
+  width: 22px;
+  height: 1px;
+  background: rgba(196,167,106,0.68);
+}
+
+.date-reveal-ornament i {
+  color: #c4a76a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1;
+}
+
+/* =========================================================
+   SCRATCH LAYER
+   ========================================================= */
+
+.date-scratch-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  z-index: 20 !important;
+
+  display: block !important;
+
+  cursor: grab !important;
+    touch-action: pan-y !important;
+
+
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
+  transition:
+    opacity 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+.date-scratch-canvas:active {
+  cursor: grabbing !important;
+}
+
+.date-reveal-box.is-revealed {
+  background:
+    linear-gradient(
+      155deg,
+      #ffffff 0%,
+      #f2f9fb 100%
+    ) !important;
+
+  border-color: rgba(196,167,106,0.72) !important;
+}
+
+/* =========================================================
+   CAPTION
+   ========================================================= */
+
+.date-reveal-caption {
+  margin-top: 25px !important;
+
+  color: #ad9362 !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 17px !important;
+  font-style: italic !important;
+
+  letter-spacing: 0.1px !important;
+}
+
+.date-reveal-caption::before,
+.date-reveal-caption::after {
+  content: "✦";
+  margin: 0 7px;
+  color: #c4a76a;
+  font-size: 8px;
+  font-style: normal;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .date-section {
+    padding:
+      96px 16px 110px !important;
+  }
+
+  .date-reveal-grid {
+    gap: 10px !important;
+  }
+
+  .date-reveal-box {
+    height: 195px !important;
+    min-height: 195px !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .date-section {
+    padding:
+      78px 10px 88px !important;
+  }
+
+  .date-section .section-label {
+    font-size: 7px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .date-section h2 {
+    margin-top: 12px !important;
+    font-size:
+      clamp(42px, 12vw, 58px) !important;
+    line-height: 0.9 !important;
+  }
+
+  .date-reveal-grid {
+    width: 100% !important;
+
+    margin-top: 34px !important;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+  .date-reveal-box {
+    height: 168px !important;
+    min-height: 168px !important;
+
+    padding:
+      18px 4px !important;
+
+    border-radius: 11px !important;
+  }
+
+  .date-reveal-box::before {
+    inset: 5px !important;
+    border-radius: 7px !important;
+  }
+
+  .date-reveal-box::after {
+    top: 8px !important;
+    font-size: 9px !important;
+  }
+
+  .date-reveal-label {
+    margin-bottom: 12px !important;
+
+    font-size: 4.8px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+  .date-reveal-number {
+    font-size:
+      clamp(54px, 16vw, 70px) !important;
+  }
+
+  .date-reveal-word {
+    margin-top: 9px !important;
+
+    font-size: 4.3px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .date-reveal-month {
+    font-size:
+      clamp(16px, 5vw, 23px) !important;
+
+    letter-spacing: 0.4px !important;
+  }
+
+  .date-reveal-year {
+    font-size:
+      clamp(42px, 12vw, 54px) !important;
+  }
+
+  .date-reveal-ornament {
+    margin-top: 13px !important;
+    gap: 4px !important;
+  }
+
+  .date-reveal-ornament span {
+    width: 14px !important;
+  }
+
+  .date-reveal-ornament i {
+    font-size: 9px !important;
+  }
+
+  .date-reveal-caption {
+    margin-top: 18px !important;
+    font-size: 15px !important;
+  }
+
+  .date-reveal-caption::before,
+  .date-reveal-caption::after {
+    margin: 0 5px;
+    font-size: 7px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .date-section {
+    padding:
+      70px 8px 80px !important;
+  }
+
+  .date-section h2 {
+    font-size: 40px !important;
+  }
+
+  .date-reveal-grid {
+    gap: 5px !important;
+    margin-top: 30px !important;
+  }
+
+  .date-reveal-box {
+    height: 152px !important;
+    min-height: 152px !important;
+    padding: 15px 3px !important;
+  }
+
+  .date-reveal-box::before {
+    inset: 4px !important;
+  }
+
+  .date-reveal-label {
+    font-size: 4.2px !important;
+    letter-spacing: 1.3px !important;
+  }
+
+  .date-reveal-number {
+    font-size: 50px !important;
+  }
+
+  .date-reveal-word {
+    font-size: 4px !important;
+    letter-spacing: 1.1px !important;
+  }
+
+  .date-reveal-month {
+    font-size: 14px !important;
+    letter-spacing: 0.2px !important;
+  }
+
+  .date-reveal-year {
+    font-size: 38px !important;
+  }
+
+  .date-reveal-ornament {
+    margin-top: 10px !important;
+  }
+
+  .date-reveal-caption {
+    font-size: 14px !important;
+  }
+}
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 700px) and (max-height: 720px) {
+  .date-section {
+    padding-top: 64px !important;
+    padding-bottom: 76px !important;
+  }
+
+  .date-reveal-grid {
+    margin-top: 28px !important;
+  }
+
+  .date-reveal-box {
+    height: 148px !important;
+    min-height: 148px !important;
+  }
+}
+
+/* =========================================================
+   SAFARI / IOS
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+  .date-scratch-canvas {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+
+/* =========================================================
+   FINAL DATE REVEAL — TOUCH / SCRATCH SAFETY
+   ========================================================= */
+
+/*
+ * The scratch cards must behave only as drawing surfaces.
+ * This prevents browser scrolling, selection, text callouts,
+ * drag behavior, and accidental click activation while
+ * scratching on iPhone/iPad.
+ */
+
+.date-reveal-box {
+  position: relative !important;
+  overflow: hidden !important;
+
+    touch-action: pan-y !important;
+
+
+  -webkit-user-select: none !important;
+  user-select: none !important;
+
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
+  overscroll-behavior: none !important;
+}
+
+.date-reveal-content,
+.date-reveal-content * {
+  pointer-events: none !important;
+
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+
+/*
+ * Canvas is the active scratch surface.
+ */
+
+.date-scratch-canvas {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  display: block !important;
+
+  z-index: 20 !important;
+
+  pointer-events: auto !important;
+
+    touch-action: pan-y !important;
+
+
+  cursor: grab !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+
+  user-select: none !important;
+  -webkit-user-select: none !important;
+
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
+  -webkit-user-drag: none !important;
+
+  overscroll-behavior: none !important;
+
+  background: transparent !important;
+
+  transition:
+    opacity 0.45s
+    cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.date-scratch-canvas:active {
+  cursor: grabbing !important;
+}
+
+
+/*
+ * After the individual card is revealed, it becomes
+ * a normal visual card again.
+ */
+
+.date-reveal-box.is-revealed {
+  touch-action: auto !important;
+}
+
+
+/*
+ * Prevent links/buttons inside the date section from
+ * accidentally becoming the target of a scratch gesture.
+ */
+
+.date-section a,
+.date-section button {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+/* =========================================================
+   COMPACT DATE SECTION
+   ========================================================= */
+
+.date-section {
+  width: 100% !important;
+
+  padding:
+    78px
+    10px
+    88px !important;
+
+  overflow: hidden !important;
+}
+
+.date-section .section-label {
+  font-size: 7px !important;
+  letter-spacing: 3px !important;
+}
+
+.date-section h2 {
+  margin-top: 12px !important;
+
+  font-size:
+    clamp(42px, 12vw, 58px) !important;
+
+  line-height: 0.9 !important;
+}
+
+
+/* =========================================================
+   THREE-CARD ROW
+   ========================================================= */
+
+.date-reveal-grid {
+  width: 100% !important;
+
+  margin:
+    34px
+    auto
+    0 !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 7px !important;
+
+  align-items: stretch !important;
+}
+
+
+/* =========================================================
+   COMPACT CARD
+   ========================================================= */
+
+.date-reveal-box {
+  height: 168px !important;
+  min-height: 168px !important;
+
+  padding:
+    18px
+    4px !important;
+
+  border-radius: 11px !important;
+}
+
+.date-reveal-box::before {
+  inset: 5px !important;
+
+  border-radius: 7px !important;
+}
+
+.date-reveal-box::after {
+  top: 8px !important;
+
+  font-size: 9px !important;
+}
+
+.date-reveal-label {
+  margin-bottom: 12px !important;
+
+  font-size: 4.8px !important;
+
+  letter-spacing: 1.8px !important;
+}
+
+.date-reveal-number {
+  font-size:
+    clamp(54px, 16vw, 70px) !important;
+}
+
+.date-reveal-word {
+  margin-top: 9px !important;
+
+  font-size: 4.3px !important;
+
+  letter-spacing: 1.5px !important;
+}
+
+.date-reveal-month {
+  font-size:
+    clamp(16px, 5vw, 23px) !important;
+
+  letter-spacing: 0.4px !important;
+}
+
+.date-reveal-year {
+  font-size:
+    clamp(42px, 12vw, 54px) !important;
+}
+
+.date-reveal-ornament {
+  margin-top: 13px !important;
+
+  gap: 4px !important;
+}
+
+.date-reveal-ornament span {
+  width: 14px !important;
+}
+
+.date-reveal-ornament i {
+  font-size: 9px !important;
+}
+
+.date-reveal-caption {
+  margin-top: 18px !important;
+
+  font-size: 15px !important;
+}
+
+.date-reveal-caption::before,
+.date-reveal-caption::after {
+  margin:
+    0
+    5px !important;
+
+  font-size: 7px !important;
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .date-section {
+    padding:
+      70px
+      8px
+      80px !important;
+  }
+
+  .date-section h2 {
+    font-size: 40px !important;
+  }
+
+  .date-reveal-grid {
+    gap: 5px !important;
+
+    margin-top: 30px !important;
+  }
+
+  .date-reveal-box {
+    height: 152px !important;
+    min-height: 152px !important;
+
+    padding:
+      15px
+      3px !important;
+  }
+
+  .date-reveal-box::before {
+    inset: 4px !important;
+  }
+
+  .date-reveal-label {
+    font-size: 4.2px !important;
+
+    letter-spacing: 1.3px !important;
+  }
+
+  .date-reveal-number {
+    font-size: 50px !important;
+  }
+
+  .date-reveal-word {
+    font-size: 4px !important;
+
+    letter-spacing: 1.1px !important;
+  }
+
+  .date-reveal-month {
+    font-size: 14px !important;
+
+    letter-spacing: 0.2px !important;
+  }
+
+  .date-reveal-year {
+    font-size: 38px !important;
+  }
+
+  .date-reveal-ornament {
+    margin-top: 10px !important;
+  }
+
+  .date-reveal-caption {
+    font-size: 14px !important;
+  }
+}
+
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 700px) and (max-height: 720px) {
+
+  .date-section {
+    padding-top: 64px !important;
+    padding-bottom: 76px !important;
+  }
+
+  .date-reveal-grid {
+    margin-top: 28px !important;
+  }
+
+  .date-reveal-box {
+    height: 148px !important;
+    min-height: 148px !important;
+  }
+}
+
+
+/* =========================================================
+   IOS / SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .date-reveal-box {
+      touch-action: pan-y !important;
+
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+  }
+
+  .date-scratch-canvas {
+      touch-action: pan-y !important;
+
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+
+    -webkit-tap-highlight-color:
+      transparent !important;
+
+    -webkit-user-drag: none !important;
+
+    -webkit-transform:
+      translateZ(0);
+
+    transform:
+      translateZ(0);
+  }
+}
+
+
+/* =========================================================
+   FINAL SAFETY FOR WEDDING PAGE
+   ========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+canvas {
+  -webkit-touch-callout: none;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   FINAL DATE SCRATCH INTERACTION OVERRIDE
+   ========================================================= */
+
+.date-reveal-box {
+  position: relative !important;
+  overflow: hidden !important;
+    touch-action: pan-y !important;
+
+  overscroll-behavior: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.date-reveal-content,
+.date-reveal-content * {
+  pointer-events: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.date-scratch-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  display: block !important;
+  z-index: 20 !important;
+
+  pointer-events: auto !important;
+    touch-action: pan-y !important;
+
+
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: none !important;
+
+  background: transparent !important;
+
+  cursor: grab !important;
+
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-drag: none !important;
+
+  overscroll-behavior: none !important;
+
+  /*
+   * Prevent text/image dragging while scratching.
+   */
+  -webkit-touch-callout: none !important;
+}
+
+.date-scratch-canvas:active {
+  cursor: grabbing !important;
+}
+
+.date-reveal-box.is-revealed {
+  touch-action: auto !important;
+}
+
+/* =========================================================
+   IOS / SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+  .date-reveal-box {
+      touch-action: pan-y !important;
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  .date-scratch-canvas {
+      touch-action: pan-y !important;
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-drag: none !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* =========================================================
+   FINAL MOBILE DATE LAYOUT
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .date-section {
+    width: 100% !important;
+    padding: 78px 10px 88px !important;
+    overflow: hidden !important;
+  }
+
+  .date-reveal-grid {
+    width: 100% !important;
+    margin: 34px auto 0 !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+  .date-reveal-box {
+    width: 100% !important;
+    height: 168px !important;
+    min-height: 168px !important;
+    padding: 18px 4px !important;
+    border-radius: 11px !important;
+  }
+
+  .date-scratch-canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .date-section {
+    padding: 70px 8px 80px !important;
+  }
+
+  .date-reveal-grid {
+    gap: 5px !important;
+    margin-top: 30px !important;
+  }
+
+  .date-reveal-box {
+    height: 152px !important;
+    min-height: 152px !important;
+  }
+}
+
+@media (max-width: 700px) and (max-height: 720px) {
+  .date-section {
+    padding-top: 64px !important;
+    padding-bottom: 76px !important;
+  }
+
+  .date-reveal-grid {
+    margin-top: 28px !important;
+  }
+
+  .date-reveal-box {
+    height: 148px !important;
+    min-height: 148px !important;
+  }
+}
+
+/* =========================================================
+   GENERAL MOBILE SAFETY
+   ========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+canvas {
+  -webkit-touch-callout: none;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   FINAL DATE REVEAL — IOS / SAFARI SAFE
+========================================================= */
+
+.date-section {
+  position: relative !important;
+
+  width: 100% !important;
+
+  overflow: hidden !important;
+
+  isolation: isolate !important;
+
+  text-align: center !important;
+
+  -webkit-user-select: none !important;
+  user-select: none !important;
+
+  -webkit-touch-callout: none !important;
+}
+
+.date-reveal-grid {
+  position: relative !important;
+
+  z-index: 10 !important;
+
+  width: min(860px, 100%) !important;
+
+  margin: 46px auto 0 !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 12px !important;
+
+  align-items: stretch !important;
+}
+
+.date-reveal-box {
+  position: relative !important;
+
+  min-width: 0 !important;
+
+  height: 205px !important;
+
+  min-height: 205px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  padding: 20px 10px !important;
+
+  overflow: hidden !important;
+
+  border: 1px solid
+    rgba(196, 167, 106, 0.58) !important;
+
+  border-radius: 14px !important;
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(246,250,251,0.95) 56%,
+      rgba(226,240,245,0.94) 100%
+    ) !important;
+
+  box-shadow:
+    0 14px 38px
+      rgba(62, 86, 96, 0.09),
+    inset 0 1px 0
+      rgba(255,255,255,0.98) !important;
+
+  isolation: isolate !important;
+
+    touch-action: pan-y !important;
+
+
+  -webkit-touch-callout: none !important;
+
+  -webkit-user-select: none !important;
+
+  user-select: none !important;
+
+  -webkit-tap-highlight-color:
+    transparent !important;
+}
+
+.date-reveal-box::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 7px;
+
+  z-index: 1;
+
+  border:
+    1px solid
+    rgba(196,167,106,0.24);
+
+  border-radius: 9px;
+
+  pointer-events: none;
+}
+
+.date-reveal-content {
+  position: relative !important;
+
+  z-index: 2 !important;
+
+  width: 100% !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  flex-direction: column !important;
+
+  text-align: center !important;
+
+  pointer-events: none !important;
+
+  -webkit-user-select: none !important;
+
+  user-select: none !important;
+}
+
+/* =========================================================
+   SCRATCH CANVAS
+========================================================= */
+
+.date-scratch-canvas {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 20 !important;
+
+  display: block !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  outline: 0 !important;
+
+  pointer-events: none !important;
+
+    touch-action: pan-y !important;
+
+
+  -webkit-touch-callout: none !important;
+
+  -webkit-user-select: none !important;
+
+  user-select: none !important;
+
+  -webkit-tap-highlight-color:
+    transparent !important;
+
+  cursor: grab !important;
+
+  transition:
+    opacity 0.7s
+    cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.date-scratch-canvas:active {
+  cursor: grabbing !important;
+}
+
+/* =========================================================
+   DATE TEXT
+========================================================= */
+
+.date-reveal-label {
+  display: block;
+
+  color: #7d8588;
+
+  font-family:
+    "Montserrat",
+    Arial,
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.date-reveal-number {
+  display: block;
+
+  margin-top: 10px;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(62px, 7vw, 92px);
+
+  font-weight: 300;
+
+  line-height: 0.82;
+
+  letter-spacing: -2px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.date-reveal-month {
+  display: block;
+
+  margin-top: 16px;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(28px, 4vw, 48px);
+
+  font-weight: 400;
+
+  line-height: 0.9;
+
+  letter-spacing: 1px;
+}
+
+.date-reveal-year {
+  display: block;
+
+  margin-top: 12px;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(60px, 7vw, 100px);
+
+  font-weight: 300;
+
+  line-height: 0.8;
+
+  letter-spacing: -2px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.date-reveal-word {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #b99652;
+
+  font-family:
+    "Montserrat",
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+
+  font-weight: 500;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   ORNAMENT
+========================================================= */
+
+.date-reveal-ornament {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  pointer-events: none;
+}
+
+.date-reveal-ornament span {
+  width: 24px;
+
+  height: 1px;
+
+  background:
+    rgba(196,167,106,0.7);
+}
+
+.date-reveal-ornament i {
+  color: #c4a76a;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+
+  font-style: normal;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   REVEALED CARD
+========================================================= */
+
+.date-reveal-box.is-revealed {
+  border-color:
+    rgba(196,167,106,0.72) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #f5fafb 55%,
+      #e8f4f7 100%
+    ) !important;
+
+  box-shadow:
+    0 18px 42px
+      rgba(62,86,96,0.11),
+    inset 0 1px 0
+      rgba(255,255,255,0.98) !important;
+}
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.date-reveal-caption {
+  margin-top: 34px !important;
+
+  color: #b99652 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size: 19px !important;
+
+  font-style: italic !important;
+
+  letter-spacing: 0.2px !important;
+
+  text-align: center !important;
+
+  pointer-events: none !important;
+}
+
+.date-reveal-caption::before,
+.date-reveal-caption::after {
+  content: "✦";
+
+  margin: 0 10px;
+
+  color: #c4a76a;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 10px;
+
+  font-style: normal;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .date-section {
+    padding:
+      80px 10px 95px !important;
+  }
+
+  .date-section h2 {
+    margin-top: 14px !important;
+
+    font-size:
+      clamp(44px, 11vw, 62px) !important;
+
+    line-height: 0.9 !important;
+  }
+
+  .date-reveal-grid {
+    width: 100% !important;
+
+    margin-top: 35px !important;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+  .date-reveal-box {
+    height: 168px !important;
+
+    min-height: 168px !important;
+
+    padding:
+      14px 6px !important;
+
+    border-radius: 12px !important;
+  }
+
+  .date-reveal-box::before {
+    inset: 6px;
+
+    border-radius: 8px;
+  }
+
+  .date-reveal-number {
+    margin-top: 8px;
+
+    font-size:
+      clamp(48px, 13vw, 64px);
+
+    letter-spacing: -1px;
+  }
+
+  .date-reveal-month {
+    margin-top: 11px;
+
+    font-size:
+      clamp(20px, 5.8vw, 30px);
+
+    letter-spacing: 0.5px;
+  }
+
+  .date-reveal-year {
+    margin-top: 10px;
+
+    font-size:
+      clamp(46px, 12vw, 62px);
+
+    letter-spacing: -1px;
+  }
+
+  .date-reveal-label {
+    font-size: 5px;
+
+    letter-spacing: 2px;
+  }
+
+  .date-reveal-word {
+    margin-top: 7px;
+
+    font-size: 4px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .date-reveal-ornament {
+    gap: 5px;
+
+    margin-top: 11px;
+  }
+
+  .date-reveal-ornament span {
+    width: 15px;
+  }
+
+  .date-reveal-ornament i {
+    font-size: 10px;
+  }
+
+  .date-reveal-caption {
+    margin-top: 27px !important;
+
+    font-size: 16px !important;
+
+    letter-spacing: 0 !important;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+  .date-section {
+    padding:
+      72px 7px 88px !important;
+  }
+
+  .date-reveal-grid {
+    gap: 5px !important;
+  }
+
+  .date-reveal-box {
+    height: 152px !important;
+
+    min-height: 152px !important;
+
+    padding:
+      12px 4px !important;
+  }
+
+  .date-reveal-number {
+    font-size: 46px;
+  }
+
+  .date-reveal-month {
+    font-size: 18px;
+
+    letter-spacing: 0;
+  }
+
+  .date-reveal-year {
+    font-size: 45px;
+  }
+
+  .date-reveal-label {
+    font-size: 4.5px;
+
+    letter-spacing: 1.6px;
+  }
+
+  .date-reveal-word {
+    font-size: 3.5px;
+
+    letter-spacing: 1.2px;
+  }
+
+  .date-reveal-caption {
+    font-size: 14px !important;
+  }
+}
+
+/* =========================================================
+   IOS SAFARI
+========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+  .date-section,
+  .date-reveal-box,
+  .date-scratch-canvas {
+    -webkit-tap-highlight-color:
+      transparent !important;
+
+    -webkit-touch-callout: none !important;
+
+    -webkit-user-select: none !important;
+
+    user-select: none !important;
+  }
 }
