@@ -27,12 +27,15 @@ function calculateCountdown(): CountdownTime {
     days: Math.floor(
       difference / (1000 * 60 * 60 * 24),
     ),
+
     hours: Math.floor(
       (difference / (1000 * 60 * 60)) % 24,
     ),
+
     minutes: Math.floor(
       (difference / (1000 * 60)) % 60,
     ),
+
     seconds: Math.floor(
       (difference / 1000) % 60,
     ),
@@ -40,16 +43,8 @@ function calculateCountdown(): CountdownTime {
 }
 
 export default function Countdown() {
-  /*
-   * IMPORTANT:
-   * Do not call Date.now() while rendering.
-   *
-   * The server and browser must render exactly the same
-   * initial HTML, otherwise Next.js can report:
-   * "Hydration failed because the server rendered text
-   * didn't match the client."
-   */
-  const [time, setTime] = useState<CountdownTime>(INITIAL_TIME);
+  const [time, setTime] =
+    useState<CountdownTime>(INITIAL_TIME);
 
   useEffect(() => {
     let mounted = true;
@@ -60,10 +55,12 @@ export default function Countdown() {
       }
     };
 
-    // First real countdown value is calculated only after hydration.
     update();
 
-    const interval = window.setInterval(update, 1000);
+    const interval = window.setInterval(
+      update,
+      1000,
+    );
 
     return () => {
       mounted = false;
@@ -99,6 +96,54 @@ export default function Countdown() {
       className="countdown-section"
       aria-label="Wedding countdown"
     >
+      {/* =========================================
+          FLORAL BACKGROUND
+          ========================================= */}
+
+      <div
+        className="countdown-floral countdown-floral-one"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/flower.png"
+          alt=""
+        />
+      </div>
+
+      <div
+        className="countdown-floral countdown-floral-two"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/blue.png"
+          alt=""
+        />
+      </div>
+
+      <div
+        className="countdown-floral countdown-floral-three"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/blue.png"
+          alt=""
+        />
+      </div>
+
+      <div
+        className="countdown-floral countdown-floral-four"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/flower.png"
+          alt=""
+        />
+      </div>
+
+      {/* =========================================
+          DECORATIVE ORBITS
+          ========================================= */}
+
       <div
         className="countdown-orbit countdown-orbit-left"
         aria-hidden="true"
@@ -109,10 +154,17 @@ export default function Countdown() {
         aria-hidden="true"
       />
 
+      {/* =========================================
+          HEADER
+          ========================================= */}
+
       <div className="countdown-header">
+
         <div className="countdown-eyebrow">
           <span />
-          <p>COUNTING DOWN TO FOREVER</p>
+          <p>
+            COUNTING DOWN TO FOREVER
+          </p>
           <span />
         </div>
 
@@ -132,60 +184,67 @@ export default function Countdown() {
         </h2>
 
         <p className="countdown-intro">
-          Every second brings us closer to the moment
+          Every second brings us closer
+          to the moment
           <br className="countdown-desktop-break" />
-          we begin this beautiful journey together.
+          we begin this beautiful journey
+          together.
         </p>
+
       </div>
 
+      {/* =========================================
+          COUNTDOWN CARD
+          ========================================= */}
+
       <div className="countdown-card">
+
         <div
           className="countdown-card-glow"
           aria-hidden="true"
         />
 
         <div className="countdown-grid">
-          {values.map((item, index) => (
+
+          {values.map((item) => (
             <div
-              className={`countdown-item ${
-                index === values.length - 1
-                  ? "countdown-item-last"
-                  : ""
-              }`}
+              className={`countdown-item countdown-item-${item.key}`}
               key={item.key}
             >
-              <div
-                className="countdown-star"
-                aria-hidden="true"
-              >
-                ✦
-              </div>
 
-              <strong
-                className={`countdown-value ${
-                  item.key === "seconds"
-                    ? "countdown-value-seconds"
-                    : ""
-                }`}
-              >
+              <strong className="countdown-value">
                 <span key={item.value}>
-                  {String(item.value).padStart(2, "0")}
+                  {String(item.value).padStart(
+                    2,
+                    "0",
+                  )}
                 </span>
               </strong>
 
               <span className="countdown-label">
                 {item.label}
               </span>
+
             </div>
           ))}
+
         </div>
       </div>
 
+      {/* =========================================
+          DATE FOOTER
+          ========================================= */}
+
       <div className="countdown-footer">
         <span />
-        <p>04 · DECEMBER · 2026</p>
+
+        <p>
+          04 · DECEMBER · 2026
+        </p>
+
         <span />
       </div>
+
     </section>
   );
 }

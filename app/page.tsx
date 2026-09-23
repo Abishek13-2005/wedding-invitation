@@ -8,7 +8,6 @@ import Invitation from "@/components/Invitation";
 import Quote from "@/components/Quote";
 import Timeline from "@/components/Timeline";
 import Countdown from "@/components/Countdown";
-import Gallery from "@/components/Gallery";
 import Venue from "@/components/Venue";
 import Footer from "@/components/Footer";
 
@@ -26,10 +25,7 @@ export default function Home() {
         <Invitation />
         <Quote />
         <Timeline />
-        
-        <Gallery />
         <Venue />
-
         <Footer />
       </div>
     </main>
