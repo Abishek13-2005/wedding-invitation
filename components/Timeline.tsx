@@ -19,7 +19,7 @@ const events = [
         Holy Immanuel Church, Pattakkarai
       </>
     ),
-    image: "/images/en.png",
+    image: "/images/En.png",
   },
   {
     date: "4 DECEMBER 2026",
@@ -33,7 +33,7 @@ const events = [
         Pattakkarai
       </>
     ),
-    image: "/images/wc.png",
+    image: "/images/WC.png",
   },
   {
     date: null,
@@ -48,7 +48,7 @@ const events = [
         Pattakkarai
       </>
     ),
-    image: "/images/gb.png",
+    image: "/images/GB.png",
   },
   {
     date: null,
@@ -62,7 +62,7 @@ const events = [
         Pattakkarai
       </>
     ),
-    image: "/images/ln.png",
+    image: "/images/Ln.png",
   },
 ];
 

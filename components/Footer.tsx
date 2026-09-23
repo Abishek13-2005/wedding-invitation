@@ -266,7 +266,7 @@ export default function Footer() {
           </span>
 
           <span className="footer-heart-button-text">
-            One more moment
+            One more moment <span className="sp1">(click)</span>
           </span>
 
           <span
@@ -276,6 +276,8 @@ export default function Footer() {
             ✦
           </span>
         </button>
+
+        <h6></h6>
 
         {/* =================================================
             BOTTOM ORNAMENT

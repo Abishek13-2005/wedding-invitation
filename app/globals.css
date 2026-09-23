@@ -31809,3 +31809,7 @@ body:has(
   }
 }
 
+.sp1{
+  font-size: 8px;
+  color: grey;
+}
