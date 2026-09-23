@@ -10,9 +10,6 @@ import Timeline from "@/components/Timeline";
 import Countdown from "@/components/Countdown";
 import Gallery from "@/components/Gallery";
 import Venue from "@/components/Venue";
-import DressCode from "@/components/DressCode";
-import Gift from "@/components/Gift";
-import RSVP from "@/components/RSVP";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -32,9 +29,7 @@ export default function Home() {
         
         <Gallery />
         <Venue />
-        <DressCode />
-        <Gift />
-        <RSVP />
+
         <Footer />
       </div>
     </main>
