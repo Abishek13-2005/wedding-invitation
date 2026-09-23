@@ -1370,29 +1370,9 @@ section {
     100px auto 0;
 }
 
+/* Center timeline line removed */
 .celebration-timeline::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  bottom: 0;
-
-  left: 50%;
-
-  width: 1px;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      var(--gold) 5%,
-      var(--gold) 95%,
-      transparent
-    );
+  display: none !important;
 }
 
 .celebration-item {
@@ -31828,3 +31808,4 @@ body:has(
     transition: none !important;
   }
 }
+

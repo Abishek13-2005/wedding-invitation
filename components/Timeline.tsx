@@ -298,22 +298,6 @@ export default function Timeline() {
       className="celebration-section"
       id="celebrations"
     >
-      <div className="celebration-floral-bg celebration-floral-bg-one" aria-hidden="true">
-        <img src="/images/flower.png" alt="" />
-      </div>
-
-      <div className="celebration-floral-bg celebration-floral-bg-two" aria-hidden="true">
-        <img src="/images/blue.png" alt="" />
-      </div>
-
-      <div className="celebration-floral-bg celebration-floral-bg-three" aria-hidden="true">
-        <img src="/images/flower.png" alt="" />
-      </div>
-
-      <div className="celebration-floral-bg celebration-floral-bg-four" aria-hidden="true">
-        <img src="/images/blue.png" alt="" />
-      </div>
-
       <div className="celebration-heading">
         <div
           className="celebration-heading-ornament"
