@@ -11204,3 +11204,2287 @@ appearance: none !important;
     padding-top: 70px !important;
   }
 }
+
+
+/* =========================================================
+   FINAL TOP-GRADIENT FIX — COUNTDOWN
+   Removes the bright band and makes the blue fade begin
+   softly at the very top of the section.
+   ========================================================= */
+
+.countdown-section {
+  position: relative !important;
+
+  /*
+   * Do not let the section create a second white glow layer.
+   * The gradient itself controls the complete background.
+   */
+  background:
+    linear-gradient(
+      180deg,
+      #edf6f8 0%,
+      #e9f4f7 10%,
+      #e5f2f6 24%,
+      #dfedf3 42%,
+      #d9eaf1 62%,
+      #e3f1f5 82%,
+      #eff7f9 100%
+    ) !important;
+}
+
+.countdown-section::after {
+  /*
+   * This old radial highlight was producing the visible
+   * pale horizontal band near the top on iPhone.
+   */
+  content: none !important;
+}
+
+.countdown-section::before {
+  /*
+   * Keep only a very soft paper texture, with no extra
+   * color wash that can create a second gradient.
+   */
+  content: "" !important;
+
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 0 !important;
+
+  pointer-events: none !important;
+
+  opacity: .08 !important;
+
+  background-image:
+    radial-gradient(
+      rgba(100,126,137,.15) .5px,
+      transparent .5px
+    ) !important;
+
+  background-size: 8px 8px !important;
+}
+
+/*
+ * Keep all real content above the texture.
+ */
+.countdown-header,
+.countdown-card,
+.countdown-footer,
+.countdown-orbit {
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+/*
+ * Soft top fade that slightly overlaps the beginning of the
+ * section without introducing another hard color block.
+ */
+.countdown-section > .countdown-header::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -150px;
+
+  width: min(900px, 130vw);
+  height: 240px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,.32) 0%,
+      rgba(255,255,255,.10) 45%,
+      rgba(255,255,255,0) 76%
+    );
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #edf6f8 0%,
+        #eaf4f7 10%,
+        #e6f2f6 25%,
+        #e0eef4 43%,
+        #daeaf1 62%,
+        #e3f1f5 82%,
+        #eff7f9 100%
+      ) !important;
+  }
+
+  .countdown-section > .countdown-header::before {
+    top: -110px;
+    height: 190px;
+    width: 130vw;
+  }
+}
+/* =========================================================
+   FINAL COUNTDOWN — REMOVE TOP EMPTY SPACE
+   ========================================================= */
+
+.countdown-section {
+  position: relative !important;
+
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+
+  padding:
+    42px
+    14px
+    70px !important;
+
+  display: block !important;
+
+  overflow: hidden !important;
+
+  text-align: center !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf6f8 0%,
+      #e8f3f6 18%,
+      #e1eef3 48%,
+      #deedf2 72%,
+      #eaf5f8 100%
+    ) !important;
+}
+
+
+/* Remove anything that can visually create a second top layer */
+
+.countdown-section::after {
+  display: none !important;
+  content: none !important;
+}
+
+.countdown-section::before {
+  opacity: .05 !important;
+}
+
+
+/* =========================================================
+   HEADER — START NEAR TOP OF SECTION
+   ========================================================= */
+
+.countdown-header {
+  position: relative !important;
+
+  width: 100% !important;
+
+  margin:
+    0
+    auto !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  flex-direction: column !important;
+
+  transform: none !important;
+}
+
+
+/* Small top ornament */
+
+.countdown-eyebrow {
+  margin: 0 !important;
+}
+
+.countdown-monogram {
+  margin-top: 11px !important;
+}
+
+
+/* Main heading */
+
+.countdown-section h2 {
+  margin:
+    12px
+    0
+    0 !important;
+
+  line-height: .78 !important;
+
+  font-size:
+    clamp(54px, 13vw, 72px) !important;
+}
+
+
+/* Description */
+
+.countdown-intro {
+  margin:
+    17px
+    auto
+    0 !important;
+
+  max-width: 340px !important;
+
+  font-size: 16px !important;
+
+  line-height: 1.3 !important;
+}
+
+
+/* =========================================================
+   COUNTDOWN CARD
+   ========================================================= */
+
+.countdown-card {
+  width: 94vw !important;
+  max-width: 920px !important;
+
+  margin:
+    30px
+    auto
+    0 !important;
+
+  padding:
+    15px
+    7px !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.countdown-footer {
+  margin:
+    18px
+    auto
+    0 !important;
+}
+
+
+/* =========================================================
+   DECORATION — MUCH MORE SUBTLE
+   ========================================================= */
+
+.countdown-orbit {
+  opacity: .22 !important;
+
+  width: 170px !important;
+  height: 170px !important;
+}
+
+.countdown-orbit-left {
+  left: -115px !important;
+  top: 110px !important;
+}
+
+.countdown-orbit-right {
+  right: -115px !important;
+  top: 310px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .countdown-section {
+    min-height: 0 !important;
+
+    padding:
+      38px
+      10px
+      65px !important;
+  }
+
+  .countdown-section h2 {
+    margin-top: 10px !important;
+
+    font-size:
+      clamp(48px, 13vw, 66px) !important;
+  }
+
+  .countdown-intro {
+    margin-top: 14px !important;
+
+    max-width: 320px !important;
+
+    font-size: 15px !important;
+  }
+
+  .countdown-card {
+    width: 95vw !important;
+
+    margin-top: 27px !important;
+
+    padding:
+      13px
+      5px !important;
+
+    border-radius: 18px !important;
+  }
+
+  .countdown-item {
+    min-height: 100px !important;
+  }
+
+  .countdown-value {
+    font-size:
+      clamp(34px, 10vw, 48px) !important;
+  }
+
+  .countdown-label {
+    margin-top: 7px !important;
+
+    font-size: 4.5px !important;
+  }
+
+  .countdown-footer {
+    margin-top: 16px !important;
+  }
+
+  .countdown-orbit {
+    opacity: .16 !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .countdown-section {
+    padding:
+      32px
+      7px
+      58px !important;
+  }
+
+  .countdown-section h2 {
+    font-size: 45px !important;
+  }
+
+  .countdown-intro {
+    font-size: 14px !important;
+  }
+
+  .countdown-card {
+    width: 97vw !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL COMPACT COUNTDOWN — FORCE CONTENT TO THE TOP
+   ========================================================= */
+
+.countdown-section {
+  position: relative !important;
+
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+
+  padding:
+    28px
+    10px
+    45px !important;
+
+  /*
+   * Grid prevents any inherited flex-centering rule from
+   * pushing the content toward the bottom.
+   */
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-auto-rows: max-content !important;
+
+  align-content: start !important;
+  justify-items: center !important;
+
+  gap: 0 !important;
+
+  overflow: hidden !important;
+}
+
+/* Header must occupy only its content height. */
+.countdown-header {
+  position: relative !important;
+
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  flex-direction: column !important;
+
+  transform: none !important;
+}
+
+/* Remove the atmospheric pseudo-element that visually
+   exaggerates the empty area above the heading. */
+.countdown-section > .countdown-header::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Keep the decorative circles subtle and out of the way. */
+.countdown-orbit {
+  width: 150px !important;
+  height: 150px !important;
+
+  opacity: .12 !important;
+}
+
+.countdown-orbit-left {
+  top: 40px !important;
+  left: -110px !important;
+}
+
+.countdown-orbit-right {
+  top: 190px !important;
+  right: -110px !important;
+}
+
+/* Header spacing */
+.countdown-monogram {
+  margin-top: 9px !important;
+}
+
+.countdown-section h2 {
+  margin-top: 9px !important;
+
+  line-height: .78 !important;
+}
+
+.countdown-intro {
+  margin-top: 12px !important;
+}
+
+/* Countdown card */
+.countdown-card {
+  width: min(94vw, 920px) !important;
+
+  margin:
+    24px
+    auto
+    0 !important;
+
+  padding:
+    10px
+    6px !important;
+}
+
+.countdown-item {
+  min-height: 86px !important;
+}
+
+.countdown-star {
+  margin-bottom: 5px !important;
+}
+
+.countdown-value {
+  line-height: .8 !important;
+}
+
+.countdown-label {
+  margin-top: 6px !important;
+}
+
+.countdown-footer {
+  margin:
+    14px
+    auto
+    0 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    min-height: 0 !important;
+
+    padding:
+      24px
+      8px
+      42px !important;
+
+    display: grid !important;
+    align-content: start !important;
+  }
+
+  .countdown-eyebrow p {
+    font-size: 5px !important;
+    letter-spacing: 2.8px !important;
+  }
+
+  .countdown-eyebrow span {
+    width: 34px !important;
+  }
+
+  .countdown-monogram {
+    margin-top: 8px !important;
+  }
+
+  .countdown-section h2 {
+    margin-top: 8px !important;
+
+    font-size:
+      clamp(43px, 12vw, 60px) !important;
+
+    line-height: .8 !important;
+  }
+
+  .countdown-section h2 em {
+    margin-top: 6px !important;
+  }
+
+  .countdown-intro {
+    margin-top: 11px !important;
+
+    max-width: 305px !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.22 !important;
+  }
+
+  .countdown-card {
+    width: 95vw !important;
+
+    margin-top: 22px !important;
+
+    padding:
+      10px
+      4px !important;
+
+    border-radius: 16px !important;
+  }
+
+  .countdown-card::before {
+    inset: 5px !important;
+    border-radius: 12px !important;
+  }
+
+  .countdown-item {
+    min-height: 82px !important;
+  }
+
+  .countdown-item:not(.countdown-item-last)::after {
+    top: 12% !important;
+    height: 76% !important;
+  }
+
+  .countdown-star {
+    margin-bottom: 4px !important;
+
+    font-size: 6px !important;
+  }
+
+  .countdown-value {
+    font-size:
+      clamp(31px, 9.5vw, 44px) !important;
+  }
+
+  .countdown-label {
+    margin-top: 5px !important;
+
+    font-size: 4.1px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .countdown-footer {
+    margin-top: 12px !important;
+  }
+
+  .countdown-orbit {
+    display: none !important;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .countdown-section {
+    padding:
+      20px
+      6px
+      36px !important;
+  }
+
+  .countdown-section h2 {
+    font-size: 41px !important;
+  }
+
+  .countdown-intro {
+    font-size: 13px !important;
+  }
+
+  .countdown-card {
+    margin-top: 18px !important;
+  }
+
+  .countdown-item {
+    min-height: 76px !important;
+  }
+
+  .countdown-value {
+    font-size: 30px !important;
+  }
+}
+
+/* =========================================================
+   FINAL TRUE BLEND — HERO → COUNTDOWN → DATE
+   ========================================================= */
+
+/*
+ * Use one shared "bridge" tone at each section boundary.
+ * This removes the thin horizontal color line visible on iPhone.
+ */
+
+/* ---------- HERO BOTTOM TONE ---------- */
+.luxury-hero {
+  background: #e9f1f3 !important;
+}
+
+/* ---------- COUNTDOWN ---------- */
+.countdown-section {
+  position: relative !important;
+  isolation: isolate !important;
+
+  /*
+   * First color = Hero's lower tone.
+   * Last color = Date's upper tone.
+   */
+  background:
+    linear-gradient(
+      180deg,
+      #e9f1f3 0%,
+      #eaf3f6 8%,
+      #e8f2f5 18%,
+      #e5f0f4 34%,
+      #e2eef3 52%,
+      #e5f0f4 69%,
+      #eaf4f7 83%,
+      #eff7f9 94%,
+      #f3f8fa 100%
+    ) !important;
+
+  /*
+   * Never clip the section edge itself into a hard stripe.
+   */
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Remove every old artificial glow/texture layer. */
+.countdown-section::before,
+.countdown-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* ---------- DATE ---------- */
+.date-section {
+  position: relative !important;
+  isolation: isolate !important;
+
+  /*
+   * Exact match to Countdown's final color.
+   */
+  background:
+    linear-gradient(
+      180deg,
+      #f3f8fa 0%,
+      #f4f9fa 9%,
+      #f7fafb 19%,
+      #f9fbfa 34%,
+      #fafbf9 49%,
+      #fbfaf6 67%,
+      #fbfaf6 100%
+    ) !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.date-section::before,
+.date-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* =========================================================
+   SOFT EDGE BLEND
+   A short transparent-to-color fade sits over each boundary.
+   This is intentionally subtle — it should be perceived as
+   lighting, not as another visible band.
+   ========================================================= */
+
+.countdown-section {
+  --countdown-edge: #e9f1f3;
+  --countdown-end: #f3f8fa;
+}
+
+.countdown-section > .countdown-header::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -48px;
+
+  width: 100vw;
+  height: 110px;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(233,241,243,1) 0%,
+      rgba(233,241,243,.72) 26%,
+      rgba(233,241,243,.20) 62%,
+      rgba(233,241,243,0) 100%
+    );
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .luxury-hero {
+    background: #e9f1f3 !important;
+  }
+
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e9f1f3 0%,
+        #eaf3f6 9%,
+        #e8f2f5 20%,
+        #e5f0f4 37%,
+        #e2eef3 55%,
+        #e6f1f5 72%,
+        #ebf5f7 85%,
+        #f0f7f9 94%,
+        #f3f8fa 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        #f3f8fa 0%,
+        #f4f9fa 12%,
+        #f7fafb 27%,
+        #f9fbfa 43%,
+        #fafbf8 58%,
+        #fbfaf6 76%,
+        #fbfaf6 100%
+      ) !important;
+  }
+
+  .countdown-section > .countdown-header::after {
+    top: -36px;
+    height: 86px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e9f1f3 0%,
+        #e8f2f5 13%,
+        #e5f0f4 34%,
+        #e2eef3 55%,
+        #e8f3f6 78%,
+        #f3f8fa 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        #f3f8fa 0%,
+        #f6fafb 20%,
+        #fafbf9 47%,
+        #fbfaf6 100%
+      ) !important;
+  }
+}
+
+/* =========================================================
+   FINAL COUNTDOWN → DATE SEAMLESS BLEND
+   The boundary is a shared neutral-blue bridge, not a color stop.
+   ========================================================= */
+
+:root {
+  --section-bridge: #f1f7f9;
+  --section-blue: #e2eef3;
+  --section-ivory: #fbfaf6;
+}
+
+/*
+ * Countdown: finish in the bridge color.
+ */
+.countdown-section {
+  background:
+    linear-gradient(
+      180deg,
+      #eaf3f6 0%,
+      #e7f1f5 22%,
+      #e3eff4 48%,
+      #e6f1f5 68%,
+      #ecf5f8 82%,
+      var(--section-bridge) 94%,
+      var(--section-bridge) 100%
+    ) !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.countdown-section::before,
+.countdown-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * Date: START with the EXACT same bridge color.
+ * Hold it for a while, then gradually move to ivory.
+ */
+.date-section {
+  position: relative !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--section-bridge) 0%,
+      var(--section-bridge) 7%,
+      #f3f8f9 15%,
+      #f6fafb 28%,
+      #f9fbfa 46%,
+      #fbfaf6 70%,
+      var(--section-ivory) 100%
+    ) !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/*
+ * Disable all legacy pseudo-elements. They are a common source
+ * of a visible horizontal stripe at the section boundary.
+ */
+.date-section::before,
+.date-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * A very soft bridge glow overlaps the top of Date.
+ * It is translucent and wide, so it reads as ambient light
+ * rather than a second horizontal band.
+ */
+.date-section {
+  overflow: visible !important;
+}
+
+.date-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.date-section > .section-label::before {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  top: -92px;
+
+  width: min(900px, 125vw);
+  height: 190px;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(255,255,255,.34) 0%,
+      rgba(255,255,255,.12) 42%,
+      rgba(255,255,255,0) 74%
+    );
+}
+
+/*
+ * Remove any stray top border/separator inherited from old rules.
+ */
+.date-section,
+.date-section * {
+  outline-color: transparent;
+}
+
+.date-section {
+  border-top: 0 !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #eaf3f6 0%,
+        #e7f1f5 24%,
+        #e4eff4 50%,
+        #e7f1f5 70%,
+        #edf6f8 84%,
+        var(--section-bridge) 95%,
+        var(--section-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--section-bridge) 0%,
+        var(--section-bridge) 9%,
+        #f4f9fa 20%,
+        #f7fafb 34%,
+        #f9fbfa 50%,
+        #fbfaf6 72%,
+        #fbfaf6 100%
+      ) !important;
+  }
+
+  .date-section > .section-label::before {
+    top: -72px;
+    height: 155px;
+    width: 135vw;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e9f2f5 0%,
+        #e6f0f4 28%,
+        #e4eff4 54%,
+        #ebf5f7 80%,
+        var(--section-bridge) 96%,
+        var(--section-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--section-bridge) 0%,
+        var(--section-bridge) 10%,
+        #f5f9fa 24%,
+        #f8fbfb 40%,
+        #fbfaf6 72%,
+        #fbfaf6 100%
+      ) !important;
+  }
+}
+
+/* =========================================================
+   ULTIMATE SEAM FIX
+   Use a shared SOLID bridge zone at the boundary.
+   The first/last part of both sections is exactly the same
+   color, so there is no mathematical color jump to reveal.
+   ========================================================= */
+
+:root {
+  --seam-bridge: #f4f8fa;
+}
+
+/* COUNTDOWN:
+   fade into the bridge and HOLD the bridge at the bottom. */
+.countdown-section {
+  background:
+    linear-gradient(
+      180deg,
+      #e9f2f5 0%,
+      #e7f1f5 24%,
+      #e4eff4 48%,
+      #e8f2f5 69%,
+      #edf6f8 82%,
+      #f1f7f9 90%,
+      var(--seam-bridge) 94%,
+      var(--seam-bridge) 100%
+    ) !important;
+}
+
+/* DATE:
+   START with the exact same solid bridge and only begin
+   changing after the shared zone. */
+.date-section {
+  background:
+    linear-gradient(
+      180deg,
+      var(--seam-bridge) 0%,
+      var(--seam-bridge) 10%,
+      #f5f9fa 20%,
+      #f8fbfb 34%,
+      #fafbf9 52%,
+      #fbfaf6 74%,
+      #fbfaf6 100%
+    ) !important;
+}
+
+/* absolutely no old highlight layer can draw a stripe */
+.countdown-section::before,
+.countdown-section::after,
+.date-section::before,
+.date-section::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* No borders/shadows between these two sections */
+.countdown-section,
+.date-section {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e9f2f5 0%,
+        #e7f1f5 23%,
+        #e5eff4 45%,
+        #e8f2f5 66%,
+        #edf6f8 80%,
+        #f1f7f9 90%,
+        var(--seam-bridge) 95%,
+        var(--seam-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--seam-bridge) 0%,
+        var(--seam-bridge) 12%,
+        #f5f9fa 23%,
+        #f8fbfb 38%,
+        #fafbf9 56%,
+        #fbfaf6 77%,
+        #fbfaf6 100%
+      ) !important;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e9f2f5 0%,
+        #e6f0f4 28%,
+        #e5eff4 51%,
+        #eaf4f7 74%,
+        #f1f7f9 90%,
+        var(--seam-bridge) 96%,
+        var(--seam-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--seam-bridge) 0%,
+        var(--seam-bridge) 14%,
+        #f6fafb 29%,
+        #f9fbfa 48%,
+        #fbfaf6 76%,
+        #fbfaf6 100%
+      ) !important;
+  }
+}
+
+
+/* =========================================================
+   DATE REVEAL — PREMIUM EDITORIAL REDESIGN
+   ========================================================= */
+
+.date-section {
+  position: relative !important;
+  isolation: isolate !important;
+
+  overflow: hidden !important;
+
+  min-height: 0 !important;
+
+  padding:
+    86px
+    18px
+    92px !important;
+
+  text-align: center !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(255,255,255,.98) 0%,
+      rgba(255,255,255,.72) 18%,
+      rgba(244,249,250,.88) 42%,
+      rgba(236,246,249,.96) 72%,
+      #e7f2f5 100%
+    ) !important;
+
+  color: #303333;
+}
+
+/* Soft vertical atmosphere — no horizontal bands. */
+.date-section::before {
+  content: "" !important;
+
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 0 !important;
+
+  pointer-events: none !important;
+
+  background:
+    radial-gradient(
+      ellipse at 12% 34%,
+      rgba(196,167,106,.09) 0%,
+      rgba(196,167,106,0) 35%
+    ),
+    radial-gradient(
+      ellipse at 90% 66%,
+      rgba(168,208,226,.12) 0%,
+      rgba(168,208,226,0) 38%
+    );
+
+  opacity: .9 !important;
+}
+
+.date-section::after {
+  content: "" !important;
+
+  position: absolute !important;
+  left: 50% !important;
+  bottom: -160px !important;
+
+  width: min(850px, 120vw) !important;
+  height: 320px !important;
+
+  transform: translateX(-50%) !important;
+
+  border-radius: 50% !important;
+
+  pointer-events: none !important;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,.76) 0%,
+      rgba(255,255,255,.25) 44%,
+      rgba(255,255,255,0) 74%
+    ) !important;
+}
+
+
+/* =========================================================
+   FLOATING AURAS
+   ========================================================= */
+
+.date-section-aura {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(1px);
+
+  opacity: .52;
+
+  border: 1px solid rgba(196,167,106,.16);
+
+  z-index: 1;
+}
+
+.date-section-aura::after {
+  content: "✦";
+
+  position: absolute;
+
+  color: rgba(196,167,106,.55);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 11px;
+}
+
+.date-section-aura-left {
+  left: -210px;
+  top: 180px;
+}
+
+.date-section-aura-left::after {
+  top: 48px;
+  right: 52px;
+}
+
+.date-section-aura-right {
+  right: -215px;
+  top: 410px;
+}
+
+.date-section-aura-right::after {
+  top: 52px;
+  left: 54px;
+}
+
+.date-section-sparkle {
+  position: absolute;
+
+  z-index: 2;
+
+  color: rgba(196,167,106,.68);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+
+  pointer-events: none;
+
+  animation:
+    dateSparkleFloat
+    5s
+    ease-in-out
+    infinite;
+}
+
+.date-section-sparkle-one {
+  left: 16%;
+  top: 34%;
+}
+
+.date-section-sparkle-two {
+  right: 17%;
+  top: 61%;
+
+  animation-delay: 1.8s;
+}
+
+@keyframes dateSparkleFloat {
+  0%, 100% {
+    opacity: .42;
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    opacity: .82;
+    transform: translateY(-7px) scale(1.08);
+  }
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.date-section-heading-wrap {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.date-section .section-label {
+  color: #7b8588 !important;
+
+  font-size: 8px !important;
+
+  font-weight: 500 !important;
+
+  letter-spacing: 5px !important;
+}
+
+.date-section-small-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 84px;
+
+  height: 16px;
+
+  margin-top: 13px;
+
+  color: #c4a76a;
+
+  font-size: 10px;
+
+  opacity: .86;
+}
+
+.date-section-small-line::before,
+.date-section-small-line::after {
+  content: "";
+
+  width: 30px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.6)
+    );
+}
+
+.date-section-small-line::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.6),
+      transparent
+    );
+}
+
+.date-section h2 {
+  position: relative;
+
+  margin-top: 8px !important;
+
+  color: #303333 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(52px, 8vw, 96px) !important;
+
+  line-height: .82 !important;
+
+  font-weight: 400 !important;
+
+  letter-spacing: -1.6px !important;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.8);
+}
+
+.date-section-intro {
+  margin-top: 19px;
+
+  color: #717b7e;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(16px, 2.5vw, 22px);
+
+  line-height: 1.2;
+
+  letter-spacing: .1px;
+
+  opacity: .92;
+}
+
+
+/* =========================================================
+   THREE-CARD GRID
+   ========================================================= */
+
+.date-reveal-grid {
+  position: relative !important;
+
+  z-index: 6 !important;
+
+  width:
+    min(910px, 95vw) !important;
+
+  margin:
+    45px auto 0 !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  gap:
+    clamp(10px, 2vw, 18px) !important;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.date-reveal-box {
+  position: relative !important;
+
+  height:
+    clamp(205px, 25vw, 270px) !important;
+
+  min-height: 0 !important;
+
+  padding: 16px !important;
+
+  overflow: hidden !important;
+
+  border:
+    1px solid
+    rgba(196,167,106,.54) !important;
+
+  border-radius: 24px !important;
+
+  background:
+    linear-gradient(
+      150deg,
+      rgba(255,255,255,.96) 0%,
+      rgba(251,247,238,.94) 42%,
+      rgba(234,246,249,.96) 100%
+    ) !important;
+
+  box-shadow:
+    0 24px 58px rgba(73,99,108,.11),
+    inset 0 1px 0 rgba(255,255,255,.98),
+    inset 0 -20px 35px rgba(196,167,106,.035) !important;
+
+  transform:
+    translateY(0);
+
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    box-shadow .45s cubic-bezier(.22,1,.36,1),
+    border-color .45s ease !important;
+}
+
+.date-reveal-box:nth-child(1) {
+  background:
+    linear-gradient(
+      145deg,
+      #fffdfa 0%,
+      #fbf4e8 56%,
+      #eaf5f8 100%
+    ) !important;
+}
+
+.date-reveal-box:nth-child(2) {
+  background:
+    linear-gradient(
+      145deg,
+      #fffdfa 0%,
+      #f8f3e8 48%,
+      #e7f3f7 100%
+    ) !important;
+}
+
+.date-reveal-box:nth-child(3) {
+  background:
+    linear-gradient(
+      145deg,
+      #fffdfa 0%,
+      #f6f1e8 42%,
+      #e2f0f5 100%
+    ) !important;
+}
+
+/* Inner paper frame */
+.date-reveal-box::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  z-index: 1;
+
+  border:
+    1px solid
+    rgba(196,167,106,.26);
+
+  border-radius: 16px;
+
+  pointer-events: none;
+}
+
+/* Corner glint */
+.date-reveal-box::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: 14px;
+  right: 17px;
+
+  z-index: 2;
+
+  color: rgba(196,167,106,.66);
+
+  font-size: 11px;
+
+  pointer-events: none;
+}
+
+
+/* Lift card after reveal */
+.date-reveal-box.is-revealed {
+  transform:
+    translateY(-6px)
+    scale(1.012) !important;
+
+  border-color:
+    rgba(196,167,106,.76) !important;
+
+  box-shadow:
+    0 32px 70px rgba(73,99,108,.14),
+    inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+
+
+/* =========================================================
+   REVEALED CONTENT
+   ========================================================= */
+
+.date-reveal-content {
+  position: relative !important;
+
+  z-index: 6 !important;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.date-reveal-label {
+  display: block;
+
+  color: #7d8588 !important;
+
+  font-family:
+    "Montserrat",
+    sans-serif !important;
+
+  font-size: 7px !important;
+
+  font-weight: 500 !important;
+
+  letter-spacing: 3px !important;
+}
+
+.date-reveal-number,
+.date-reveal-year {
+  color: #303536 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-weight: 300 !important;
+
+  line-height: .8;
+}
+
+.date-reveal-number {
+  margin-top: 12px;
+
+  font-size:
+    clamp(62px, 7vw, 92px) !important;
+}
+
+.date-reveal-month {
+  margin-top: 19px;
+
+  color: #303536 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(24px, 3.7vw, 40px) !important;
+
+  line-height: .9;
+
+  letter-spacing: .8px;
+}
+
+.date-reveal-year {
+  margin-top: 14px;
+
+  font-size:
+    clamp(57px, 7vw, 86px) !important;
+}
+
+.date-reveal-word {
+  margin-top: 8px;
+
+  color: #b18e55 !important;
+
+  font-family:
+    "Montserrat",
+    sans-serif !important;
+
+  font-size: 5px !important;
+
+  letter-spacing: 2px !important;
+}
+
+.date-reveal-ornament {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 18px;
+}
+
+.date-reveal-ornament span {
+  width: 22px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.72)
+    );
+}
+
+.date-reveal-ornament span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.72),
+      transparent
+    );
+}
+
+.date-reveal-ornament i {
+  color: #c4a76a;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 11px;
+
+  font-style: normal;
+}
+
+
+/* =========================================================
+   SCRATCH CANVAS
+   ========================================================= */
+
+.date-scratch-canvas {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 20 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  display: block !important;
+
+  border-radius: 23px !important;
+
+  cursor: grab !important;
+
+  pointer-events: auto !important;
+
+  /*
+   * Critical mobile behavior:
+   * this gesture belongs to the scratch card, not the page.
+   */
+  touch-action: none !important;
+
+  user-select: none !important;
+  -webkit-user-select: none !important;
+
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
+  transition:
+    opacity .48s cubic-bezier(.22,1,.36,1) !important;
+}
+
+.date-scratch-canvas:active {
+  cursor: grabbing !important;
+}
+
+.date-reveal-box.is-scratching,
+.date-reveal-box.is-scratching .date-scratch-canvas {
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+}
+
+
+/* =========================================================
+   CAPTION
+   ========================================================= */
+
+.date-reveal-caption {
+  position: relative !important;
+
+  z-index: 6 !important;
+
+  margin-top: 28px !important;
+
+  color: #aa8855 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(17px, 2.2vw, 22px) !important;
+
+  font-style: italic !important;
+
+  letter-spacing: .25px !important;
+
+  transition:
+    color .35s ease,
+    transform .35s ease;
+}
+
+.date-reveal-caption::before,
+.date-reveal-caption::after {
+  content: "✦";
+
+  margin: 0 9px;
+
+  color: #c4a76a;
+
+  font-size: 8px;
+
+  font-style: normal;
+}
+
+.date-reveal-caption.all-revealed {
+  color: #7d6139 !important;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .date-section {
+    padding:
+      72px
+      9px
+      74px !important;
+  }
+
+  .date-section .section-label {
+    font-size: 5.5px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .date-section-small-line {
+    margin-top: 9px;
+  }
+
+  .date-section h2 {
+    margin-top: 5px !important;
+
+    font-size:
+      clamp(47px, 13vw, 64px) !important;
+  }
+
+  .date-section-intro {
+    margin-top: 14px;
+
+    font-size: 16px;
+
+    line-height: 1.15;
+  }
+
+  .date-reveal-grid {
+    width: 96vw !important;
+
+    margin-top: 31px !important;
+
+    gap: 7px !important;
+  }
+
+  .date-reveal-box {
+    height: 185px !important;
+
+    padding: 10px !important;
+
+    border-radius: 18px !important;
+  }
+
+  .date-reveal-box::before {
+    inset: 6px;
+    border-radius: 12px;
+  }
+
+  .date-reveal-box::after {
+    top: 12px;
+    right: 13px;
+    font-size: 8px;
+  }
+
+  .date-scratch-canvas {
+    border-radius: 17px !important;
+  }
+
+  .date-reveal-label {
+    font-size: 4.4px !important;
+    letter-spacing: 1.6px !important;
+  }
+
+  .date-reveal-number {
+    margin-top: 9px;
+
+    font-size:
+      clamp(49px, 13vw, 62px) !important;
+  }
+
+  .date-reveal-month {
+    margin-top: 13px;
+
+    font-size:
+      clamp(17px, 5vw, 24px) !important;
+  }
+
+  .date-reveal-year {
+    margin-top: 10px;
+
+    font-size:
+      clamp(44px, 12.5vw, 59px) !important;
+  }
+
+  .date-reveal-word {
+    margin-top: 7px;
+
+    font-size: 3.8px !important;
+
+    letter-spacing: 1.3px !important;
+  }
+
+  .date-reveal-ornament {
+    margin-top: 11px;
+
+    gap: 4px;
+  }
+
+  .date-reveal-ornament span {
+    width: 15px;
+  }
+
+  .date-reveal-ornament i {
+    font-size: 8px;
+  }
+
+  .date-reveal-caption {
+    margin-top: 20px !important;
+
+    font-size:
+      clamp(14px, 4.2vw, 18px) !important;
+  }
+
+  .date-reveal-caption::before,
+  .date-reveal-caption::after {
+    margin: 0 6px;
+  }
+
+  .date-section-aura {
+    width: 190px;
+    height: 190px;
+  }
+
+  .date-section-aura-left {
+    left: -145px;
+    top: 145px;
+  }
+
+  .date-section-aura-right {
+    right: -145px;
+    top: 380px;
+  }
+
+  .date-section-sparkle-one {
+    left: 9%;
+    top: 29%;
+  }
+
+  .date-section-sparkle-two {
+    right: 10%;
+    top: 62%;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .date-section {
+    padding:
+      62px
+      6px
+      64px !important;
+  }
+
+  .date-section h2 {
+    font-size: 43px !important;
+  }
+
+  .date-reveal-grid {
+    width: 97vw !important;
+
+    gap: 5px !important;
+  }
+
+  .date-reveal-box {
+    height: 168px !important;
+    border-radius: 15px !important;
+  }
+
+  .date-scratch-canvas {
+    border-radius: 14px !important;
+  }
+
+  .date-reveal-number {
+    font-size: 45px !important;
+  }
+
+  .date-reveal-month {
+    font-size: 14px !important;
+  }
+
+  .date-reveal-year {
+    font-size: 40px !important;
+  }
+
+  .date-reveal-caption {
+    font-size: 13px !important;
+  }
+}
+
+
+/* =========================================================
+   IOS SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+  .date-section,
+  .date-reveal-box,
+  .date-scratch-canvas {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .date-scratch-canvas {
+    touch-action: none !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL — TRULY SEAMLESS COUNTDOWN → DATE BACKGROUND
+   ========================================================= */
+
+/*
+ * The visible line was coming from separate section backgrounds
+ * plus the Date section's bright pseudo-element.
+ *
+ * We make the boundary color identical and remove every extra
+ * white overlay at the top of the Date section.
+ */
+
+:root {
+  --flow-blue-top: #e7f1f5;
+  --flow-blue-mid: #e3eef3;
+  --flow-blue-soft: #ebf5f8;
+  --flow-bridge: #f3f8fa;
+  --flow-ivory: #fbfaf6;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
+
+.countdown-section {
+  position: relative !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--flow-blue-top) 0%,
+      var(--flow-blue-mid) 27%,
+      #e2eef3 48%,
+      var(--flow-blue-soft) 68%,
+      #eef6f8 82%,
+      #f1f7f9 91%,
+      var(--flow-bridge) 97%,
+      var(--flow-bridge) 100%
+    ) !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/*
+ * No separate glow is allowed to draw a horizontal band.
+ */
+.countdown-section::before,
+.countdown-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* =========================================================
+   DATE / SCRATCH REVEAL
+   ========================================================= */
+
+.date-section {
+  position: relative !important;
+
+  /*
+   * EXACTLY the same bridge color as the bottom
+   * of Countdown.
+   */
+  background:
+    linear-gradient(
+      180deg,
+      var(--flow-bridge) 0%,
+      var(--flow-bridge) 8%,
+      #f4f9fa 17%,
+      #f7fafb 29%,
+      #f9fbfa 44%,
+      #fafbf8 62%,
+      var(--flow-ivory) 82%,
+      var(--flow-ivory) 100%
+    ) !important;
+
+  border: 0 !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+}
+
+/*
+ * THIS is important.
+ *
+ * The DateReveal redesign added a white radial ::before.
+ * On iPhone it appears as a horizontal bright strip at the
+ * Countdown → Date boundary. Disable it completely.
+ */
+.date-section::before,
+.date-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* =========================================================
+   REMOVE ANY STRAY 1px SEPARATOR
+   ========================================================= */
+
+.countdown-section + .date-section {
+  margin-top: 0 !important;
+
+  border-top: 0 !important;
+
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   MOBILE — LONGER SOFT BLUE BRIDGE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e8f2f5 0%,
+        #e6f0f4 24%,
+        #e3eef3 46%,
+        #e6f1f5 65%,
+        #ecf5f8 80%,
+        #f0f7f9 90%,
+        var(--flow-bridge) 97%,
+        var(--flow-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--flow-bridge) 0%,
+        var(--flow-bridge) 11%,
+        #f4f9fa 21%,
+        #f7fafb 35%,
+        #f9fbfa 50%,
+        #fafbf8 67%,
+        var(--flow-ivory) 84%,
+        var(--flow-ivory) 100%
+      ) !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .countdown-section {
+    background:
+      linear-gradient(
+        180deg,
+        #e8f2f5 0%,
+        #e5eff4 27%,
+        #e3eef3 52%,
+        #e9f3f6 77%,
+        #f1f7f9 91%,
+        var(--flow-bridge) 97%,
+        var(--flow-bridge) 100%
+      ) !important;
+  }
+
+  .date-section {
+    background:
+      linear-gradient(
+        180deg,
+        var(--flow-bridge) 0%,
+        var(--flow-bridge) 12%,
+        #f5f9fa 25%,
+        #f8fbfb 42%,
+        #fafbf9 60%,
+        #fbfaf6 82%,
+        var(--flow-ivory) 100%
+      ) !important;
+  }
+}
