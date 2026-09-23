@@ -55,22 +55,16 @@ export default function Venue() {
         },
       );
 
-      gsap.fromTo(
-        ".venue-art",
-        {
-          scale: 1.08,
-        },
-        {
-          scale: 1,
-          duration: 1.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".venue-card",
-            start: "top 84%",
-            once: true,
-          },
-        },
-      );
+gsap.from(".venue-image", {
+  opacity: 0,
+  y: 50,
+  duration: 1,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".venue-section",
+    start: "top 80%",
+  },
+});
     }, section);
 
     return () => ctx.revert();

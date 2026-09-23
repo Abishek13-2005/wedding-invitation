@@ -29718,7 +29718,7 @@ body:has(
   padding:
     105px
     20px
-    75px;
+    70px;
 
   display: flex;
 
@@ -29737,15 +29737,15 @@ body:has(
     linear-gradient(
       180deg,
       #fbfaf6 0%,
-      #f7faf9 18%,
-      #e9f3f7 48%,
+      #f8fbfa 18%,
+      #eaf4f7 52%,
       #dcecf2 100%
     );
 }
 
 
 /* =========================================================
-   SOFT LIGHT AT TOP
+   TOP LIGHT
    ========================================================= */
 
 .footer::before {
@@ -29754,10 +29754,10 @@ body:has(
   position: absolute;
 
   left: 50%;
-  top: -220px;
+  top: -250px;
 
-  width: 760px;
-  height: 760px;
+  width: 800px;
+  height: 800px;
 
   transform:
     translateX(-50%);
@@ -29767,22 +29767,22 @@ body:has(
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,0.98) 0%,
-      rgba(255,255,255,0.72) 32%,
-      rgba(255,255,255,0.18) 62%,
-      transparent 76%
+      rgba(255,255,255,.98) 0%,
+      rgba(255,255,255,.75) 30%,
+      rgba(255,255,255,.20) 60%,
+      transparent 75%
     );
 
-  filter: blur(5px);
+  filter: blur(6px);
 
   pointer-events: none;
 
-  z-index: -4;
+  z-index: -5;
 }
 
 
 /* =========================================================
-   VERY SOFT CENTER GLOW
+   CENTER LIGHT
    ========================================================= */
 
 .footer::after {
@@ -29793,8 +29793,8 @@ body:has(
   left: 50%;
   top: 53%;
 
-  width: 700px;
-  height: 700px;
+  width: 750px;
+  height: 750px;
 
   transform:
     translate(-50%, -50%);
@@ -29804,61 +29804,61 @@ body:has(
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,0.48) 0%,
-      rgba(255,255,255,0.18) 38%,
+      rgba(255,255,255,.60) 0%,
+      rgba(255,255,255,.25) 35%,
       transparent 72%
     );
 
-  filter: blur(25px);
+  filter: blur(30px);
 
   pointer-events: none;
 
-  z-index: -4;
+  z-index: -5;
 }
 
 
 /* =========================================================
-   EXTRA GLOW ELEMENTS
+   GLOW
    ========================================================= */
 
 .footer-glow {
   position: absolute;
 
-  pointer-events: none;
-
   border-radius: 50%;
 
-  filter: blur(45px);
+  filter: blur(50px);
+
+  pointer-events: none;
 
   z-index: -3;
 }
 
 .footer-glow-top {
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
 
-  top: 5%;
+  top: 3%;
   left: 50%;
 
   transform:
     translateX(-50%);
 
   background:
-    rgba(255,255,255,0.65);
+    rgba(255,255,255,.65);
 }
 
 .footer-glow-center {
-  width: 360px;
-  height: 360px;
+  width: 420px;
+  height: 420px;
 
+  top: 48%;
   left: 50%;
-  top: 52%;
 
   transform:
     translate(-50%, -50%);
 
   background:
-    rgba(232,244,248,0.65);
+    rgba(225,242,247,.65);
 }
 
 
@@ -29875,17 +29875,13 @@ body:has(
 
   user-select: none;
 
-  opacity: 0.34;
+  opacity: .30;
 
   filter:
     drop-shadow(
-      0 12px 22px
-      rgba(95,110,108,0.07)
+      0 15px 25px
+      rgba(70,90,90,.08)
     );
-
-  transition:
-    transform 0.8s ease,
-    opacity 0.8s ease;
 }
 
 .footer-flower img {
@@ -29899,18 +29895,20 @@ body:has(
   pointer-events: none;
 
   user-select: none;
+
+  -webkit-user-drag: none;
 }
 
 
 /* =========================================================
-   TOP LEFT FLOWER
+   TOP LEFT
    ========================================================= */
 
 .footer-flower-top-left {
-  left: -85px;
+  left: -90px;
   top: -30px;
 
-  width: 290px;
+  width: 300px;
 
   transform:
     rotate(-12deg);
@@ -29918,32 +29916,32 @@ body:has(
 
 
 /* =========================================================
-   TOP RIGHT BLUE FLOWER
+   TOP RIGHT
    ========================================================= */
 
 .footer-flower-top-right {
-  right: -100px;
+  right: -105px;
   top: 5px;
 
-  width: 285px;
+  width: 290px;
 
   transform:
     rotate(13deg)
     scaleX(-1);
 
-  opacity: 0.30;
+  opacity: .27;
 }
 
 
 /* =========================================================
-   BOTTOM LEFT BLUE FLOWER
+   BOTTOM LEFT
    ========================================================= */
 
 .footer-flower-bottom-left {
-  left: -115px;
-  bottom: -65px;
+  left: -120px;
+  bottom: -70px;
 
-  width: 310px;
+  width: 320px;
 
   transform:
     rotate(7deg);
@@ -29951,29 +29949,31 @@ body:has(
 
 
 /* =========================================================
-   BOTTOM RIGHT FLOWER
+   BOTTOM RIGHT
    ========================================================= */
 
 .footer-flower-bottom-right {
-  right: -110px;
+  right: -115px;
   bottom: -75px;
 
-  width: 310px;
+  width: 320px;
 
   transform:
     rotate(-10deg)
     scaleX(-1);
 
-  opacity: 0.30;
+  opacity: .27;
 }
 
 
 /* =========================================================
-   TOP ORNAMENT
+   ORNAMENT
    ========================================================= */
 
 .footer-ornament {
   position: relative;
+
+  z-index: 5;
 
   display: flex;
 
@@ -29985,13 +29985,11 @@ body:has(
   width: 150px;
   height: 20px;
 
-  margin-bottom: 24px;
+  margin-bottom: 23px;
 
   color: var(--gold);
 
   font-size: 12px;
-
-  z-index: 2;
 }
 
 .footer-ornament span {
@@ -30004,7 +30002,7 @@ body:has(
     linear-gradient(
       90deg,
       transparent,
-      rgba(196,167,106,0.72)
+      rgba(196,167,106,.75)
     );
 }
 
@@ -30012,7 +30010,7 @@ body:has(
   background:
     linear-gradient(
       90deg,
-      rgba(196,167,106,0.72),
+      rgba(196,167,106,.75),
       transparent
     );
 }
@@ -30020,12 +30018,9 @@ body:has(
 .footer-ornament i {
   font-style: normal;
 
-  font-size: 11px;
-
-  line-height: 1;
-
   animation:
-    footerSparkle 4s
+    footerSparkle
+    4s
     ease-in-out
     infinite;
 }
@@ -30034,10 +30029,10 @@ body:has(
 
   0%,
   100% {
-    opacity: 0.55;
+    opacity: .5;
 
     transform:
-      scale(0.9)
+      scale(.9)
       rotate(0deg);
   }
 
@@ -30045,7 +30040,7 @@ body:has(
     opacity: 1;
 
     transform:
-      scale(1.15)
+      scale(1.2)
       rotate(8deg);
   }
 }
@@ -30058,7 +30053,7 @@ body:has(
 .footer-message {
   position: relative;
 
-  z-index: 3;
+  z-index: 5;
 
   margin: 0;
 
@@ -30072,17 +30067,13 @@ body:has(
   font-size:
     clamp(
       21px,
-      2.8vw,
-      28px
+      3vw,
+      29px
     );
 
   font-style: italic;
 
-  font-weight: 400;
-
   line-height: 1.1;
-
-  letter-spacing: 0.2px;
 }
 
 
@@ -30093,23 +30084,16 @@ body:has(
 .footer-names {
   position: relative;
 
-  z-index: 3;
+  z-index: 5;
 
-  margin-top: 30px;
+  margin-top: 32px;
 
   display: flex;
 
   flex-direction: column;
 
   align-items: center;
-
-  justify-content: center;
 }
-
-
-/* =========================================================
-   INDIVIDUAL NAME
-   ========================================================= */
 
 .footer-name {
   margin: 0;
@@ -30130,10 +30114,9 @@ body:has(
 
   font-weight: 400;
 
-  line-height: 0.72;
+  line-height: .72;
 
-  letter-spacing:
-    -3px;
+  letter-spacing: -3px;
 }
 
 
@@ -30142,12 +30125,8 @@ body:has(
    ========================================================= */
 
 .footer-ampersand {
-  position: relative;
-
-  z-index: 4;
-
   margin:
-    17px
+    18px
     0
     15px;
 
@@ -30165,11 +30144,9 @@ body:has(
       62px
     );
 
-  font-weight: 400;
-
   font-style: italic;
 
-  line-height: 0.65;
+  line-height: .65;
 }
 
 
@@ -30180,7 +30157,7 @@ body:has(
 .footer-date-wrap {
   position: relative;
 
-  z-index: 3;
+  z-index: 5;
 
   display: flex;
 
@@ -30189,9 +30166,8 @@ body:has(
 
   gap: 15px;
 
-  margin-top: 54px;
+  margin-top: 53px;
 }
-
 
 .footer-date {
   margin: 0;
@@ -30209,26 +30185,16 @@ body:has(
   letter-spacing: 6px;
 
   line-height: 1;
-
-  white-space: nowrap;
 }
 
 .footer-date span {
-  display: inline-block;
-
   margin:
     0
     5px;
 
   color:
-    rgba(
-      196,
-      167,
-      106,
-      0.65
-    );
+    rgba(196,167,106,.65);
 }
-
 
 .footer-date-line {
   display: block;
@@ -30240,7 +30206,7 @@ body:has(
     linear-gradient(
       90deg,
       transparent,
-      rgba(196,167,106,0.55)
+      rgba(196,167,106,.55)
     );
 }
 
@@ -30248,18 +30214,20 @@ body:has(
   background:
     linear-gradient(
       90deg,
-      rgba(196,167,106,0.55),
+      rgba(196,167,106,.55),
       transparent
     );
 }
 
 
 /* =========================================================
-   MAIN DIVIDER
+   DIVIDER
    ========================================================= */
 
 .footer-line {
   position: relative;
+
+  z-index: 5;
 
   display: flex;
 
@@ -30271,11 +30239,9 @@ body:has(
   width: 130px;
 
   margin:
-    43px
+    42px
     auto
-    27px;
-
-  z-index: 3;
+    26px;
 }
 
 .footer-line span {
@@ -30307,21 +30273,17 @@ body:has(
   font-size: 9px;
 
   font-style: normal;
-
-  line-height: 1;
 }
 
 
 /* =========================================================
-   FINAL MESSAGE
+   SMALL MESSAGE
    ========================================================= */
 
 .footer-small {
   position: relative;
 
-  z-index: 3;
-
-  margin: 0;
+  z-index: 5;
 
   color: #697274;
 
@@ -30334,10 +30296,160 @@ body:has(
   font-weight: 500;
 
   letter-spacing: 3.5px;
+}
 
-  line-height: 1;
 
-  text-transform: none;
+/* =========================================================
+   HEART BUTTON
+   ========================================================= */
+
+.footer-heart-button {
+  position: relative;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  min-width: 215px;
+
+  margin-top: 40px;
+
+  padding:
+    14px
+    23px;
+
+  border:
+    1px solid
+    rgba(196,167,106,.65);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.48);
+
+  color: #5f686a;
+
+  box-shadow:
+    0 12px 35px
+    rgba(90,110,115,.08),
+
+    inset 0 1px 0
+    rgba(255,255,255,.8);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    background .35s ease;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+.footer-heart-button:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(255,255,255,.75);
+
+  box-shadow:
+    0 18px 45px
+    rgba(90,110,115,.13);
+}
+
+.footer-heart-button:active {
+  transform:
+    translateY(0)
+    scale(.97);
+}
+
+.footer-heart-button-icon {
+  color: #b99557;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 25px;
+
+  line-height: .7;
+
+  animation:
+    buttonHeartPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+@keyframes buttonHeartPulse {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.15);
+  }
+}
+
+.footer-heart-button-text {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  font-style: italic;
+
+  letter-spacing: .3px;
+}
+
+.footer-heart-button-arrow {
+  color: var(--gold);
+
+  font-size: 10px;
+
+  animation:
+    buttonSparkle
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes buttonSparkle {
+
+  0%,
+  100% {
+    opacity: .45;
+
+    transform:
+      rotate(0deg)
+      scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      rotate(45deg)
+      scale(1.2);
+  }
 }
 
 
@@ -30348,16 +30460,16 @@ body:has(
 .footer-bottom-ornament {
   position: relative;
 
-  z-index: 3;
+  z-index: 5;
 
-  margin-top: 38px;
+  margin-top: 32px;
 
   color:
     rgba(
       196,
       167,
       106,
-      0.65
+      .65
     );
 
   font-size: 12px;
@@ -30385,54 +30497,895 @@ body:has(
 
 
 /* =========================================================
-   DESKTOP
+   FULL SCREEN HEART FINALE
    ========================================================= */
 
-@media (min-width: 701px) {
+.heart-finale {
+  position: fixed;
 
-  .footer {
-    min-height: 760px;
+  inset: 0;
 
-    padding:
-      110px
-      30px
-      70px;
-  }
+  z-index: 999999;
 
-  .footer-flower {
-    opacity: 0.32;
-  }
+  width: 100%;
+  height: 100svh;
 
-  .footer-name {
-    font-size:
-      clamp(
-        95px,
-        10vw,
-        145px
-      );
-  }
+  overflow: hidden;
 
+  isolation: isolate;
+
+  cursor: pointer;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #ffffff 0%,
+      #f8fcfd 25%,
+      #edf7fa 58%,
+      #dcecf3 100%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity
+    1s
+    cubic-bezier(.22,1,.36,1);
+}
+
+.heart-finale.is-active {
+  opacity: 1;
+}
+
+.heart-finale.is-closing {
+  opacity: 0;
 }
 
 
 /* =========================================================
-   MOBILE
+   FINALE LIGHT
+   ========================================================= */
+
+.heart-finale::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 20%,
+      rgba(168,208,226,.18),
+      transparent 34%
+    ),
+
+    radial-gradient(
+      ellipse at 82% 75%,
+      rgba(168,208,226,.20),
+      transparent 38%
+    );
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   FINALE GLOW
+   ========================================================= */
+
+.heart-finale-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 650px;
+  height: 650px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,.88) 27%,
+      rgba(225,242,247,.50) 57%,
+      transparent 76%
+    );
+
+  filter:
+    blur(18px);
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+   ========================================================= */
+
+.heart-finale-content {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width:
+    min(
+      620px,
+      92vw
+    );
+
+  max-height: 96svh;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 50;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  pointer-events: auto;
+
+  opacity: 0;
+
+  animation:
+    finaleContent
+    1.5s
+    .45s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+@keyframes finaleContent {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -45%)
+      scale(.92);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   COUPLE IMAGE
+   ========================================================= */
+
+.finale-couple-image {
+  position: relative;
+
+  width:
+    min(
+      340px,
+      60vw
+    );
+
+  margin:
+    0
+    auto
+    13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 5;
+
+  opacity: 0;
+
+  transform:
+    translateY(30px)
+    scale(.90);
+
+  animation:
+    coupleImageReveal
+    1.4s
+    .30s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+.finale-couple-image img {
+  position: relative;
+
+  z-index: 3;
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 18px 30px
+      rgba(65,85,90,.16)
+    );
+}
+
+.finale-couple-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 92%;
+  height: 92%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.85),
+      rgba(224,241,246,.40),
+      transparent 72%
+    );
+
+  filter: blur(25px);
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+@keyframes coupleImageReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(.88);
+  }
+
+  60% {
+    opacity: 1;
+
+    transform:
+      translateY(-3px)
+      scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
+.finale-kicker {
+  margin:
+    3px
+    0
+    13px;
+
+  color:
+    rgba(
+      164,
+      126,
+      72,
+      .84
+    );
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SAVE THE DATE
+   ========================================================= */
+
+.finale-save {
+  margin: 0;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  line-height: .78;
+
+  text-align: center;
+}
+
+.finale-save-main {
+  display: block;
+
+  font-size:
+    clamp(
+      68px,
+      9vw,
+      105px
+    );
+
+  font-style: italic;
+
+  letter-spacing: -2px;
+}
+
+.finale-save-sub {
+  display: block;
+
+  margin-top: 11px;
+
+  color: #303333;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size:
+    clamp(
+      17px,
+      2.5vw,
+      25px
+    );
+
+  font-weight: 400;
+
+  letter-spacing: 7px;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SMALL LINE
+   ========================================================= */
+
+.finale-small-line {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin:
+    17px
+    0
+    17px;
+}
+
+.finale-small-line span {
+  width: 45px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.75)
+    );
+}
+
+.finale-small-line span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.75),
+      transparent
+    );
+}
+
+.finale-small-line i {
+  color: var(--gold);
+
+  font-size: 14px;
+
+  font-style: normal;
+}
+
+
+/* =========================================================
+   FINALE NAMES
+   ========================================================= */
+
+.finale-names {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.finale-names span {
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      60px,
+      8vw,
+      100px
+    );
+
+  font-weight: 400;
+
+  line-height: .65;
+
+  letter-spacing: -2px;
+}
+
+.finale-names i {
+  margin:
+    17px
+    0;
+
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 36px;
+
+  font-style: italic;
+
+  line-height: .5;
+}
+
+
+/* =========================================================
+   FINALE DATE
+   ========================================================= */
+
+.finale-date {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 27px;
+
+  color: #a27c49;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 6px;
+}
+
+.finale-date i {
+  color:
+    rgba(
+      196,
+      167,
+      106,
+      .65
+    );
+
+  font-style: normal;
+
+  letter-spacing: 0;
+}
+
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+
+.finale-location {
+  margin:
+    19px
+    0
+    0;
+
+  color: #788486;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.finale-message {
+  margin:
+    15px
+    0
+    0;
+
+  color: #687375;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 16px;
+
+  font-style: italic;
+
+  line-height: 1.15;
+}
+
+
+/* =========================================================
+   HEART PARTICLES
+   ========================================================= */
+
+.heart-particles {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.floating-heart-image {
+  position: absolute;
+
+  bottom: -140px;
+
+  display: block;
+
+  max-width: none;
+
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  -webkit-user-drag: none;
+
+  will-change:
+    transform,
+    bottom,
+    opacity;
+
+  filter:
+    drop-shadow(
+      0 10px 20px
+      rgba(75,100,105,.14)
+    );
+
+  animation:
+    finaleHeartRise
+    8s
+    linear
+    forwards;
+}
+
+@keyframes finaleHeartRise {
+
+  0% {
+    bottom: -150px;
+
+    transform:
+      translateX(0)
+      rotate(
+        var(--heart-rotation)
+      )
+      scale(.18);
+
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  25% {
+    transform:
+      translateX(-28px)
+      rotate(
+        calc(
+          var(--heart-rotation) + 8deg
+        )
+      )
+      scale(.48);
+  }
+
+  45% {
+    transform:
+      translateX(30px)
+      rotate(
+        calc(
+          var(--heart-rotation) - 7deg
+        )
+      )
+      scale(.72);
+  }
+
+  65% {
+    transform:
+      translateX(-22px)
+      rotate(
+        calc(
+          var(--heart-rotation) + 8deg
+        )
+      )
+      scale(.90);
+  }
+
+  82% {
+    transform:
+      translateX(20px)
+      rotate(
+        calc(
+          var(--heart-rotation) - 6deg
+        )
+      )
+      scale(1.03);
+  }
+
+  100% {
+    bottom: 115%;
+
+    transform:
+      translateX(-15px)
+      rotate(
+        calc(
+          var(--heart-rotation) + 14deg
+        )
+      )
+      scale(1.15);
+
+    opacity: 0;
+  }
+}
+
+
+/* Different heart speeds */
+
+.floating-heart-image:nth-child(3n) {
+  animation-duration: 9.5s;
+}
+
+.floating-heart-image:nth-child(4n) {
+  animation-duration: 7s;
+}
+
+.floating-heart-image:nth-child(5n) {
+  animation-duration: 10.5s;
+}
+
+.floating-heart-image:nth-child(7n) {
+  animation-duration: 11.5s;
+}
+
+.floating-heart-image:nth-child(9n) {
+  opacity: .35;
+}
+
+.floating-heart-image:nth-child(11n) {
+  animation-delay: 1.5s;
+}
+
+
+/* =========================================================
+   SPARKLES
+   ========================================================= */
+
+.finale-star {
+  position: absolute;
+
+  z-index: 30;
+
+  color: #c4a76a;
+
+  font-size: 20px;
+
+  pointer-events: none;
+
+  opacity: .65;
+
+  animation:
+    finaleSparkle
+    3.5s
+    ease-in-out
+    infinite;
+}
+
+.finale-star-one {
+  left: 15%;
+  top: 24%;
+}
+
+.finale-star-two {
+  right: 14%;
+  top: 21%;
+
+  animation-delay: .8s;
+}
+
+.finale-star-three {
+  left: 11%;
+  bottom: 23%;
+
+  animation-delay: .4s;
+}
+
+.finale-star-four {
+  right: 11%;
+  bottom: 25%;
+
+  animation-delay: 1.3s;
+}
+
+.finale-star-five {
+  left: 50%;
+  top: 10%;
+
+  font-size: 13px;
+
+  animation-delay: 1.8s;
+}
+
+@keyframes finaleSparkle {
+
+  0%,
+  100% {
+    opacity: .25;
+
+    transform:
+      scale(.7)
+      rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.2)
+      rotate(20deg);
+  }
+}
+
+
+/* =========================================================
+   CLOSE TEXT
+   ========================================================= */
+
+.finale-touch {
+  position: absolute;
+
+  left: 50%;
+  bottom: 23px;
+
+  z-index: 70;
+
+  transform:
+    translateX(-50%);
+
+  margin: 0;
+
+  color:
+    rgba(
+      100,
+      115,
+      118,
+      .58
+    );
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 6px;
+
+  letter-spacing: 3px;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
 
   .footer {
-    min-height: 720px;
+    min-height: 100svh;
 
     padding:
-      85px
+      80px
       14px
-      60px;
+      55px;
   }
 
-  /* Flowers become softer on mobile */
   .footer-flower {
-    opacity: 0.26;
+    opacity: .25;
   }
 
   .footer-flower-top-left {
@@ -30444,7 +31397,7 @@ body:has(
 
   .footer-flower-top-right {
     right: -110px;
-    top: 10px;
+    top: 5px;
 
     width: 255px;
   }
@@ -30463,44 +31416,36 @@ body:has(
     width: 275px;
   }
 
-  .footer-ornament {
-    margin-bottom: 20px;
-  }
-
   .footer-message {
     font-size: 21px;
   }
 
   .footer-names {
-    margin-top: 28px;
+    margin-top: 27px;
   }
 
   .footer-name {
     font-size:
       clamp(
-        72px,
+        70px,
         20vw,
-        108px
+        105px
       );
-
-    line-height: 0.72;
-
-    letter-spacing: -2px;
   }
 
   .footer-ampersand {
-    margin:
-      18px
-      0
-      16px;
+    font-size: 42px;
 
-    font-size: 43px;
+    margin:
+      17px
+      0
+      15px;
   }
 
   .footer-date-wrap {
-    margin-top: 50px;
+    margin-top: 46px;
 
-    gap: 9px;
+    gap: 8px;
   }
 
   .footer-date {
@@ -30509,21 +31454,15 @@ body:has(
     letter-spacing: 4px;
   }
 
-  .footer-date span {
-    margin:
-      0
-      3px;
-  }
-
   .footer-date-line {
-    width: 19px;
+    width: 18px;
   }
 
   .footer-line {
     margin:
-      38px
+      35px
       auto
-      25px;
+      23px;
   }
 
   .footer-small {
@@ -30532,8 +31471,161 @@ body:has(
     letter-spacing: 2.5px;
   }
 
-  .footer-bottom-ornament {
-    margin-top: 34px;
+  .footer-heart-button {
+    margin-top: 36px;
+
+    min-width: 195px;
+
+    padding:
+      13px
+      20px;
+  }
+
+  .footer-heart-button-text {
+    font-size: 17px;
+  }
+
+
+  /* ================================================
+     FINALE
+     ================================================ */
+
+  .heart-finale-content {
+    width: 94vw;
+
+    max-height: 95svh;
+  }
+
+  .finale-couple-image {
+    width:
+      min(
+        275px,
+        66vw
+      );
+
+    margin-bottom: 10px;
+  }
+
+  .finale-kicker {
+    margin-bottom: 10px;
+
+    font-size: 6px;
+
+    letter-spacing: 3px;
+  }
+
+  .finale-save-main {
+    font-size:
+      clamp(
+        58px,
+        16vw,
+        82px
+      );
+  }
+
+  .finale-save-sub {
+    margin-top: 9px;
+
+    font-size:
+      clamp(
+        14px,
+        4vw,
+        20px
+      );
+
+    letter-spacing: 5px;
+  }
+
+  .finale-small-line {
+    margin:
+      15px
+      0
+      15px;
+  }
+
+  .finale-small-line span {
+    width: 32px;
+  }
+
+  .finale-small-line i {
+    font-size: 12px;
+  }
+
+  .finale-names span {
+    font-size:
+      clamp(
+        52px,
+        15vw,
+        76px
+      );
+  }
+
+  .finale-names i {
+    margin:
+      14px
+      0;
+
+    font-size: 31px;
+  }
+
+  .finale-date {
+    margin-top: 23px;
+
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+  }
+
+  .finale-location {
+    margin-top: 16px;
+
+    font-size: 5.5px;
+
+    letter-spacing: 3px;
+  }
+
+  .finale-message {
+    margin-top: 13px;
+
+    font-size: 14px;
+  }
+
+  .finale-star-one {
+    left: 7%;
+    top: 22%;
+  }
+
+  .finale-star-two {
+    right: 7%;
+    top: 19%;
+  }
+
+  .finale-star-three {
+    left: 7%;
+    bottom: 19%;
+  }
+
+  .finale-star-four {
+    right: 7%;
+    bottom: 22%;
+  }
+
+  .finale-star-five {
+    top: 8%;
+  }
+
+  .floating-heart-image {
+    bottom: -100px;
+  }
+
+  .finale-touch {
+    bottom: 18px;
+
+    font-size: 5px;
+
+    letter-spacing: 2.5px;
   }
 }
 
@@ -30545,44 +31637,10 @@ body:has(
 @media (max-width: 390px) {
 
   .footer {
-    min-height: 680px;
-
     padding:
-      72px
+      70px
       10px
-      50px;
-  }
-
-  .footer-flower-top-left {
-    left: -125px;
-    top: -45px;
-
-    width: 245px;
-  }
-
-  .footer-flower-top-right {
-    right: -125px;
-
-    width: 240px;
-  }
-
-  .footer-flower-bottom-left {
-    left: -130px;
-
-    width: 250px;
-  }
-
-  .footer-flower-bottom-right {
-    right: -130px;
-
-    width: 250px;
-  }
-
-  .footer-ornament {
-    margin-bottom: 18px;
-
-    transform:
-      scale(0.85);
+      48px;
   }
 
   .footer-message {
@@ -30592,51 +31650,91 @@ body:has(
   .footer-name {
     font-size:
       clamp(
-        66px,
+        64px,
         20vw,
         92px
       );
-
-    letter-spacing: -1.5px;
-  }
-
-  .footer-ampersand {
-    margin:
-      16px
-      0
-      14px;
-
-    font-size: 38px;
-  }
-
-  .footer-date-wrap {
-    margin-top: 45px;
   }
 
   .footer-date {
     font-size: 6.5px;
 
-    letter-spacing: 3.3px;
+    letter-spacing: 3px;
   }
 
-  .footer-date-line {
-    width: 14px;
+  .footer-heart-button {
+    min-width: 185px;
+
+    padding:
+      12px
+      18px;
   }
 
-  .footer-line {
-    width: 110px;
-
-    margin-top: 35px;
+  .footer-heart-button-text {
+    font-size: 16px;
   }
 
-  .footer-line span {
-    width: 34px;
+
+  /* FINALE */
+
+  .finale-couple-image {
+    width: 225px;
+
+    margin-bottom: 7px;
   }
 
-  .footer-small {
-    font-size: 6.5px;
+  .finale-kicker {
+    font-size: 5.5px;
 
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
+  }
+
+  .finale-save-main {
+    font-size: 53px;
+  }
+
+  .finale-save-sub {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+  }
+
+  .finale-small-line {
+    margin:
+      12px
+      0;
+  }
+
+  .finale-names span {
+    font-size: 49px;
+  }
+
+  .finale-names i {
+    margin:
+      12px
+      0;
+
+    font-size: 28px;
+  }
+
+  .finale-date {
+    margin-top: 20px;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+  }
+
+  .finale-location {
+    margin-top: 14px;
+
+    font-size: 5px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .finale-message {
+    font-size: 13px;
   }
 }
 
@@ -30647,47 +31745,44 @@ body:has(
 
 @media (max-width: 350px) {
 
-  .footer {
-    min-height: 640px;
+  .finale-couple-image {
+    width: 195px;
   }
 
-  .footer-message {
-    font-size: 18px;
+  .finale-save-main {
+    font-size: 48px;
   }
 
-  .footer-name {
-    font-size: 62px;
+  .finale-save-sub {
+    font-size: 12px;
+
+    letter-spacing: 3px;
   }
 
-  .footer-ampersand {
-    font-size: 35px;
+  .finale-names span {
+    font-size: 45px;
+  }
+
+  .finale-names i {
+    font-size: 25px;
 
     margin:
-      14px
-      0
-      13px;
+      10px
+      0;
   }
 
-  .footer-date-wrap {
-    margin-top: 40px;
+  .finale-date {
+    font-size: 6.5px;
   }
 
-  .footer-date {
-    font-size: 6px;
-
-    letter-spacing: 2.8px;
-  }
-
-  .footer-small {
-    font-size: 6px;
-
-    letter-spacing: 1.8px;
+  .finale-message {
+    font-size: 12px;
   }
 }
 
 
 /* =========================================================
-   IOS / SAFARI
+   IOS SAFARI
    ========================================================= */
 
 @supports (-webkit-touch-callout: none) {
@@ -30695,11 +31790,19 @@ body:has(
   .footer {
     min-height: 100svh;
 
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing:
+      antialiased;
   }
 
-  .footer-flower img {
+  .heart-finale {
+    height: 100svh;
+  }
+
+  .floating-heart-image,
+  .finale-couple-image img {
     -webkit-user-drag: none;
+
+    -webkit-touch-callout: none;
   }
 }
 
@@ -30711,645 +31814,13 @@ body:has(
 @media (prefers-reduced-motion: reduce) {
 
   .footer-ornament i,
-  .footer-bottom-ornament {
-    animation: none !important;
-  }
-
-  .footer-flower {
-    transition: none;
-  }
-}
-
-/* =========================================================
-   HEART FINALE BUTTON
-   ========================================================= */
-
-.footer-heart-button {
-  position: relative;
-
-  z-index: 10;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 13px;
-
-  margin-top: 42px;
-
-  min-width: 215px;
-
-  padding:
-    14px 22px;
-
-  border:
-    1px solid
-    rgba(196, 167, 106, 0.65);
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,0.42);
-
-  color: #7c6b4e;
-
-  backdrop-filter:
-    blur(12px);
-
-  -webkit-backdrop-filter:
-    blur(12px);
-
-  box-shadow:
-    0 10px 30px
-    rgba(85,105,110,0.08);
-
-  font-family:
-    "Montserrat",
-    sans-serif;
-
-  font-size: 8px;
-
-  font-weight: 500;
-
-  letter-spacing: 2.5px;
-
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.footer-heart-button:hover {
-  transform:
-    translateY(-3px);
-
-  background:
-    rgba(255,255,255,0.72);
-
-  box-shadow:
-    0 15px 38px
-    rgba(85,105,110,0.13);
-}
-
-.footer-heart-button:active {
-  transform:
-    translateY(0)
-    scale(0.97);
-}
-
-.footer-heart-button-icon {
-  color: #b99557;
-
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-
-  font-size: 22px;
-
-  line-height: 0.7;
-
-  transition:
-    transform 0.4s ease;
-}
-
-.footer-heart-button:hover
-.footer-heart-button-icon {
-  transform:
-    scale(1.2);
-}
-
-.footer-heart-button-text {
-  line-height: 1;
-}
-
-.footer-heart-button-arrow {
-  color: var(--gold);
-
-  font-size: 9px;
-
-  animation:
-    buttonSparkle 2.5s
-    ease-in-out
-    infinite;
-}
-
-@keyframes buttonSparkle {
-
-  0%,
-  100% {
-    opacity: 0.45;
-
-    transform:
-      rotate(0deg)
-      scale(0.8);
-  }
-
-  50% {
-    opacity: 1;
-
-    transform:
-      rotate(45deg)
-      scale(1.1);
-  }
-}
-
-
-/* =========================================================
-   FULL SCREEN HEART FINALE
-   ========================================================= */
-
-.heart-finale {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 999999;
-
-  overflow: hidden;
-
-  pointer-events: auto;
-
-  background:
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(255,255,255,0.98) 0%,
-      rgba(241,249,251,0.96) 35%,
-      rgba(218,237,243,0.98) 100%
-    );
-
-  opacity: 0;
-
-  transition:
-    opacity 0.9s ease;
-}
-
-.heart-finale.is-active {
-  opacity: 1;
-}
-
-.heart-finale.is-closing {
-  opacity: 0;
-}
-
-
-/* =========================================================
-   LARGE CENTER GLOW
-   ========================================================= */
-
-.heart-finale::before {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 65vw;
-  height: 65vw;
-
-  min-width: 420px;
-  min-height: 420px;
-
-  transform:
-    translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.78) 30%,
-      rgba(225,241,246,0.35) 60%,
-      transparent 75%
-    );
-
-  filter:
-    blur(15px);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   SECOND GLOW
-   ========================================================= */
-
-.heart-finale::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -25%;
-
-  width: 100%;
-  height: 70%;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(168,208,226,0.25),
-      transparent 68%
-    );
-
-  filter:
-    blur(25px);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   CENTER NAMES
-   ========================================================= */
-
-.heart-finale-center {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  z-index: 20;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  transform:
-    translate(-50%, -50%);
-
-  color: #303333;
-
-  text-align: center;
-
-  opacity: 0;
-
-  animation:
-    finaleNames
-    1.6s
-    1.2s
-    ease forwards;
-}
-
-.heart-finale-center span {
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-
-  font-size:
-    clamp(
-      72px,
-      11vw,
-      140px
-    );
-
-  font-weight: 400;
-
-  line-height: 0.68;
-
-  letter-spacing: -3px;
-}
-
-.heart-finale-center i {
-  margin:
-    22px
-    0;
-
-  color: var(--gold);
-
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-
-  font-size:
-    clamp(
-      40px,
-      5vw,
-      62px
-    );
-
-  font-style: italic;
-
-  line-height: 0.6;
-}
-
-@keyframes finaleNames {
-
-  from {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -45%)
-      scale(0.92);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   HEART PARTICLE CONTAINER
-   ========================================================= */
-
-.heart-particles {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 10;
-
-  overflow: hidden;
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   HEART SHAPE
-   ========================================================= */
-
-.floating-heart {
-  position: absolute;
-
-  bottom: -70px;
-
-  display: block;
-
-  aspect-ratio: 1;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffffff 0%,
-      #dcecf3 45%,
-      #a8d0e2 100%
-    );
-
-  transform:
-    rotate(45deg);
-
-  border-radius:
-    6px 0 6px 0;
-
-  filter:
-    drop-shadow(
-      0 8px 14px
-      rgba(90,120,130,0.12)
-    );
-
-  animation:
-    heartRise
-    7s
-    linear
-    forwards;
-}
-
-
-/* =========================================================
-   HEART LOBES
-   ========================================================= */
-
-.floating-heart::before,
-.floating-heart::after {
-  content: "";
-
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-
-  border-radius: 50%;
-
-  background: inherit;
-}
-
-.floating-heart::before {
-  top: -50%;
-
-  left: 0;
-}
-
-.floating-heart::after {
-  top: 0;
-
-  left: -50%;
-}
-
-
-/* =========================================================
-   FLOATING HEART ANIMATION
-   ========================================================= */
-
-@keyframes heartRise {
-
-  0% {
-    bottom: -90px;
-
-    opacity: 0;
-
-    transform:
-      translateX(0)
-      rotate(45deg)
-      scale(0.35);
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  25% {
-    transform:
-      translateX(-18px)
-      rotate(58deg)
-      scale(0.75);
-  }
-
-  50% {
-    transform:
-      translateX(20px)
-      rotate(32deg)
-      scale(0.95);
-  }
-
-  75% {
-    transform:
-      translateX(-15px)
-      rotate(48deg)
-      scale(1.05);
-  }
-
-  100% {
-    bottom: 115%;
-
-    opacity: 0;
-
-    transform:
-      translateX(15px)
-      rotate(62deg)
-      scale(1.15);
-  }
-}
-
-
-/* =========================================================
-   GOLD HEART VARIATION
-   Every 4th heart becomes gold.
-   ========================================================= */
-
-.floating-heart:nth-child(4n) {
-  background:
-    linear-gradient(
-      135deg,
-      #f9f4e7 0%,
-      #dfcda1 50%,
-      #c4a76a 100%
-    );
-}
-
-.floating-heart:nth-child(5n) {
-  filter:
-    drop-shadow(
-      0 8px 18px
-      rgba(196,167,106,0.18)
-    );
-}
-
-
-/* =========================================================
-   EXTRA LARGE HEARTS
-   ========================================================= */
-
-.floating-heart:nth-child(9n) {
-  opacity: 0.22 !important;
-}
-
-.floating-heart:nth-child(11n) {
-  animation-duration: 9s;
-}
-
-.floating-heart:nth-child(13n) {
-  animation-duration: 6s;
-}
-
-.floating-heart:nth-child(17n) {
-  opacity: 0.72 !important;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-  .footer-heart-button {
-    min-width: 195px;
-
-    margin-top: 38px;
-
-    padding:
-      13px
-      20px;
-
-    font-size: 7px;
-
-    letter-spacing: 2px;
-  }
-
-  .footer-heart-button-icon {
-    font-size: 20px;
-  }
-
-  .heart-finale-center span {
-    font-size:
-      clamp(
-        64px,
-        19vw,
-        100px
-      );
-
-    letter-spacing: -2px;
-  }
-
-  .heart-finale-center i {
-    margin:
-      19px
-      0;
-
-    font-size: 38px;
-  }
-
-  .floating-heart {
-    animation-duration:
-      6.5s;
-  }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 390px) {
-
-  .footer-heart-button {
-    min-width: 180px;
-
-    padding:
-      12px
-      17px;
-
-    font-size: 6.5px;
-
-    letter-spacing: 1.7px;
-  }
-
-  .heart-finale-center span {
-    font-size: 60px;
-  }
-
-  .heart-finale-center i {
-    font-size: 34px;
-
-    margin:
-      17px
-      0;
-  }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .floating-heart,
-  .heart-finale-center,
+  .footer-bottom-ornament,
+  .footer-heart-button-icon,
   .footer-heart-button-arrow,
-  .footer-ornament i,
-  .footer-bottom-ornament {
+  .heart-finale-content,
+  .finale-couple-image,
+  .floating-heart-image,
+  .finale-star {
     animation: none !important;
   }
 
