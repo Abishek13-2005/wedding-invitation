@@ -64,8 +64,9 @@ function ScratchReveal({
 
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, "#fffdf8");
-    gradient.addColorStop(0.5, "#eee8da");
-    gradient.addColorStop(1, "#dcecf2");
+    gradient.addColorStop(0.42, "#f5eee2");
+    gradient.addColorStop(0.72, "#eaf4f7");
+    gradient.addColorStop(1, "#dcecf3");
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
@@ -77,9 +78,14 @@ function ScratchReveal({
       }
     }
 
-    ctx.strokeStyle = "rgba(196,167,106,0.68)";
+    ctx.strokeStyle = "rgba(196,167,106,0.72)";
     ctx.lineWidth = 1;
     ctx.strokeRect(9, 9, Math.max(1, width - 18), Math.max(1, height - 18));
+
+    // Inner luxury frame.
+    ctx.strokeStyle = "rgba(255,255,255,0.62)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(14, 14, Math.max(1, width - 28), Math.max(1, height - 28));
 
     const radius = Math.min(width, height) * 0.27;
     ctx.beginPath();
@@ -94,7 +100,7 @@ function ScratchReveal({
     ctx.font = '15px "Cormorant Garamond", serif';
     ctx.fillText("✦", width / 2, height / 2 - 20);
 
-    ctx.fillStyle = "#6f858d";
+    ctx.fillStyle = "#687e87";
     ctx.font = '500 7px Montserrat, sans-serif';
     ctx.fillText("SCRATCH TO REVEAL", width / 2, height / 2 + 4);
 
