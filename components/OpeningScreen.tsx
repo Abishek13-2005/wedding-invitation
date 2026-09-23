@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const MAX_OPENING_MS = 4350;
+const MAX_OPENING_MS = 4670;
 const HERO_FADE_MS = 850;
 
 export default function OpeningScreen() {
