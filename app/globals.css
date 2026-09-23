@@ -13488,3 +13488,1038 @@ appearance: none !important;
       ) !important;
   }
 }
+
+
+/* =========================================================
+   PREMIUM INVITATION SECTION
+   ========================================================= */
+
+.invitation-section {
+  position: relative !important;
+
+  min-height: auto !important;
+
+  padding:
+    clamp(95px, 10vw, 145px)
+    20px
+    clamp(105px, 11vw, 150px) !important;
+
+  overflow: hidden !important;
+
+  text-align: center !important;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 10%,
+      rgba(255,255,255,.98) 0%,
+      rgba(255,253,248,.96) 24%,
+      rgba(249,246,239,.97) 58%,
+      rgba(239,247,249,.95) 100%
+    ) !important;
+
+  color: var(--dark);
+
+  isolation: isolate;
+}
+
+/* soft overall lighting */
+.invitation-section::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.55),
+      rgba(255,255,255,0) 35%,
+      rgba(176,211,223,.08) 68%,
+      rgba(255,255,255,.38)
+    );
+
+  z-index: 0;
+}
+
+.invitation-section::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -180px;
+
+  width: min(950px, 130vw);
+  height: 450px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,.72) 0%,
+      rgba(255,255,255,.28) 38%,
+      rgba(255,255,255,0) 74%
+    );
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   FLORAL ARTWORK
+   ========================================================= */
+
+.invitation-flower {
+  position: absolute;
+
+  z-index: 1;
+
+  width: min(330px, 27vw);
+
+  height: auto;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  filter:
+    drop-shadow(0 22px 32px rgba(66,56,45,.10));
+
+  opacity: .96;
+
+  will-change: transform;
+}
+
+.invitation-flower-beige-top {
+  left: -32px;
+  top: -30px;
+
+  transform:
+    rotate(-7deg)
+    scale(1.08);
+}
+
+.invitation-flower-blue-top {
+  right: -28px;
+  top: 40px;
+
+  transform:
+    rotate(10deg)
+    scale(.95);
+}
+
+.invitation-flower-beige-bottom {
+  right: -28px;
+  bottom: -35px;
+
+  transform:
+    rotate(171deg)
+    scale(1.03);
+}
+
+.invitation-flower-blue-bottom {
+  left: -26px;
+  bottom: 25px;
+
+  transform:
+    rotate(-166deg)
+    scale(.88);
+}
+
+
+/* subtle drifting light */
+.invitation-soft-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  filter: blur(2px);
+}
+
+.invitation-soft-glow-one {
+  top: 19%;
+  left: 50%;
+
+  width: 420px;
+  height: 220px;
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,.85) 0%,
+      rgba(255,255,255,0) 72%
+    );
+}
+
+.invitation-soft-glow-two {
+  right: 10%;
+  top: 52%;
+
+  width: 230px;
+  height: 230px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168,208,226,.10) 0%,
+      rgba(168,208,226,0) 72%
+    );
+}
+
+
+/* =========================================================
+   CONTENT WRAPPER
+   ========================================================= */
+
+.invitation-inner {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(1120px, 100%);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.invitation-top-ornament {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-bottom: 17px;
+}
+
+.invitation-top-ornament span {
+  width: 58px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.65)
+    );
+}
+
+.invitation-top-ornament span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.65),
+      transparent
+    );
+}
+
+.invitation-top-ornament i {
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+
+  font-style: normal;
+}
+
+.invitation-intro {
+  color: #8b8479 !important;
+
+  font-size: 8px !important;
+
+  font-weight: 500 !important;
+
+  letter-spacing: 5px !important;
+}
+
+.invitation-title {
+  margin:
+    16px
+    0
+    0 !important;
+
+  max-width: 850px;
+
+  color: #2f3233 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(58px, 8vw, 108px) !important;
+
+  line-height: .76 !important;
+
+  font-weight: 400 !important;
+
+  letter-spacing: -1.5px !important;
+}
+
+.invitation-title > span {
+  display: block;
+}
+
+.invitation-title em {
+  display: block;
+
+  margin-top: 15px;
+
+  color: #b6935b;
+
+  font-size: .34em;
+
+  font-style: italic;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   COUPLE AREA
+   ========================================================= */
+
+.invitation-couple {
+  position: relative;
+
+  width: min(1010px, 100%);
+
+  margin:
+    78px
+    auto
+    0;
+
+  padding:
+    0
+    42px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    110px
+    1fr;
+
+  align-items: start;
+}
+
+.invitation-couple::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -28px;
+
+  width: 1px;
+  height: calc(100% + 56px);
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(196,167,106,.32) 15%,
+      rgba(196,167,106,.32) 85%,
+      transparent
+    );
+}
+
+.person {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding:
+    6px
+    24px;
+}
+
+.person-left {
+  text-align: right;
+}
+
+.person-right {
+  text-align: left;
+}
+
+.person-kicker {
+  color: #b09566;
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 4px;
+}
+
+.person-name {
+  margin-top: 14px;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(42px, 4.5vw, 64px);
+
+  line-height: .79;
+
+  letter-spacing: -1px;
+}
+
+.person-name span {
+  display: block;
+
+  margin-top: 10px;
+}
+
+.person-rule {
+  width: 52px;
+
+  height: 1px;
+
+  margin-top: 24px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.86),
+      transparent
+    );
+}
+
+.person-label {
+  margin-top: 22px !important;
+
+  color: #bd995b !important;
+
+  font-size: 7px !important;
+
+  letter-spacing: 3px !important;
+
+  font-weight: 500 !important;
+}
+
+.parents {
+  max-width: 300px;
+
+  margin-top: 11px;
+
+  color: #5f6566;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(17px, 1.8vw, 22px);
+
+  line-height: 1.3;
+
+  letter-spacing: .15px;
+}
+
+.parents span {
+  display: inline-block;
+
+  margin-top: 5px;
+}
+
+
+/* =========================================================
+   CENTER MARK
+   ========================================================= */
+
+.invitation-center-mark {
+  position: relative;
+
+  min-height: 220px;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  padding-top: 12px;
+}
+
+.center-line {
+  width: 1px;
+
+  height: 34px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(196,167,106,.68)
+    );
+}
+
+.center-line:last-of-type {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(196,167,106,.68),
+      transparent
+    );
+}
+
+.center-heart {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  margin: 10px 0;
+
+  border:
+    1px solid rgba(196,167,106,.42);
+
+  border-radius: 50%;
+
+  color: #b99150;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255,255,255,.98),
+      rgba(246,237,216,.82)
+    );
+
+  box-shadow:
+    0 10px 25px rgba(104,79,42,.10);
+}
+
+.with {
+  margin-top: 18px;
+
+  color: #b08c56 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size: 28px !important;
+
+  font-style: italic !important;
+}
+
+
+/* =========================================================
+   MESSAGE PANEL
+   ========================================================= */
+
+.invitation-message {
+  width:
+    min(790px, 92vw);
+
+  margin:
+    84px
+    auto
+    0;
+
+  padding:
+    38px
+    clamp(22px, 4vw, 58px)
+    34px;
+
+  border:
+    1px solid
+    rgba(196,167,106,.33);
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.84),
+      rgba(250,248,243,.70),
+      rgba(236,246,249,.76)
+    );
+
+  box-shadow:
+    0 28px 70px rgba(71,87,92,.09),
+    inset 0 1px 0 rgba(255,255,255,.95);
+
+  backdrop-filter:
+    blur(13px);
+
+  -webkit-backdrop-filter:
+    blur(13px);
+}
+
+.message-ornament {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  color: #c4a76a;
+}
+
+.message-ornament span {
+  width: 65px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.62)
+    );
+}
+
+.message-ornament span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.62),
+      transparent
+    );
+}
+
+.message-ornament b {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 15px;
+
+  font-weight: 400;
+}
+
+.message-heading {
+  margin-top: 20px !important;
+
+  color: #343636 !important;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif !important;
+
+  font-size:
+    clamp(25px, 3vw, 34px) !important;
+
+  font-style: italic;
+}
+
+.message-copy {
+  max-width: 650px;
+
+  margin:
+    17px
+    auto
+    0;
+
+  color: #6c7374;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(17px, 2vw, 22px);
+
+  line-height: 1.45;
+}
+
+.message-signature {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 23px;
+}
+
+.message-signature span {
+  width: 42px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,.56)
+    );
+}
+
+.message-signature span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,.56),
+      transparent
+    );
+}
+
+.message-signature p {
+  color: #b08c56;
+
+  font-size: 6.5px;
+
+  letter-spacing: 3px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   HOVER DETAIL — DESKTOP ONLY
+   ========================================================= */
+
+@media (min-width: 701px) {
+  .person {
+    transition:
+      transform .5s cubic-bezier(.22,1,.36,1);
+  }
+
+  .person-left:hover {
+    transform: translateX(-8px);
+  }
+
+  .person-right:hover {
+    transform: translateX(8px);
+  }
+
+  .invitation-flower {
+    transition:
+      transform .8s cubic-bezier(.22,1,.36,1);
+  }
+
+  .invitation-section:hover
+  .invitation-flower-beige-top {
+    transform:
+      rotate(-9deg)
+      scale(1.10)
+      translate3d(2px,-2px,0);
+  }
+
+  .invitation-section:hover
+  .invitation-flower-blue-top {
+    transform:
+      rotate(12deg)
+      scale(.98)
+      translate3d(-2px,-2px,0);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .invitation-section {
+    padding:
+      78px
+      12px
+      82px !important;
+  }
+
+  .invitation-flower {
+    width:
+      clamp(130px, 34vw, 180px);
+
+    opacity: .90;
+  }
+
+  .invitation-flower-beige-top {
+    left: -38px;
+    top: 6px;
+
+    transform: rotate(-10deg) scale(1.08);
+  }
+
+  .invitation-flower-blue-top {
+    right: -34px;
+    top: 65px;
+
+    transform: rotate(13deg) scale(.88);
+  }
+
+  .invitation-flower-beige-bottom {
+    right: -36px;
+    bottom: -12px;
+
+    transform: rotate(172deg) scale(.94);
+  }
+
+  .invitation-flower-blue-bottom {
+    left: -34px;
+    bottom: 34px;
+
+    transform: rotate(-166deg) scale(.78);
+  }
+
+  .invitation-top-ornament {
+    gap: 8px;
+
+    margin-bottom: 12px;
+  }
+
+  .invitation-top-ornament span {
+    width: 32px;
+  }
+
+  .invitation-intro {
+    font-size: 5.5px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .invitation-title {
+    margin-top: 12px !important;
+
+    font-size:
+      clamp(47px, 14vw, 66px) !important;
+
+    line-height: .80 !important;
+  }
+
+  .invitation-title em {
+    margin-top: 10px;
+  }
+
+  .invitation-couple {
+    width: 100%;
+
+    margin-top: 48px;
+
+    padding: 0 3px;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      52px
+      minmax(0, 1fr);
+  }
+
+  .invitation-couple::before {
+    top: -14px;
+    height: calc(100% + 28px);
+  }
+
+  .person {
+    padding: 3px 4px;
+  }
+
+  .person-kicker {
+    font-size: 4.7px;
+    letter-spacing: 2px;
+  }
+
+  .person-name {
+    margin-top: 10px;
+
+    font-size:
+      clamp(28px, 8.2vw, 39px);
+
+    line-height: .84;
+  }
+
+  .person-name span {
+    margin-top: 7px;
+  }
+
+  .person-rule {
+    width: 32px;
+    margin-top: 16px;
+  }
+
+  .person-label {
+    margin-top: 15px !important;
+
+    font-size: 4.7px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .parents {
+    max-width: 140px;
+
+    margin-top: 8px;
+
+    font-size:
+      clamp(11px, 3vw, 15px);
+
+    line-height: 1.25;
+  }
+
+  .parents span {
+    margin-top: 2px;
+  }
+
+  .invitation-center-mark {
+    min-height: 180px;
+    padding-top: 6px;
+  }
+
+  .center-line {
+    height: 22px;
+  }
+
+  .center-heart {
+    width: 29px;
+    height: 29px;
+
+    margin: 7px 0;
+
+    font-size: 10px;
+  }
+
+  .with {
+    margin-top: 11px;
+
+    font-size: 18px !important;
+  }
+
+  .invitation-message {
+    width: 95vw;
+
+    margin-top: 49px;
+
+    padding:
+      25px
+      15px
+      23px;
+
+    border-radius: 18px;
+  }
+
+  .message-ornament {
+    gap: 7px;
+  }
+
+  .message-ornament span {
+    width: 34px;
+  }
+
+  .message-heading {
+    margin-top: 14px !important;
+
+    font-size:
+      clamp(22px, 6vw, 28px) !important;
+  }
+
+  .message-copy {
+    margin-top: 12px;
+
+    font-size:
+      clamp(15px, 4.2vw, 18px);
+
+    line-height: 1.38;
+  }
+
+  .message-signature {
+    margin-top: 17px;
+
+    gap: 8px;
+  }
+
+  .message-signature span {
+    width: 27px;
+  }
+
+  .message-signature p {
+    font-size: 4.8px;
+    letter-spacing: 1.9px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .invitation-section {
+    padding:
+      68px
+      8px
+      72px !important;
+  }
+
+  .invitation-flower {
+    width: 140px;
+  }
+
+  .invitation-couple {
+    grid-template-columns:
+      minmax(0, 1fr)
+      44px
+      minmax(0, 1fr);
+  }
+
+  .person-name {
+    font-size: 27px;
+  }
+
+  .parents {
+    font-size: 10.5px;
+  }
+
+  .invitation-message {
+    width: 96vw;
+    padding: 22px 13px 21px;
+  }
+
+  .message-copy {
+    font-size: 14px;
+  }
+}
+
