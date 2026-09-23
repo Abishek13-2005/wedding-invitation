@@ -29704,3 +29704,1656 @@ body:has(
     user-select: none !important;
   }
 }
+
+/* =========================================================
+   LUXURY FOOTER
+   ========================================================= */
+
+.footer {
+  position: relative;
+
+  width: 100%;
+  min-height: 100svh;
+
+  padding:
+    105px
+    20px
+    75px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fbfaf6 0%,
+      #f7faf9 18%,
+      #e9f3f7 48%,
+      #dcecf2 100%
+    );
+}
+
+
+/* =========================================================
+   SOFT LIGHT AT TOP
+   ========================================================= */
+
+.footer::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -220px;
+
+  width: 760px;
+  height: 760px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.98) 0%,
+      rgba(255,255,255,0.72) 32%,
+      rgba(255,255,255,0.18) 62%,
+      transparent 76%
+    );
+
+  filter: blur(5px);
+
+  pointer-events: none;
+
+  z-index: -4;
+}
+
+
+/* =========================================================
+   VERY SOFT CENTER GLOW
+   ========================================================= */
+
+.footer::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 53%;
+
+  width: 700px;
+  height: 700px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.48) 0%,
+      rgba(255,255,255,0.18) 38%,
+      transparent 72%
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+
+  z-index: -4;
+}
+
+
+/* =========================================================
+   EXTRA GLOW ELEMENTS
+   ========================================================= */
+
+.footer-glow {
+  position: absolute;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  filter: blur(45px);
+
+  z-index: -3;
+}
+
+.footer-glow-top {
+  width: 280px;
+  height: 280px;
+
+  top: 5%;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    rgba(255,255,255,0.65);
+}
+
+.footer-glow-center {
+  width: 360px;
+  height: 360px;
+
+  left: 50%;
+  top: 52%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    rgba(232,244,248,0.65);
+}
+
+
+/* =========================================================
+   FLOWERS
+   ========================================================= */
+
+.footer-flower {
+  position: absolute;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  opacity: 0.34;
+
+  filter:
+    drop-shadow(
+      0 12px 22px
+      rgba(95,110,108,0.07)
+    );
+
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
+}
+
+.footer-flower img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-width: none;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   TOP LEFT FLOWER
+   ========================================================= */
+
+.footer-flower-top-left {
+  left: -85px;
+  top: -30px;
+
+  width: 290px;
+
+  transform:
+    rotate(-12deg);
+}
+
+
+/* =========================================================
+   TOP RIGHT BLUE FLOWER
+   ========================================================= */
+
+.footer-flower-top-right {
+  right: -100px;
+  top: 5px;
+
+  width: 285px;
+
+  transform:
+    rotate(13deg)
+    scaleX(-1);
+
+  opacity: 0.30;
+}
+
+
+/* =========================================================
+   BOTTOM LEFT BLUE FLOWER
+   ========================================================= */
+
+.footer-flower-bottom-left {
+  left: -115px;
+  bottom: -65px;
+
+  width: 310px;
+
+  transform:
+    rotate(7deg);
+}
+
+
+/* =========================================================
+   BOTTOM RIGHT FLOWER
+   ========================================================= */
+
+.footer-flower-bottom-right {
+  right: -110px;
+  bottom: -75px;
+
+  width: 310px;
+
+  transform:
+    rotate(-10deg)
+    scaleX(-1);
+
+  opacity: 0.30;
+}
+
+
+/* =========================================================
+   TOP ORNAMENT
+   ========================================================= */
+
+.footer-ornament {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  width: 150px;
+  height: 20px;
+
+  margin-bottom: 24px;
+
+  color: var(--gold);
+
+  font-size: 12px;
+
+  z-index: 2;
+}
+
+.footer-ornament span {
+  display: block;
+
+  width: 52px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,0.72)
+    );
+}
+
+.footer-ornament span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,0.72),
+      transparent
+    );
+}
+
+.footer-ornament i {
+  font-style: normal;
+
+  font-size: 11px;
+
+  line-height: 1;
+
+  animation:
+    footerSparkle 4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes footerSparkle {
+
+  0%,
+  100% {
+    opacity: 0.55;
+
+    transform:
+      scale(0.9)
+      rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.15)
+      rotate(8deg);
+  }
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.footer-message {
+  position: relative;
+
+  z-index: 3;
+
+  margin: 0;
+
+  color: #5f686a;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      21px,
+      2.8vw,
+      28px
+    );
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   NAMES
+   ========================================================= */
+
+.footer-names {
+  position: relative;
+
+  z-index: 3;
+
+  margin-top: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   INDIVIDUAL NAME
+   ========================================================= */
+
+.footer-name {
+  margin: 0;
+
+  color: #303333;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      82px,
+      12vw,
+      150px
+    );
+
+  font-weight: 400;
+
+  line-height: 0.72;
+
+  letter-spacing:
+    -3px;
+}
+
+
+/* =========================================================
+   AMPERSAND
+   ========================================================= */
+
+.footer-ampersand {
+  position: relative;
+
+  z-index: 4;
+
+  margin:
+    17px
+    0
+    15px;
+
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      42px,
+      5vw,
+      62px
+    );
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  line-height: 0.65;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.footer-date-wrap {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 54px;
+}
+
+
+.footer-date {
+  margin: 0;
+
+  color: #b99557;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  letter-spacing: 6px;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.footer-date span {
+  display: inline-block;
+
+  margin:
+    0
+    5px;
+
+  color:
+    rgba(
+      196,
+      167,
+      106,
+      0.65
+    );
+}
+
+
+.footer-date-line {
+  display: block;
+
+  width: 35px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196,167,106,0.55)
+    );
+}
+
+.footer-date-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(196,167,106,0.55),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   MAIN DIVIDER
+   ========================================================= */
+
+.footer-line {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 130px;
+
+  margin:
+    43px
+    auto
+    27px;
+
+  z-index: 3;
+}
+
+.footer-line span {
+  display: block;
+
+  width: 42px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold)
+    );
+}
+
+.footer-line span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      transparent
+    );
+}
+
+.footer-line i {
+  color: var(--gold);
+
+  font-size: 9px;
+
+  font-style: normal;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+   ========================================================= */
+
+.footer-small {
+  position: relative;
+
+  z-index: 3;
+
+  margin: 0;
+
+  color: #697274;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 3.5px;
+
+  line-height: 1;
+
+  text-transform: none;
+}
+
+
+/* =========================================================
+   BOTTOM ORNAMENT
+   ========================================================= */
+
+.footer-bottom-ornament {
+  position: relative;
+
+  z-index: 3;
+
+  margin-top: 38px;
+
+  color:
+    rgba(
+      196,
+      167,
+      106,
+      0.65
+    );
+
+  font-size: 12px;
+
+  animation:
+    footerBottomFloat
+    5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes footerBottomFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-5px);
+  }
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 701px) {
+
+  .footer {
+    min-height: 760px;
+
+    padding:
+      110px
+      30px
+      70px;
+  }
+
+  .footer-flower {
+    opacity: 0.32;
+  }
+
+  .footer-name {
+    font-size:
+      clamp(
+        95px,
+        10vw,
+        145px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .footer {
+    min-height: 720px;
+
+    padding:
+      85px
+      14px
+      60px;
+  }
+
+  /* Flowers become softer on mobile */
+  .footer-flower {
+    opacity: 0.26;
+  }
+
+  .footer-flower-top-left {
+    left: -105px;
+    top: -35px;
+
+    width: 260px;
+  }
+
+  .footer-flower-top-right {
+    right: -110px;
+    top: 10px;
+
+    width: 255px;
+  }
+
+  .footer-flower-bottom-left {
+    left: -115px;
+    bottom: -65px;
+
+    width: 270px;
+  }
+
+  .footer-flower-bottom-right {
+    right: -120px;
+    bottom: -65px;
+
+    width: 275px;
+  }
+
+  .footer-ornament {
+    margin-bottom: 20px;
+  }
+
+  .footer-message {
+    font-size: 21px;
+  }
+
+  .footer-names {
+    margin-top: 28px;
+  }
+
+  .footer-name {
+    font-size:
+      clamp(
+        72px,
+        20vw,
+        108px
+      );
+
+    line-height: 0.72;
+
+    letter-spacing: -2px;
+  }
+
+  .footer-ampersand {
+    margin:
+      18px
+      0
+      16px;
+
+    font-size: 43px;
+  }
+
+  .footer-date-wrap {
+    margin-top: 50px;
+
+    gap: 9px;
+  }
+
+  .footer-date {
+    font-size: 7px;
+
+    letter-spacing: 4px;
+  }
+
+  .footer-date span {
+    margin:
+      0
+      3px;
+  }
+
+  .footer-date-line {
+    width: 19px;
+  }
+
+  .footer-line {
+    margin:
+      38px
+      auto
+      25px;
+  }
+
+  .footer-small {
+    font-size: 7px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .footer-bottom-ornament {
+    margin-top: 34px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+  .footer {
+    min-height: 680px;
+
+    padding:
+      72px
+      10px
+      50px;
+  }
+
+  .footer-flower-top-left {
+    left: -125px;
+    top: -45px;
+
+    width: 245px;
+  }
+
+  .footer-flower-top-right {
+    right: -125px;
+
+    width: 240px;
+  }
+
+  .footer-flower-bottom-left {
+    left: -130px;
+
+    width: 250px;
+  }
+
+  .footer-flower-bottom-right {
+    right: -130px;
+
+    width: 250px;
+  }
+
+  .footer-ornament {
+    margin-bottom: 18px;
+
+    transform:
+      scale(0.85);
+  }
+
+  .footer-message {
+    font-size: 19px;
+  }
+
+  .footer-name {
+    font-size:
+      clamp(
+        66px,
+        20vw,
+        92px
+      );
+
+    letter-spacing: -1.5px;
+  }
+
+  .footer-ampersand {
+    margin:
+      16px
+      0
+      14px;
+
+    font-size: 38px;
+  }
+
+  .footer-date-wrap {
+    margin-top: 45px;
+  }
+
+  .footer-date {
+    font-size: 6.5px;
+
+    letter-spacing: 3.3px;
+  }
+
+  .footer-date-line {
+    width: 14px;
+  }
+
+  .footer-line {
+    width: 110px;
+
+    margin-top: 35px;
+  }
+
+  .footer-line span {
+    width: 34px;
+  }
+
+  .footer-small {
+    font-size: 6.5px;
+
+    letter-spacing: 2px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 350px) {
+
+  .footer {
+    min-height: 640px;
+  }
+
+  .footer-message {
+    font-size: 18px;
+  }
+
+  .footer-name {
+    font-size: 62px;
+  }
+
+  .footer-ampersand {
+    font-size: 35px;
+
+    margin:
+      14px
+      0
+      13px;
+  }
+
+  .footer-date-wrap {
+    margin-top: 40px;
+  }
+
+  .footer-date {
+    font-size: 6px;
+
+    letter-spacing: 2.8px;
+  }
+
+  .footer-small {
+    font-size: 6px;
+
+    letter-spacing: 1.8px;
+  }
+}
+
+
+/* =========================================================
+   IOS / SAFARI
+   ========================================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .footer {
+    min-height: 100svh;
+
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .footer-flower img {
+    -webkit-user-drag: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer-ornament i,
+  .footer-bottom-ornament {
+    animation: none !important;
+  }
+
+  .footer-flower {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   HEART FINALE BUTTON
+   ========================================================= */
+
+.footer-heart-button {
+  position: relative;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-top: 42px;
+
+  min-width: 215px;
+
+  padding:
+    14px 22px;
+
+  border:
+    1px solid
+    rgba(196, 167, 106, 0.65);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.42);
+
+  color: #7c6b4e;
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  box-shadow:
+    0 10px 30px
+    rgba(85,105,110,0.08);
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.footer-heart-button:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(255,255,255,0.72);
+
+  box-shadow:
+    0 15px 38px
+    rgba(85,105,110,0.13);
+}
+
+.footer-heart-button:active {
+  transform:
+    translateY(0)
+    scale(0.97);
+}
+
+.footer-heart-button-icon {
+  color: #b99557;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 22px;
+
+  line-height: 0.7;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.footer-heart-button:hover
+.footer-heart-button-icon {
+  transform:
+    scale(1.2);
+}
+
+.footer-heart-button-text {
+  line-height: 1;
+}
+
+.footer-heart-button-arrow {
+  color: var(--gold);
+
+  font-size: 9px;
+
+  animation:
+    buttonSparkle 2.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes buttonSparkle {
+
+  0%,
+  100% {
+    opacity: 0.45;
+
+    transform:
+      rotate(0deg)
+      scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      rotate(45deg)
+      scale(1.1);
+  }
+}
+
+
+/* =========================================================
+   FULL SCREEN HEART FINALE
+   ========================================================= */
+
+.heart-finale {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 999999;
+
+  overflow: hidden;
+
+  pointer-events: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255,255,255,0.98) 0%,
+      rgba(241,249,251,0.96) 35%,
+      rgba(218,237,243,0.98) 100%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.9s ease;
+}
+
+.heart-finale.is-active {
+  opacity: 1;
+}
+
+.heart-finale.is-closing {
+  opacity: 0;
+}
+
+
+/* =========================================================
+   LARGE CENTER GLOW
+   ========================================================= */
+
+.heart-finale::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 65vw;
+  height: 65vw;
+
+  min-width: 420px;
+  min-height: 420px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.78) 30%,
+      rgba(225,241,246,0.35) 60%,
+      transparent 75%
+    );
+
+  filter:
+    blur(15px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SECOND GLOW
+   ========================================================= */
+
+.heart-finale::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -25%;
+
+  width: 100%;
+  height: 70%;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(168,208,226,0.25),
+      transparent 68%
+    );
+
+  filter:
+    blur(25px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CENTER NAMES
+   ========================================================= */
+
+.heart-finale-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  transform:
+    translate(-50%, -50%);
+
+  color: #303333;
+
+  text-align: center;
+
+  opacity: 0;
+
+  animation:
+    finaleNames
+    1.6s
+    1.2s
+    ease forwards;
+}
+
+.heart-finale-center span {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      72px,
+      11vw,
+      140px
+    );
+
+  font-weight: 400;
+
+  line-height: 0.68;
+
+  letter-spacing: -3px;
+}
+
+.heart-finale-center i {
+  margin:
+    22px
+    0;
+
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      40px,
+      5vw,
+      62px
+    );
+
+  font-style: italic;
+
+  line-height: 0.6;
+}
+
+@keyframes finaleNames {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -45%)
+      scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   HEART PARTICLE CONTAINER
+   ========================================================= */
+
+.heart-particles {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 10;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HEART SHAPE
+   ========================================================= */
+
+.floating-heart {
+  position: absolute;
+
+  bottom: -70px;
+
+  display: block;
+
+  aspect-ratio: 1;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #dcecf3 45%,
+      #a8d0e2 100%
+    );
+
+  transform:
+    rotate(45deg);
+
+  border-radius:
+    6px 0 6px 0;
+
+  filter:
+    drop-shadow(
+      0 8px 14px
+      rgba(90,120,130,0.12)
+    );
+
+  animation:
+    heartRise
+    7s
+    linear
+    forwards;
+}
+
+
+/* =========================================================
+   HEART LOBES
+   ========================================================= */
+
+.floating-heart::before,
+.floating-heart::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background: inherit;
+}
+
+.floating-heart::before {
+  top: -50%;
+
+  left: 0;
+}
+
+.floating-heart::after {
+  top: 0;
+
+  left: -50%;
+}
+
+
+/* =========================================================
+   FLOATING HEART ANIMATION
+   ========================================================= */
+
+@keyframes heartRise {
+
+  0% {
+    bottom: -90px;
+
+    opacity: 0;
+
+    transform:
+      translateX(0)
+      rotate(45deg)
+      scale(0.35);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  25% {
+    transform:
+      translateX(-18px)
+      rotate(58deg)
+      scale(0.75);
+  }
+
+  50% {
+    transform:
+      translateX(20px)
+      rotate(32deg)
+      scale(0.95);
+  }
+
+  75% {
+    transform:
+      translateX(-15px)
+      rotate(48deg)
+      scale(1.05);
+  }
+
+  100% {
+    bottom: 115%;
+
+    opacity: 0;
+
+    transform:
+      translateX(15px)
+      rotate(62deg)
+      scale(1.15);
+  }
+}
+
+
+/* =========================================================
+   GOLD HEART VARIATION
+   Every 4th heart becomes gold.
+   ========================================================= */
+
+.floating-heart:nth-child(4n) {
+  background:
+    linear-gradient(
+      135deg,
+      #f9f4e7 0%,
+      #dfcda1 50%,
+      #c4a76a 100%
+    );
+}
+
+.floating-heart:nth-child(5n) {
+  filter:
+    drop-shadow(
+      0 8px 18px
+      rgba(196,167,106,0.18)
+    );
+}
+
+
+/* =========================================================
+   EXTRA LARGE HEARTS
+   ========================================================= */
+
+.floating-heart:nth-child(9n) {
+  opacity: 0.22 !important;
+}
+
+.floating-heart:nth-child(11n) {
+  animation-duration: 9s;
+}
+
+.floating-heart:nth-child(13n) {
+  animation-duration: 6s;
+}
+
+.floating-heart:nth-child(17n) {
+  opacity: 0.72 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .footer-heart-button {
+    min-width: 195px;
+
+    margin-top: 38px;
+
+    padding:
+      13px
+      20px;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+  }
+
+  .footer-heart-button-icon {
+    font-size: 20px;
+  }
+
+  .heart-finale-center span {
+    font-size:
+      clamp(
+        64px,
+        19vw,
+        100px
+      );
+
+    letter-spacing: -2px;
+  }
+
+  .heart-finale-center i {
+    margin:
+      19px
+      0;
+
+    font-size: 38px;
+  }
+
+  .floating-heart {
+    animation-duration:
+      6.5s;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+  .footer-heart-button {
+    min-width: 180px;
+
+    padding:
+      12px
+      17px;
+
+    font-size: 6.5px;
+
+    letter-spacing: 1.7px;
+  }
+
+  .heart-finale-center span {
+    font-size: 60px;
+  }
+
+  .heart-finale-center i {
+    font-size: 34px;
+
+    margin:
+      17px
+      0;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-heart,
+  .heart-finale-center,
+  .footer-heart-button-arrow,
+  .footer-ornament i,
+  .footer-bottom-ornament {
+    animation: none !important;
+  }
+
+  .heart-finale {
+    transition: none !important;
+  }
+}
