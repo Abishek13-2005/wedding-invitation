@@ -11041,3 +11041,166 @@ appearance: none !important;
     font-size: 14px !important;
   }
 }
+
+
+/* =========================================================
+   FINAL SEAMLESS COUNTDOWN → DATE TRANSITION
+   ========================================================= */
+
+/*
+ * The two sections share the exact same boundary color:
+ * RGB(242, 248, 251) / #f2f8fb.
+ *
+ * Countdown fades INTO this color.
+ * Date starts FROM this color and then fades toward ivory.
+ * This removes the visible horizontal seam seen on mobile.
+ */
+
+.countdown-section {
+  background:
+    linear-gradient(
+      180deg,
+      #d7eaf2 0%,
+      #e1eff4 36%,
+      #eaf5f8 70%,
+      #f2f8fb 100%
+    ) !important;
+}
+
+.countdown-section::after {
+  background:
+    radial-gradient(
+      ellipse at 50% 28%,
+      rgba(255,255,255,.72) 0%,
+      rgba(255,255,255,.28) 42%,
+      rgba(255,255,255,0) 72%
+    ) !important;
+}
+
+/*
+ * Date starts with the exact ending color of Countdown.
+ */
+.date-section {
+  background:
+    linear-gradient(
+      180deg,
+      #f2f8fb 0%,
+      #f4f9fb 13%,
+      #f8fbfb 30%,
+      #fbfaf6 58%,
+      #fbfaf6 100%
+    ) !important;
+}
+
+/*
+ * Remove the old bright top glow that was making the
+ * start of Date visibly whiter than the Countdown ending.
+ */
+.date-section::before {
+  top: -180px !important;
+
+  width: min(1000px, 125vw) !important;
+  height: 420px !important;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(255,255,255,.34) 0%,
+      rgba(255,255,255,.12) 38%,
+      rgba(255,255,255,0) 76%
+    ) !important;
+}
+
+/*
+ * A very soft blue atmospheric wash continues a little
+ * into the Date section instead of ending abruptly.
+ */
+.date-section::after {
+  bottom: auto !important;
+  top: -40px !important;
+
+  width: min(1100px, 130vw) !important;
+  height: 340px !important;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(211,233,241,.18) 0%,
+      rgba(211,233,241,.07) 44%,
+      rgba(211,233,241,0) 74%
+    ) !important;
+}
+
+/*
+ * Keep the first Date content slightly closer to the
+ * transition so the section feels connected.
+ */
+.date-section .section-label,
+.date-section h2,
+.date-reveal-grid,
+.date-reveal-caption {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* Slightly tighter top spacing */
+.date-section {
+  padding-top: clamp(92px, 10vw, 128px) !important;
+}
+
+.date-section h2 {
+  margin-top: 14px !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .countdown-section {
+    padding-bottom: 82px !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        #d7eaf2 0%,
+        #e1eff4 38%,
+        #ebf5f8 72%,
+        #f2f8fb 100%
+      ) !important;
+  }
+
+  .date-section {
+    padding-top: 78px !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        #f2f8fb 0%,
+        #f4f9fb 15%,
+        #f8fbfb 34%,
+        #fbfaf6 62%,
+        #fbfaf6 100%
+      ) !important;
+  }
+
+  .date-section::before {
+    top: -125px !important;
+    height: 300px !important;
+  }
+
+  .date-section::after {
+    top: -30px !important;
+    height: 260px !important;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .date-section {
+    padding-top: 70px !important;
+  }
+}
