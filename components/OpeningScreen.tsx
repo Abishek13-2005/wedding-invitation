@@ -1,22 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const MAX_OPENING_MS = 4350;
+const HERO_FADE_MS = 850;
 
 export default function OpeningScreen() {
-  const screenRef = useRef<HTMLDivElement>(null);
-  const envelopeRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const flapRef = useRef<HTMLDivElement>(null);
-  const sealRef = useRef<HTMLButtonElement>(null);
-  const instructionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const finishTimerRef = useRef<number | null>(null);
+  const finishStartedRef = useRef(false);
+  const firstFrameReadyRef = useRef(false);
 
-  const [isOpening, setIsOpening] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
   /*
-   * Lock page scrolling while the opening screen is visible.
+   * Keep the real page underneath from scrolling while the video
+   * opening is active.
    */
   useEffect(() => {
     if (!isFinished) {
@@ -25,267 +26,125 @@ export default function OpeningScreen() {
 
     return () => {
       document.body.style.overflow = "";
+
+      if (finishTimerRef.current !== null) {
+        window.clearTimeout(finishTimerRef.current);
+        finishTimerRef.current = null;
+      }
     };
   }, [isFinished]);
 
-  const openInvitation = () => {
-    if (isOpening || isFinished) return;
+  /*
+   * Force iPhone/Safari to decode and display frame 0 while paused.
+   *
+   * Muted autoplay is allowed by mobile browsers in normal cases.
+   * We immediately pause it and reset to frame 0, so the user sees
+   * the actual first frame of open.mp4 without the video starting
+   * before the tap.
+   */
+  const prepareFirstFrame = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || firstFrameReadyRef.current) return;
 
-    const screen = screenRef.current;
-    const envelope = envelopeRef.current;
-    const card = cardRef.current;
-    const body = bodyRef.current;
-    const flap = flapRef.current;
-    const seal = sealRef.current;
-    const instruction = instructionRef.current;
+    firstFrameReadyRef.current = true;
 
-    if (
-      !screen ||
-      !envelope ||
-      !card ||
-      !body ||
-      !flap ||
-      !seal ||
-      !instruction
-    ) {
-      return;
+    try {
+      video.pause();
+      video.currentTime = 0;
+    } catch {
+      // Ignore browsers that do not allow currentTime until metadata.
+    }
+  }, []);
+
+  const finishOpening = useCallback(() => {
+    if (finishStartedRef.current) return;
+
+    finishStartedRef.current = true;
+
+    if (finishTimerRef.current !== null) {
+      window.clearTimeout(finishTimerRef.current);
+      finishTimerRef.current = null;
     }
 
-    setIsOpening(true);
+    const video = videoRef.current;
+
+    if (video) {
+      video.pause();
+    }
 
     /*
-     * Disable interaction immediately.
+     * The Hero is already rendered underneath.
+     * We only fade this overlay away.
      */
-    screen.classList.add("is-opening");
+    setIsClosing(true);
+
+    window.setTimeout(() => {
+      document.body.style.overflow = "";
+      setIsFinished(true);
+    }, HERO_FADE_MS);
+  }, []);
+
+  const startOpening = useCallback(async () => {
+    if (isPlaying || isClosing || isFinished) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    try {
+      finishStartedRef.current = false;
+
+      video.currentTime = 0;
+
+      setIsPlaying(true);
+
+      /*
+       * Hard 4-second maximum.
+       */
+      finishTimerRef.current = window.setTimeout(() => {
+        finishOpening();
+      }, MAX_OPENING_MS);
+
+      await video.play();
+    } catch {
+      /*
+       * If Safari refuses playback, keep the first frame visible
+       * and allow the next tap to try again.
+       */
+      if (finishTimerRef.current !== null) {
+        window.clearTimeout(finishTimerRef.current);
+        finishTimerRef.current = null;
+      }
+
+      setIsPlaying(false);
+    }
+  }, [finishOpening, isClosing, isFinished, isPlaying]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
     /*
-     * Make sure the initial GSAP state is clean.
+     * Once metadata/data is loaded, show frame 0 and keep it paused.
      */
-    gsap.killTweensOf([
-      screen,
-      envelope,
-      card,
-      body,
-      flap,
-      seal,
-      instruction,
-    ]);
+    const handleLoaded = () => {
+      prepareFirstFrame();
+    };
+
+    video.addEventListener("loadedmetadata", handleLoaded);
+    video.addEventListener("loadeddata", handleLoaded);
+    video.addEventListener("canplay", handleLoaded);
 
     /*
-     * Card starts hidden behind the envelope.
+     * Explicitly request loading.
      */
-    gsap.set(card, {
-      opacity: 1,
-      visibility: "visible",
-      y: 0,
-      scale: 1,
-    });
+    video.load();
 
-    /*
-     * Keep envelope in original position.
-     */
-    gsap.set(envelope, {
-      x: 0,
-      y: 0,
-      scale: 1,
-      opacity: 1,
-    });
-
-    /*
-     * Keep flap closed initially.
-     */
-    gsap.set(flap, {
-      rotateX: 0,
-      opacity: 1,
-    });
-
-    /*
-     * Keep seal visible.
-     */
-    gsap.set(seal, {
-      scale: 1,
-      opacity: 1,
-    });
-
-    /*
-     * Instruction visible.
-     */
-    gsap.set(instruction, {
-      opacity: 1,
-      y: 0,
-    });
-
-    const timeline = gsap.timeline({
-      defaults: {
-        overwrite: "auto",
-      },
-    });
-
-    /*
-     * ==========================================
-     * 1. Hide "OPEN INVITATION"
-     * ==========================================
-     */
-
-    timeline.to(instruction, {
-      opacity: 0,
-      y: 15,
-      duration: 0.35,
-      ease: "power2.out",
-    });
-
-    /*
-     * ==========================================
-     * 2. Wax seal disappears
-     * ==========================================
-     */
-
-    timeline.to(
-      seal,
-      {
-        scale: 0.65,
-        opacity: 0,
-        duration: 0.45,
-        ease: "power2.inOut",
-      },
-      "-=0.12",
-    );
-
-    /*
-     * ==========================================
-     * 3. Open envelope flap
-     * ==========================================
-     */
-
-    timeline.to(
-      flap,
-      {
-        rotateX: -180,
-        duration: 1.15,
-        ease: "power3.inOut",
-      },
-      "-=0.08",
-    );
-
-    /*
-     * ==========================================
-     * 4. Card rises out of envelope
-     * ==========================================
-     */
-
-    timeline.to(
-      card,
-      {
-        y: "-32%",
-        scale: 1.015,
-        duration: 1.15,
-        ease: "power3.out",
-      },
-      "-=0.42",
-    );
-
-    /*
-     * ==========================================
-     * 5. Envelope body fades away
-     * ==========================================
-     */
-
-    timeline.to(
-      body,
-      {
-        opacity: 0,
-        duration: 0.55,
-        ease: "power2.out",
-      },
-      "-=0.45",
-    );
-
-    /*
-     * Hide flap after card comes forward.
-     */
-
-    timeline.to(
-      flap,
-      {
-        opacity: 0,
-        duration: 0.35,
-        ease: "power2.out",
-      },
-      "<",
-    );
-
-    /*
-     * ==========================================
-     * 6. Small pause
-     * ==========================================
-     */
-
-    timeline.to({}, {
-      duration: 0.45,
-    });
-
-    /*
-     * ==========================================
-     * 7. Card zooms toward the screen
-     * ==========================================
-     */
-
-    timeline.to(card, {
-      scale: 5.2,
-      duration: 1.25,
-      ease: "power3.inOut",
-    });
-
-    /*
-     * ==========================================
-     * 8. Fade opening screen
-     * ==========================================
-     */
-
-    timeline.to(
-      screen,
-      {
-        opacity: 0,
-        duration: 0.7,
-        ease: "power2.inOut",
-
-        onComplete: () => {
-          /*
-           * Restore normal page scrolling.
-           */
-          document.body.style.overflow = "";
-
-          /*
-           * CRITICAL FIX:
-           *
-           * Completely remove OpeningScreen
-           * from the React DOM.
-           *
-           * This prevents an invisible full-screen
-           * layer from intercepting clicks.
-           */
-          setIsFinished(true);
-        },
-      },
-      "-=0.25",
-    );
-  };
-
-  /*
-   * ==========================================
-   * IMPORTANT:
-   *
-   * Once the opening animation is complete,
-   * render NOTHING.
-   *
-   * Do not use:
-   * display:none
-   * visibility:hidden
-   * opacity:0
-   *
-   * The component must be removed from the DOM.
-   * ==========================================
-   */
+    return () => {
+      video.removeEventListener("loadedmetadata", handleLoaded);
+      video.removeEventListener("loadeddata", handleLoaded);
+      video.removeEventListener("canplay", handleLoaded);
+    };
+  }, [prepareFirstFrame]);
 
   if (isFinished) {
     return null;
@@ -293,163 +152,37 @@ export default function OpeningScreen() {
 
   return (
     <div
-      ref={screenRef}
-      className="invitation-opening"
-      aria-label="Wedding invitation opening"
+      className={`video-hero-opening${isPlaying ? " is-playing" : ""}${
+        isClosing ? " is-closing" : ""
+      }`}
+      onClick={() => {
+        void startOpening();
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          void startOpening();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Open wedding invitation"
     >
-      {/* =====================================
-          DECORATIONS
-      ====================================== */}
-
-      <div className="opening-decoration opening-decoration-top">
-        <span>✦</span>
-      </div>
-
-      <div className="opening-decoration opening-decoration-bottom">
-        <span>✦</span>
-      </div>
-
-      {/* =====================================
-          ENVELOPE
-      ====================================== */}
-
-      <div
-        ref={envelopeRef}
-        className="wedding-envelope"
-      >
-        {/* ===================================
-            INVITATION CARD
-        ==================================== */}
-
-        <div
-          ref={cardRef}
-          className="envelope-card"
-        >
-          <div className="card-border">
-            <div className="card-flower top-flower">
-              ❦
-            </div>
-
-            <div className="envelope-card-content">
-              <p className="card-small">
-                WELCOME TO THE
-              </p>
-
-              <p className="card-small">
-                WEDDING CEREMONY
-              </p>
-
-              <p className="card-of">
-                OF
-              </p>
-
-              <h1>
-                Akila Giris Kezia
-
-                <span>
-                  &amp;
-                </span>
-
-                Bennat Charles
-              </h1>
-
-              <div className="card-divider" />
-
-              <p className="card-date">
-                04 · DECEMBER · 2026
-              </p>
-            </div>
-
-            <div className="card-flower bottom-flower">
-              ❦
-            </div>
-          </div>
-        </div>
-
-        {/* ===================================
-            ENVELOPE BODY
-        ==================================== */}
-
-        <div
-          ref={bodyRef}
-          className="envelope-body"
-        >
-          <div className="envelope-left-fold" />
-
-          <div className="envelope-right-fold" />
-
-          <div className="envelope-bottom-fold" />
-        </div>
-
-        {/* ===================================
-            ENVELOPE FLAP
-        ==================================== */}
-
-        <div
-          ref={flapRef}
-          className="envelope-flap"
-        >
-          <div className="flap-decoration">
-            <span className="floral-branch branch-left">
-              ❧
-            </span>
-
-            <span className="floral-branch branch-right">
-              ❧
-            </span>
-          </div>
-        </div>
-
-        {/* ===================================
-            WAX SEAL
-        ==================================== */}
-
-        <button
-          ref={sealRef}
-          type="button"
-          className="wax-seal"
-          aria-label="Open wedding invitation"
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            openInvitation();
-          }}
-        >
-          <span>AK</span>
-
-          <small>
-            &amp;
-          </small>
-
-          <span>BC</span>
-        </button>
-      </div>
-
-      {/* =====================================
-          OPEN INVITATION BUTTON
-      ====================================== */}
-
-      <div
-        ref={instructionRef}
-        className="opening-instruction"
-      >
-        <p>
-          CLICK TO OPEN
-        </p>
-
-        <button
-          type="button"
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            openInvitation();
-          }}
-        >
-          OPEN INVITATION
-        </button>
-      </div>
+      <video
+        ref={videoRef}
+        className="video-hero-opening__video"
+        src="/images/open.mp4"
+        muted
+        playsInline
+        preload="auto"
+        autoPlay
+        disablePictureInPicture
+        controls={false}
+        onLoadedMetadata={prepareFirstFrame}
+        onLoadedData={prepareFirstFrame}
+        onCanPlay={prepareFirstFrame}
+        onEnded={finishOpening}
+      />
     </div>
   );
 }
