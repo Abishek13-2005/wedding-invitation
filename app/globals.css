@@ -31813,3 +31813,6 @@ body:has(
   font-size: 8px;
   color: grey;
 }
+html {
+  scroll-behavior: auto !important;
+}

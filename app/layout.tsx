@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
 import ScrollToTopOnLoad from "@/components/ScrollToTopOnLoad";
 
 export const metadata: Metadata = {
-  title: "Akila & Bennat",
-  description: "Wedding Invitation",
+  title: "Wedding Invitation",
+  description: "Our Wedding",
 };
 
 export default function RootLayout({
@@ -17,7 +16,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ScrollToTopOnLoad />
-
         {children}
       </body>
     </html>

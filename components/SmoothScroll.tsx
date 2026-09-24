@@ -6,20 +6,34 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
       smoothWheel: true,
+      syncTouch: true,
     });
 
-    let animationFrame: number;
+    const handleScrollToTop = () => {
+      lenis.scrollTo(0, {
+        immediate: true,
+      });
 
-    const raf = (time: number) => {
-      lenis.raf(time);
-      animationFrame = requestAnimationFrame(raf);
+      window.scrollTo(0, 0);
     };
 
-    animationFrame = requestAnimationFrame(raf);
+    // Always start at Hero when the page loads/refeshes
+    handleScrollToTop();
+
+    const frame = requestAnimationFrame(() => {
+      handleScrollToTop();
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    const animationFrame = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(frame);
       cancelAnimationFrame(animationFrame);
       lenis.destroy();
     };
